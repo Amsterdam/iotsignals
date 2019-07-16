@@ -1,3 +1,4 @@
+import json
 from django_filters.rest_framework import FilterSet
 
 from django_filters.rest_framework import DjangoFilterBackend
@@ -41,3 +42,17 @@ class PeopleMeasurementViewSet(DatapuntViewSetWritable):
     filter_class = PeopleMeasurementFilter
 
     pagination_class = PeopleMeasurementPager
+
+    def get_serializer(self, *args, **kwargs):
+        """ The incoming data is in the `data` subfield. So I take it from there and put
+        those items in root to store it in the DB"""
+        request_body = kwargs.get("data")
+        if request_body:
+            new_request_body = request_body.get("data")
+            new_request_body["details"] = request_body.get("details", None)
+            request_body = new_request_body
+            kwargs["data"] = request_body
+
+        serializer_class = self.get_serializer_class()
+        kwargs['context'] = self.get_serializer_context()
+        return serializer_class(*args, **kwargs)

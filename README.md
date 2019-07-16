@@ -27,10 +27,12 @@ Fill test data in database.
 
     docker-compose run api python manage.py migrate
 
-or in your virtual envirionment:
+or in your virtual environment:
 
 	python manage.py migrate. (tip add database to your /etc/hosts pointing at 127.0.0.1)
 
 Please schedule api/deploy/docker-migrate.sh script to run once a day. It will create the database partitions.
+
+Then add the requirements:
 
     pip install -r requirements.txt
