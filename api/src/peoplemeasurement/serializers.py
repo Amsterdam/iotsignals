@@ -20,6 +20,8 @@ class PeopleMeasurementSerializer(HALSerializer):
             'sensortype',
             'latitude',
             'longitude',
+            'density',
+            'speed',
             'count',
             'details',
         ]

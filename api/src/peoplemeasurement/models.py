@@ -12,11 +12,14 @@ class PeopleMeasurement(models.Model):
     contains for example people counts, direction, speed, lat/long etc.
     """
 
+    id = models.UUIDField(primary_key=True)
     version = models.CharField(max_length=10)
     timestamp = models.DateTimeField(db_index=True)
     sensor = models.CharField(max_length=255)
     sensortype = models.CharField(max_length=255)
     latitude = models.CharField(max_length=15)
     longitude = models.CharField(max_length=15)
-    count = models.IntegerField()
+    density = models.FloatField(null=True)
+    speed = models.FloatField(null=True)
+    count = models.IntegerField(null=True)
     details = JSONField(null=True)
