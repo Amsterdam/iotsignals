@@ -75,7 +75,7 @@ urlpatterns = [
     # API listings
     path('', include((root_router.urls, 'iotsignals'), namespace='vx')),
     # API Version 0
-    path('v0/', include((router_v0.urls, 'iotsignals'), namespace='v0')),    
+    path('v0/', include((router_v0.urls, 'iotsignals'), namespace='v0')),
     url(r"^status/", include("health.urls")),
 ]
 
