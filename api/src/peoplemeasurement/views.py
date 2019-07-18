@@ -48,7 +48,7 @@ class PeopleMeasurementViewSet(DatapuntViewSetWritable):
         those items in root to store it in the DB"""
         request_body = kwargs.get("data")
         if request_body:
-            new_request_body = request_body.get("data")
+            new_request_body = request_body.get("data", {})
             new_request_body["details"] = request_body.get("details", None)
             request_body = new_request_body
             kwargs["data"] = request_body
