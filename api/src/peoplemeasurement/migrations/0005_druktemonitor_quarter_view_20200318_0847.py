@@ -12,31 +12,48 @@ class Migration(migrations.Migration):
 
     sql = f"""
         CREATE VIEW {_VIEW_NAME} AS
-        QuarterHourTable as(
-        SELECT
-            sensor,
-            date_trunc('hour', timestamp) + date_part('minute', timestamp)::int / 15 * interval '15 min' as timestamp_rounded,
-            avg((detail_elems ->> 'count')::integer) FILTER (WHERE detail_elems ->> 'direction' = 'down') + avg((detail_elems ->> 'count')::integer) FILTER (WHERE detail_elems ->> 'direction' = 'up') as count
-        FROM
-            peoplemeasurement_peoplemeasurement,
-            jsonb_array_elements(details) detail_elems
-        where
-            timestamp >= now() - interval '15 minutes';
-            and sensor in ('GAWW-01', 'GAWW-02', 'GAWW-03', 'GAWW-04', 'GAWW-05')
-        group by
-            timestamp_rounded
-        order by
-            timestamp_rounded
+        with Raw as(
+            select
+                sensor,
+                timestamp,
+                coalesce(sum((detail_elems ->> 'count')::integer) FILTER (WHERE detail_elems ->> 'direction' = 'down'), 0) +
+                coalesce(sum((detail_elems ->> 'count')::integer) FILTER (WHERE detail_elems ->> 'direction' = 'up'), 0) as count
+            FROM
+                peoplemeasurement_peoplemeasurement,
+                jsonb_array_elements(details) detail_elems
+            where
+                timestamp >= now() - interval '15 minutes'
+                and sensor in ('GAWW-01', 'GAWW-02', 'GAWW-03', 'GAWW-04', 'GAWW-05')
+            group by
+                sensor,
+                timestamp
+            order by
+                sensor,
+                timestamp
+        ),
+        QuarterHourTable as (
+            SELECT
+                sensor,
+                date_trunc('hour', timestamp) + date_part('minute', timestamp)::int / 15 * interval '15 min' as timestamp_rounded,
+                avg(count) as count
+            FROM
+                Raw
+            group by
+                sensor,
+                timestamp_rounded
+            order by
+                sensor,
+                timestamp_rounded
         )
-        SELECT
-            timestamp_rounded,
-            round((sum(avg_count) / 473.991) * 100,0) as druktecijfer,
-        FROM
+        select
+            timestamp_rounded as timestamp,
+            sum(count)
+        from
             QuarterHourTable
         group by
-            timestamp_rounded
+            timestamp
         order by
-            timestamp_rounded;
+            timestamp;
     """
 
     reverse_sql = f"drop view if exists {_VIEW_NAME};"
