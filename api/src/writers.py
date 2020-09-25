@@ -29,9 +29,8 @@ class CSVExport:
             serializer = lambda x: x.values()
 
         # 2. Create the HttpResponse using our iterator as content
-        cls = HttpResponse
-        if streaming:
-            cls = StreamingHttpResponse
+        cls = StreamingHttpResponse if streaming else HttpReponse
+
         response = cls(
             chain(
                 (writer.writerow(col for col in header)),
