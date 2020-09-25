@@ -229,7 +229,6 @@ class PassageAPITestV0(APITestCase):
         response = self.client.get(url)
         self.assertEqual(response.status_code, 200)
 
-        #  date = datetime.now().strftime("%Y-%m-%d")
         lines = response.content.decode().strip().split('\r\n')
         content = list(csv.reader(lines))
         header = content.pop(0)
