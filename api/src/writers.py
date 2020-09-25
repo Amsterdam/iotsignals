@@ -29,7 +29,7 @@ class CSVExport:
             serializer = lambda x: x.values()
 
         # 2. Create the HttpResponse using our iterator as content
-        cls = StreamingHttpResponse if streaming else HttpReponse
+        cls = StreamingHttpResponse if streaming else HttpResponse
 
         response = cls(
             chain(
