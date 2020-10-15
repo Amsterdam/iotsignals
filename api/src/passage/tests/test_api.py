@@ -1,11 +1,14 @@
 import csv
 import logging
 from datetime import datetime, timedelta
+from itertools import cycle
 from random import randint
+from unittest import mock
 
 from django.db import connection
 from django.urls import reverse
 from model_bakery import baker
+from model_bakery.recipe import seq
 from passage.case_converters import to_camelcase
 from rest_framework.test import APITestCase
 
@@ -187,7 +190,7 @@ class PassageAPITestV0(APITestCase):
         lines = [line for line in response.streaming_content]
         assert lines == [b'datum,aantal_taxi_passages\r\n', f'{date},1000\r\n'.encode()]
 
-    def test_passage_export(self):
+    def test_passage_export_no_filters(self):
 
         reading_count = 4
         camera_count = 3
@@ -252,3 +255,29 @@ class PassageAPITestV0(APITestCase):
         content = set(map(tuple, content))
         expected_content = set(map(tuple, expected_content))
         assert set(expected_content) == set(content)
+
+    def test_passage_export_filters(self):
+        date = datetime.fromisocalendar(2019, 11, 1)
+        # create data for 3 cameras
+        row = baker.make(
+            'passage.PassageHourAggregation',
+            camera_id=cycle(range(1, 4)),
+            camera_naam=cycle(f'Camera: {i}' for i in range(1, 4)),
+            date=date,
+            year=date.year,
+            week=date.isocalendar()[1],
+            hour=1,
+            _quantity=100,
+        )
+        url = reverse('v0:passage-export')
+        response = self.client.get(url, dict(year=2019, week=12))
+        self.assertEqual(response.status_code, 200)
+        lines = [x for x in response.streaming_content]
+        assert len(lines) == 0
+
+        response = self.client.get(url, dict(year=2019))
+        self.assertEqual(response.status_code, 200)
+        lines = [x for x in response.streaming_content]
+
+        # Expect the header and 3 lines
+        assert len(lines) == 4

@@ -22,12 +22,15 @@ class CSVExport:
     @staticmethod
     def serializer(iterator):
         writer = csv.writer(CSVBuffer())
-        row = next(iterator)
-        yield writer.writerow(row.keys())
-        yield writer.writerow(row.values())
-
-        for row in iterator:
+        try:
+            row = next(iterator)
+            yield writer.writerow(row.keys())
             yield writer.writerow(row.values())
+
+            for row in iterator:
+                yield writer.writerow(row.values())
+        except StopIteration:
+            return
 
     def export(self, filename, iterator, serializer=None, header=None, streaming=False):
         # 1. Create our writer object with the pseudo buffer
