@@ -275,6 +275,13 @@ class PassageAPITestV0(APITestCase):
         lines = [x for x in response.streaming_content]
         assert len(lines) == 0
 
+        response = self.client.get(url, dict(year=2019, week=11))
+        self.assertEqual(response.status_code, 200)
+        lines = [x for x in response.streaming_content]
+
+        # Expect the header and 3 lines
+        assert len(lines) == 4
+
         response = self.client.get(url, dict(year=2019))
         self.assertEqual(response.status_code, 200)
         lines = [x for x in response.streaming_content]

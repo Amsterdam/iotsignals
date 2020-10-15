@@ -17,11 +17,6 @@ from writers import CSVExport
 from . import models, serializers
 
 
-class ExportFilter(FilterSet):
-    class Meta:
-        fields = {'year': ['exact']}
-
-
 class PassageFilter(FilterSet):
     class Meta(object):
         model = models.Passage
@@ -112,7 +107,9 @@ class PassageViewSet(mixins.CreateModelMixin, viewsets.GenericViewSet):
         year = previous_week.year
         week = previous_week.isocalendar()[1]
 
-        Filter = filterset_factory(models.PassageHourAggregation, fields=['year', 'week'])
+        Filter = filterset_factory(
+            models.PassageHourAggregation, fields=['year', 'week']
+        )
         qs = Filter(request.GET).qs
 
         # If no date has been given, we return the data of last week
