@@ -5,6 +5,15 @@
 
 PYTHON = python3
 
+dc = docker-compose
+run = $(dc) run --rm
+manage = $(run) api python manage.py
+pytest = $(run) test pytest $(ARGS)
+
+build_version := $(shell git describe --tags --exact-match 2> /dev/null || git symbolic-ref -q --short HEAD)
+build_revision := $(shell git rev-parse --short HEAD)
+build_date := $(shell date --iso-8601=seconds)
+
 help:                               ## Show this help.
 	@fgrep -h "##" $(MAKEFILE_LIST) | fgrep -v fgrep | sed -e 's/\\$$//' | sed -e 's/##//'
 
@@ -19,3 +28,15 @@ requirements: pip-tools             ## Upgrade requirements (in requirements.in)
 	pip-compile --upgrade --output-file requirements_dev.txt requirements_dev.in
 
 upgrade: requirements install       ## Run 'requirements' and 'install' targets
+
+build: export BUILD_DATE=$(build_date)
+build: export BUILD_REVISION=$(build_revision)
+build: export BUILD_VERSION=$(build_version)
+build:                              ## Build docker image
+	$(dc) build
+
+push: build                         ## Push docker image to registry
+	$(dc) push
+
+test:
+	cd deploy/test; $(run) tests

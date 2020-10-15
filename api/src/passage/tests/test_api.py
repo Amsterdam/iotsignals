@@ -184,10 +184,8 @@ class PassageAPITestV0(APITestCase):
         self.assertEqual(response.status_code, 200)
 
         date = datetime.now().strftime("%Y-%m-%d")
-        assert (
-            response.content
-            == f'datum,aantal_taxi_passages\r\n{date},1000\r\n'.encode()
-        )
+        lines = [line for line in response.streaming_content]
+        assert lines == [b'datum,aantal_taxi_passages\r\n', f'{date},1000\r\n'.encode()]
 
     def test_passage_export(self):
 
@@ -229,12 +227,11 @@ class PassageAPITestV0(APITestCase):
         response = self.client.get(url)
         self.assertEqual(response.status_code, 200)
 
-        lines = response.content.decode().strip().split('\r\n')
+        lines = [line.decode() for line in response.streaming_content]
         content = list(csv.reader(lines))
         header = content.pop(0)
         assert header == ['camera_id', 'camera_naam', 'bucket', 'sum']
         assert len(content) == 7 * 24 * camera_count
-
 
         i = 0
         expected_content = []
