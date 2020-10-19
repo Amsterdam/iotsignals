@@ -49,6 +49,5 @@ class CSVExport:
 
         # 3. Add additional headers to the response
         response['Content-Disposition'] = f"attachment; filename={filename}.csv"
-        response['uWSGI-Encoding'] = 'gzip'
         # 4. Return the response
         return response
