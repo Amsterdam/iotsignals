@@ -20,7 +20,6 @@ services:
       ENVIRONMENT: test
       PYTHONBREAKPOINT: 
       PYTHONDONTWRITEBYTECODE: 1
-      AUTHORIZATION_TOKEN: insecure
       HOME: /tmp
     volumes:
       - ./run_tests.sh:/app/run_tests.sh
