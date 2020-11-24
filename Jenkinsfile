@@ -38,13 +38,11 @@ node {
     stage("Locust load test") {
         sh("./api/deploy/docker-locust-load-test.sh")
     }
-}
 
-String BRANCH = "${env.BRANCH_NAME}"
+    String BRANCH = "${env.BRANCH_NAME}"
 
-if (BRANCH == "master") {
+    if (BRANCH == "master") {
 
-    node {
         stage('Push acceptance image') {
             tryStep "image tagging", {
                docker.withRegistry("${DOCKER_REGISTRY_HOST}",'docker_registry_auth') {
@@ -53,9 +51,6 @@ if (BRANCH == "master") {
                 }
             }
         }
-    }
-
-    node {
         stage("Deploy to ACC") {
             tryStep "deployment", {
                 build job: 'Subtask_Openstack_Playbook',
@@ -66,13 +61,11 @@ if (BRANCH == "master") {
                 ]
             }
         }
-    }
 
-    stage('Waiting for approval') {
-        input "Deploy to Production?"
-    }
+        stage('Waiting for approval') {
+            input "Deploy to Production?"
+        }
 
-    node {
         stage('Push production image') {
             tryStep "image tagging", {
                 docker.withRegistry("${DOCKER_REGISTRY_HOST}",'docker_registry_auth') {
@@ -82,9 +75,7 @@ if (BRANCH == "master") {
                 }
             }
         }
-    }
 
-    node {
         stage("Deploy") {
             tryStep "deployment", {
                 build job: 'Subtask_Openstack_Playbook',
@@ -96,4 +87,5 @@ if (BRANCH == "master") {
             }
         }
     }
+
 }
