@@ -49,7 +49,6 @@ if (BRANCH == "master") {
             tryStep "image tagging", {
                docker.withRegistry("${DOCKER_REGISTRY_HOST}",'docker_registry_auth') {
                     def image = docker.image("datapunt/iotsignals:${env.BUILD_NUMBER}")
-                    image.pull()
                     image.push("acceptance")
                 }
             }
