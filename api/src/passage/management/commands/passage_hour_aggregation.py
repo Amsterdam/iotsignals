@@ -7,9 +7,6 @@ from django.db import connection
 
 log = logging.getLogger(__name__)
 
-# Data collection was started sometime in january 2019, so to be sure, we start the first run on the first of january 2019
-FIRST_DATE = date(2019, 1, 1)
-
 
 class Command(BaseCommand):
     def add_arguments(self, parser):
