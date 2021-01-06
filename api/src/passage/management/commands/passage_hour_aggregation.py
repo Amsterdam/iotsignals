@@ -1,3 +1,4 @@
+import datetime
 import logging
 from datetime import date, timedelta
 
@@ -14,9 +15,9 @@ class Command(BaseCommand):
     def add_arguments(self, parser):
         # Named (optional) argument
         parser.add_argument(
-            '--first_run',
-            action='store_true',
-            help='Do the first run of the passages aggregation',
+            '--from-date',
+            type=datetime.date.fromisoformat,
+            help='Run the aggregations from this date',
         )
 
     def _get_delete_query(self, run_date):
@@ -168,8 +169,8 @@ class Command(BaseCommand):
             log.info(f"Inserted {cursor.rowcount} records")
 
     def handle(self, *args, **options):
-        if options['first_run']:
-            run_date = FIRST_DATE
+        if options['from_date']:
+            run_date = options['from_date']
             while run_date < date.today():
                 self._run_query_from_date(run_date)
                 run_date = run_date + timedelta(days=1)
