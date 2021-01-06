@@ -122,7 +122,7 @@ class PassageViewSet(mixins.CreateModelMixin, viewsets.GenericViewSet):
 
         # If no date has been given, we return the data of last week
         if not request.GET.get('year') and not request.GET.get('week'):
-            qs = qs.filter(year=year, week=week)
+            qs = qs.filter(year__in=[year, year+1], week=week)
 
         qs = (
             qs.annotate(
