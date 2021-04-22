@@ -7,7 +7,6 @@ from decimal import Decimal
 from itertools import cycle
 
 import pytest
-from django.contrib.gis.geos import Point
 from django.db import connection
 from django.test import override_settings
 from django.urls import reverse
@@ -21,28 +20,43 @@ from .factories import PassageFactory
 log = logging.getLogger(__name__)
 
 
-@pytest.fixture
-def passage():
-    return PassageFactory()
-
-
-@pytest.fixture
-def passage_payload():
-
-    stub = PassageFactory.stub()
-    data = stub.__dict__
-
-    for k, v in data.items():
-        if isinstance(v, date):
-            data[k] = v.isoformat()
-
-        if isinstance(v, datetime):
-            data[k] = v.astimezone().isoformat()
-
-        if isinstance(v, Point):
-            data[k] = json.loads(v.json)
-
-    return data
+TEST_POST = {
+    "version": "passage-v1",
+    "id": "cbbd2efc-78f4-4d41-bf5b-4cbdf1e87269",
+    "passage_at": "2018-10-16T12:13:44+02:00",
+    "straat": "Spaarndammerdijk",
+    "rijstrook": 1,
+    "rijrichting": 1,
+    "camera_id": "ddddffff-4444-aaaa-7777-aaaaeeee1111",
+    "camera_naam": "Spaarndammerdijk [Z]",
+    "camera_kijkrichting": 0,
+    "camera_locatie": {"type": "Point", "coordinates": [4.845423, 52.386831]},
+    "kenteken_land": "NL",
+    "kenteken_nummer_betrouwbaarheid": 640,
+    "kenteken_land_betrouwbaarheid": 690,
+    "kenteken_karakters_betrouwbaarheid": [
+        {"betrouwbaarheid": 650, "positie": 1},
+        {"betrouwbaarheid": 630, "positie": 2},
+        {"betrouwbaarheid": 640, "positie": 3},
+        {"betrouwbaarheid": 660, "positie": 4},
+        {"betrouwbaarheid": 620, "positie": 5},
+        {"betrouwbaarheid": 640, "positie": 6},
+    ],
+    "indicatie_snelheid": 23,
+    "automatisch_verwerkbaar": True,
+    "voertuig_soort": "Bromfiets",
+    "merk": "SYM",
+    "inrichting": "N.V.t.",
+    "datum_eerste_toelating": "2015-03-06",
+    "datum_tenaamstelling": "2015-03-06",
+    "toegestane_maximum_massa_voertuig": 3600,
+    "europese_voertuigcategorie": "L1",
+    "europese_voertuigcategorie_toevoeging": "e",
+    "taxi_indicator": True,
+    "maximale_constructie_snelheid_bromsnorfiets": 25,
+    "brandstoffen": [{"brandstof": "Benzine", "volgnr": 1}],
+    "versit_klasse": "test klasse",
+}
 
 
 def get_records_in_partition():
@@ -52,29 +66,6 @@ def get_records_in_partition():
         if len(row) > 0:
             return row[0]
         return 0
-
-
-def assert_response(response, payload):
-    data = response.data
-    expected = copy.deepcopy(payload)
-
-    # Check for privacy changes
-    if payload['toegestane_maximum_massa_voertuig'] <= 3500:
-        expected['toegestane_maximum_massa_voertuig'] = 1500
-        expected['europese_voertuigcategorie_toevoeging'] = None
-        expected['merk'] = None
-
-    if payload['voertuig_soort'].lower() == 'personenauto':
-        expected['inrichting'] = 'Personenauto'
-
-    expected[
-        'datum_eerste_toelating'
-    ] = f"{expected['datum_eerste_toelating'][:4]}-01-01"
-
-    expected['datum_tenaamstelling'] = None
-
-    for k, v in expected.items():
-        assert data[k] == v, (k, data[k])
 
 
 @pytest.mark.django_db
@@ -96,24 +87,42 @@ class TestPassageAPI:
             f"{content_type}" == response["Content-Type"]
         ), "Wrong Content-Type for {}".format(url)
 
+    expected['datum_tenaamstelling'] = None
+
+    for k, v in expected.items():
+        assert data[k] == v, (k, data[k])
+
+        # check if the record was stored in the correct partition
+        assert before + 1 == get_records_in_partition()
+
+        assert res.status_code == 201, res.data
+        for k, v in TEST_POST.items():
+            assert res.data[k] == v
+
+    def setup(self):
+        self.URL = '/v0/milieuzone/passage/'
+
+    @pytest.fixture(autouse=True)
+    def inject_api_client(self, api_client):
+        self.client = api_client
+
+        # check if the record was stored in the correct partition
+        assert before + 1 == get_records_in_partition()
+
+        assert res.status_code == 201, res.data
+        for k, v in TEST_POST.items():
+            assert res.data[k] == v
+
     def test_post_new_passage_camelcase(self, passage_payload):
         """ Test posting a new camelcase passage """
         # convert keys to camelcase for test
 
-        assert Passage.objects.count() == 0
-        camel_case = {to_camelcase(k): v for k, v in passage_payload.items()}
-        res = self.client.post(self.URL, camel_case, format='json')
-        assert res.status_code == 201, res.data
-        assert Passage.objects.get(id=passage_payload['id'])
-        assert_response(res, passage_payload)
+        # check if the record was stored in the correct partition
+        assert before + 1 == get_records_in_partition()
 
-    def test_post_new_passage(self, passage_payload):
-        """ Test posting a new passage """
-        assert Passage.objects.count() == 0
-        res = self.client.post(self.URL, passage_payload, format='json')
         assert res.status_code == 201, res.data
-        assert Passage.objects.get(id=passage_payload['id'])
-        assert_response(res, passage_payload)
+        for k, v in NEW_TEST.items():
+            assert res.data[k] == v
 
     def test_post_new_passage_missing_attr(self, passage_payload):
         """Test posting a new passage with missing fields"""
@@ -139,11 +148,11 @@ class TestPassageAPI:
         """ Test posting a new passage with a duplicate key """
         before = get_records_in_partition()
 
-        res = self.client.post(self.URL, passage_payload, format='json')
+        res = self.client.post(self.URL, TEST_POST, format='json')
         assert res.status_code == 201, res.data
 
         # # Post the same message again
-        res = self.client.post(self.URL, passage_payload, format='json')
+        res = self.client.post(self.URL, TEST_POST, format='json')
         assert res.status_code == 409, res.data
 
     def test_get_passages_not_allowed(self, passage_payload):
@@ -166,7 +175,7 @@ class TestPassageAPI:
         self.client.post(self.URL, passage_payload, format='json')
 
         # Then check if I cannot update it
-        response = self.client.delete(f'{self.URL}{passage_payload["id"]}/')
+        response = self.client.delete(f'{self.URL}{TEST_POST["id"]}/')
         assert response.status_code == 404
 
     def test_passage_taxi_export(self):
@@ -304,34 +313,22 @@ class TestPassageAPI:
         # Expect the header and 3 lines
         assert len(lines) == 4
 
-    def test_privacy_maximum_massa(self, api_client, passage_payload):
-        passage_payload['toegestane_maximum_massa_voertuig'] = 3000
+    def test_privacy_rules(self):
+        payload = copy.deepcopy(TEST_POST)
+        payload.update(
+            dict(
+                toegestane_maximum_massa_voertuig=3400,
+            )
+        )
+        res = self.client.post(self.URL, TEST_POST, format='json')
 
-        res = self.client.post(self.URL, passage_payload, format='json')
         assert res.status_code == 201, res.data
-        assert Passage.objects.get(id=passage_payload['id'])
-        assert_response(res, passage_payload)
+        for k, v in TEST_POST.items():
+            assert res.data[k] == v
 
-    def test_privacy_voertuig_soort(self, api_client, passage_payload):
-        passage_payload['voertuig_soort'] = 'PeRsonEnaUto'
 
-        res = self.client.post(self.URL, passage_payload, format='json')
-        assert res.status_code == 201, res.data
-        assert Passage.objects.get(id=passage_payload['id'])
-        assert_response(res, passage_payload)
-
-    def test_privacy_tenaamstelling(self, api_client, passage_payload):
-        passage_payload['datum_tenaamstelling'] = '2020-02-02'
-
-        res = self.client.post(self.URL, passage_payload, format='json')
-        assert res.status_code == 201, res.data
-        assert Passage.objects.get(id=passage_payload['id'])
-        assert_response(res, passage_payload)
-
-    def test_privacy_datum_eerste_toelating(self, api_client, passage_payload):
-        passage_payload['datum_eerste_toelating'] = '2020-02-02'
-
-        res = self.client.post(self.URL, passage_payload, format='json')
-        assert res.status_code == 201, res.data
-        assert Passage.objects.get(id=passage_payload['id'])
-        assert_response(res, passage_payload)
+@pytest.mark.django_db
+class TestPrivacyRules:
+    @pytest.mark.parametrize("param", ["a", "b"])
+    def test_pytest(self, api_client, param):
+        assert param
