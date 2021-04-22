@@ -1,3 +1,4 @@
+import copy
 import csv
 import logging
 from datetime import datetime, timedelta
@@ -5,6 +6,7 @@ from itertools import cycle
 from random import randint
 from unittest import mock
 
+import pytest
 from django.db import connection
 from django.test import TestCase, override_settings
 from django.urls import reverse
@@ -48,7 +50,7 @@ TEST_POST = {
     "inrichting": "N.V.t.",
     "datum_eerste_toelating": "2015-03-06",
     "datum_tenaamstelling": "2015-03-06",
-    "toegestane_maximum_massa_voertuig": 249,
+    "toegestane_maximum_massa_voertuig": 3600,
     "europese_voertuigcategorie": "L1",
     "europese_voertuigcategorie_toevoeging": "e",
     "taxi_indicator": True,
@@ -67,24 +69,24 @@ def get_records_in_partition():
         return 0
 
 
-class PassageAPITestV0(APITestCase):
+@pytest.mark.django_db
+class TestPassageAPI:
     """Test the passage endpoint."""
 
-    def setUp(self):
+    def setup(self):
         self.URL = '/v0/milieuzone/passage/'
-        self.p = PassageFactory()
+
+    @pytest.fixture(autouse=True)
+    def inject_api_client(self, api_client):
+        self.client = api_client
 
     def valid_response(self, url, response, content_type):
         """Check common status/json."""
-        self.assertEqual(
-            200, response.status_code, "Wrong response code for {}".format(url)
-        )
+        assert 200 == response.status_code, "Wrong response code for {}".format(url)
 
-        self.assertEqual(
-            f"{content_type}",
-            response["Content-Type"],
-            "Wrong Content-Type for {}".format(url),
-        )
+        assert (
+            f"{content_type}" == response["Content-Type"]
+        ), "Wrong Content-Type for {}".format(url)
 
     def test_post_new_passage_camelcase(self):
         """ Test posting a new camelcase passage """
@@ -95,11 +97,11 @@ class PassageAPITestV0(APITestCase):
         res = self.client.post(self.URL, camel_case, format='json')
 
         # check if the record was stored in the correct partition
-        self.assertEqual(before + 1, get_records_in_partition())
+        assert before + 1 == get_records_in_partition()
 
-        self.assertEqual(res.status_code, 201, res.data)
+        assert res.status_code == 201, res.data
         for k, v in TEST_POST.items():
-            self.assertEqual(res.data[k], v)
+            assert res.data[k] == v
 
     def test_post_new_passage(self):
         """ Test posting a new passage """
@@ -108,11 +110,11 @@ class PassageAPITestV0(APITestCase):
         res = self.client.post(self.URL, TEST_POST, format='json')
 
         # check if the record was stored in the correct partition
-        self.assertEqual(before + 1, get_records_in_partition())
+        assert before + 1 == get_records_in_partition()
 
-        self.assertEqual(res.status_code, 201, res.data)
+        assert res.status_code == 201, res.data
         for k, v in TEST_POST.items():
-            self.assertEqual(res.data[k], v)
+            assert res.data[k] == v
 
     def test_post_new_passage_missing_attr(self):
         """Test posting a new passage with missing fields"""
@@ -123,11 +125,11 @@ class PassageAPITestV0(APITestCase):
         res = self.client.post(self.URL, NEW_TEST, format='json')
 
         # check if the record was stored in the correct partition
-        self.assertEqual(before + 1, get_records_in_partition())
+        assert before + 1 == get_records_in_partition()
 
-        self.assertEqual(res.status_code, 201, res.data)
+        assert res.status_code == 201, res.data
         for k, v in NEW_TEST.items():
-            self.assertEqual(res.data[k], v)
+            assert res.data[k] == v
 
     def test_post_range_betrouwbaarheid(self):
         """Test posting a invalid range betrouwbaarheid"""
@@ -137,24 +139,24 @@ class PassageAPITestV0(APITestCase):
         res = self.client.post(self.URL, NEW_TEST, format='json')
 
         # check if the record was NOT stored in the correct partition
-        self.assertEqual(before, get_records_in_partition())
-        self.assertEqual(res.status_code, 400, res.data)
+        assert before == get_records_in_partition()
+        assert res.status_code == 400, res.data
 
     def test_post_duplicate_key(self):
         """ Test posting a new passage with a duplicate key """
         before = get_records_in_partition()
 
         res = self.client.post(self.URL, TEST_POST, format='json')
-        self.assertEqual(res.status_code, 201, res.data)
+        assert res.status_code == 201, res.data
 
         # # Post the same message again
         res = self.client.post(self.URL, TEST_POST, format='json')
-        self.assertEqual(res.status_code, 409, res.data)
+        assert res.status_code == 409, res.data
 
     def test_get_passages_not_allowed(self):
         PassageFactory.create()
         response = self.client.get(self.URL)
-        self.assertEqual(response.status_code, 405)
+        assert response.status_code == 405
 
     def test_update_passages_not_allowed(self):
         # first post a record
@@ -164,7 +166,7 @@ class PassageAPITestV0(APITestCase):
         response = self.client.put(
             f'{self.URL}{TEST_POST["id"]}/', TEST_POST, format='json'
         )
-        self.assertEqual(response.status_code, 404)
+        assert response.status_code == 404
 
     def test_delete_passages_not_allowed(self):
         # first post a record
@@ -172,7 +174,7 @@ class PassageAPITestV0(APITestCase):
 
         # Then check if I cannot update it
         response = self.client.delete(f'{self.URL}{TEST_POST["id"]}/')
-        self.assertEqual(response.status_code, 404)
+        assert response.status_code == 404
 
     def test_passage_taxi_export(self):
 
@@ -186,7 +188,7 @@ class PassageAPITestV0(APITestCase):
         # first post a record
         url = reverse('v0:passage-export-taxi')
         response = self.client.get(url)
-        self.assertEqual(response.status_code, 200)
+        assert response.status_code == 200
 
         date = datetime.now().strftime("%Y-%m-%d")
         lines = [line for line in response.streaming_content]
@@ -196,13 +198,13 @@ class PassageAPITestV0(APITestCase):
     def test_passage_export_no_auth(self):
         url = reverse('v0:passage-export')
         response = self.client.get(url)
-        self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
+        assert response.status_code == status.HTTP_401_UNAUTHORIZED
 
     @override_settings(AUTHORIZATION_TOKEN='foo')
     def test_passage_export_wrong_auth(self):
         url = reverse('v0:passage-export')
         response = self.client.get(url, HTTP_AUTHORIZATION='Token bar')
-        self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
+        assert response.status_code == status.HTTP_401_UNAUTHORIZED
 
     @override_settings(AUTHORIZATION_TOKEN='foo')
     def test_passage_export_no_filters(self):
@@ -243,7 +245,7 @@ class PassageAPITestV0(APITestCase):
         # first post a record
         url = reverse('v0:passage-export')
         response = self.client.get(url, HTTP_AUTHORIZATION='Token foo')
-        self.assertEqual(response.status_code, 200)
+        assert response.status_code == 200
 
         lines = [line.decode() for line in response.streaming_content]
         content = list(csv.reader(lines))
@@ -289,24 +291,42 @@ class PassageAPITestV0(APITestCase):
         response = self.client.get(
             url, dict(year=2019, week=12), HTTP_AUTHORIZATION='Token foo'
         )
-        self.assertEqual(response.status_code, 200)
+        assert response.status_code == 200
         lines = [x for x in response.streaming_content]
         assert len(lines) == 0
 
         response = self.client.get(
             url, dict(year=2019, week=11), HTTP_AUTHORIZATION='Token foo'
         )
-        self.assertEqual(response.status_code, 200)
+        assert response.status_code == 200
         lines = [x for x in response.streaming_content]
 
         # Expect the header and 3 lines
         assert len(lines) == 4
 
-        response = self.client.get(
-            url, dict(year=2019), HTTP_AUTHORIZATION='Token foo'
+        response = self.client.get(url, dict(year=2019), HTTP_AUTHORIZATION='Token foo')
+        assert response.status_code == 200
+        lines = [x for x in response.streaming_content]
+
+        # Expect the header and 3 lines
+        assert len(lines) == 4
+
+    def test_privacy_rules(self):
+        payload = copy.deepcopy(TEST_POST)
+        payload.update(
+            dict(
+                toegestane_maximum_massa_voertuig=3400,
+            )
         )
-        self.assertEqual(response.status_code, 200)
-        lines = [x for x in response.streaming_content]
+        res = self.client.post(self.URL, TEST_POST, format='json')
 
-        # Expect the header and 3 lines
-        assert len(lines) == 4
+        assert res.status_code == 201, res.data
+        for k, v in TEST_POST.items():
+            assert res.data[k] == v
+
+
+@pytest.mark.django_db
+class TestPrivacyRules:
+    @pytest.mark.parametrize("param", ["a", "b"])
+    def test_pytest(self, api_client, param):
+        assert param
