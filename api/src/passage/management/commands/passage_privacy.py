@@ -22,8 +22,7 @@ class Command(BaseCommand):
         batch_size = options['batch_size']
         sleep = options['sleep']
 
-        batch = self.get_batch(batch_size)
-        while batch:
+        while batch := self.get_batch(batch_size):
             qs = Passage.objects.filter(pk__in=batch).update(
                 datum_eerste_toelating=TruncYear('datum_eerste_toelating'),
                 datum_tenaamstelling=Value(None),
@@ -37,7 +36,7 @@ class Command(BaseCommand):
                 ),
                 inrichting=Case(
                     When(
-                        voertuig_soort__iexact='PeRsoNenAutO',
+                        voertuig_soort__iexact='personenauto',
                         then=Value('Personenauto'),
                     ),
                     default=F('inrichting'),
@@ -51,7 +50,6 @@ class Command(BaseCommand):
             self.stdout.write('Processed: ' + self.style.SUCCESS(qs))
             self.stdout.write('sleeping for: ' + self.style.SUCCESS(sleep))
             time.sleep(sleep)
-            batch = self.get_batch(batch_size)
 
         self.stdout.write(self.style.SUCCESS('Finished'))
 
