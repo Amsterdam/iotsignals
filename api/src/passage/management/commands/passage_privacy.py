@@ -29,7 +29,7 @@ class Command(BaseCommand):
             for n in range((dates['max'] - dates['min']).days)
         ):
             self.stdout.write(f"Selecting data in: {self.style.SQL_KEYWORD(date)}")
-            qs = Passage.objects.filter(
+            num_updated_rows = Passage.objects.filter(
                 passage_at__gte=date,
                 passage_at__lt=date + timedelta(days=1),
             ).exclude(privacy_check=True).update(
@@ -56,7 +56,7 @@ class Command(BaseCommand):
                 ),
                 privacy_check=True,
             )
-            self.stdout.write('Processed: ' + self.style.SUCCESS(qs))
+            self.stdout.write('Processed: ' + self.style.SUCCESS(num_updated_rows))
             self.stdout.write('sleeping for: ' + self.style.SUCCESS(sleep))
             time.sleep(sleep)
 
