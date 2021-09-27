@@ -147,5 +147,7 @@ class Command(BaseCommand):
                 run_date = run_date + timedelta(days=1)
 
         else:
-            run_date = date.today() - timedelta(days=1)
-            self._run_query_from_date(run_date)
+            for i in range(3, 0, -1):
+                # by default update the aggregations for the last three days
+                run_date = date.today() - timedelta(days=i)
+                self._run_query_from_date(run_date)
