@@ -4,6 +4,7 @@ from datetime import date
 from datapunt_api.rest import DisplayField, HALSerializer
 from django.db import IntegrityError
 from rest_framework import serializers
+from rest_framework.exceptions import ValidationError
 
 from .errors import DuplicateIdError
 from .models import Passage
@@ -41,17 +42,27 @@ class PassageDetailSerializer(serializers.ModelSerializer):
         try:
             return super().create(validated_data)
         except IntegrityError as e:
-            log.info(f"DuplicateIdError for id {validated_data['id']}")
-            raise DuplicateIdError(str(e))
+            # this is pretty nasty to check the string like this, however when
+            # a partition does not exist an IntegrityError is raised - in this
+            # case we don't want to return a 409 duplicate error. Unfortunately
+            # the string argument is the only way to distinguish between
+            # different types of IntegrityError.
+            if 'duplicate key' in e.args[0]:
+                log.info(f"DuplicateIdError for id {validated_data['id']}")
+                raise DuplicateIdError(str(e))
+            else:
+                raise
 
     def validate_datum_eerste_toelating(self, value):
+        if value is None:
+            raise ValidationError()
         return date(year=value.year, month=1, day=1)
 
     def validate_datum_tenaamstelling(self, value):
         return None
 
     def validate_toegestane_maximum_massa_voertuig(self, value):
-        if value <= 3500:
+        if value is not None and value <= 3500:
             return 1500
         return value
 

@@ -21,21 +21,27 @@ from django.urls import path
 from drf_yasg.views import get_schema_view
 from drf_yasg import openapi
 
-from rest_framework import routers
 from rest_framework import permissions
 
 from passage import views as passage_views
 
-from iotsignals.routers import IOTSignalsRouterRoot
-from iotsignals.routers import IOTSignalsRouterVersion0
+from iotsignals.routers import (
+    IOTSignalsRouterRoot,
+    IOTSignalsRouterVersion0,
+    IOTSignalsRouterVersion1,
+)
 
 root_router = IOTSignalsRouterRoot()
 
 router_v0 = IOTSignalsRouterVersion0()
-
 router_v0.register(
      r'milieuzone/passage',
      viewset=passage_views.PassageViewSet, basename='passage')
+
+router_v1 = IOTSignalsRouterVersion1()
+router_v1.register(
+     r'milieuzone/passage',
+     viewset=passage_views.PassageViewSetVersion1, basename='passage')
 
 urls = root_router.urls
 
@@ -72,6 +78,7 @@ urlpatterns = [
     path('', include((root_router.urls, 'iotsignals'), namespace='vx')),
     # API Version 0
     path('v0/', include((router_v0.urls, 'iotsignals'), namespace='v0')),
+    path('v1/', include((router_v1.urls, 'iotsignals'), namespace='v1')),
     url(r"^status/", include("health.urls")),
 ]
 

@@ -1,48 +1,99 @@
-import copy
+# std
 import csv
-import json
 import logging
-from datetime import date, datetime, timedelta
-from decimal import Decimal
+from datetime import datetime, timedelta
 from itertools import cycle
-
+# 3rd party
+from typing import Literal
 import pytest
 from django.contrib.gis.geos import Point
 from django.db import connection
 from django.test import override_settings
 from django.urls import reverse
+from django.utils.dateparse import parse_datetime
+from hypothesis import given, settings, seed, Verbosity, Phase, HealthCheck
 from model_bakery import baker
-from passage.case_converters import to_camelcase
+from rest_framework_gis.fields import GeoJsonDict
+# iotsignals
+from make_paritions import make_partition_sql
+from passage.case_converters import to_snakecase
 from passage.models import Passage
 from rest_framework import status
-
 from .factories import PassageFactory
+from .strategies import st_passages
+from passage.views import downgrade, upgrade, NEW_FIELDS
+from ..util import keymap, keyfilter
 
 log = logging.getLogger(__name__)
 
 
-@pytest.fixture
-def passage():
-    return PassageFactory()
+class TestRoundTrip:
+
+    @given(st_passages(version=1))
+    @settings(max_examples=10)
+    def test_roundtrip_1_2_1(self, passage):
+        """
+        Attempt to verify the upgrade and downgrade functions by checking the
+        roundtrip property, i.e. converting 1 -> 2 -> should give us what we
+        started with.
+        """
+        passage = keymap(to_snakecase, passage)
+        v2 = upgrade(passage)
+        v1 = downgrade(v2)
+
+        # these fields are irretrievably cleared during upgrade
+        expected = dict(
+            passage,
+            datum_tenaamstelling=None,
+            datum_eerste_toelating=f"{passage['datum_eerste_toelating'][:4]}-01-01",
+        )
+
+        assert expected == v1
+
+    @given(st_passages(version=2))
+    @settings(max_examples=10)
+    def test_roundtrip_2_1_2(self, passage):
+        """
+        Attempt to verify the upgrade and downgrade functions by checking the
+        roundtrip property, i.e. converting 2 -> 1 -> 2 should give us what we
+        started with.
+        """
+        passage = keymap(to_snakecase, passage)
+        v1 = downgrade(passage, drop_new_fields=False)
+        v2 = upgrade(v1)
+        assert passage == v2
 
 
-@pytest.fixture
-def passage_payload():
+def get_passage_payload(version: Literal[1, 2]) -> dict:
+    """
+    Get a passage payload for the requested version
 
-    stub = PassageFactory.stub()
-    data = stub.__dict__
+    :param version: The version of the payload to get.
 
-    for k, v in data.items():
-        if isinstance(v, date):
-            data[k] = v.isoformat()
+    :return: Dict containing the passage information (payload for POST request)
+    """
+    result = None
 
-        if isinstance(v, datetime):
-            data[k] = v.astimezone().isoformat()
+    # This is abusing hypothesis a little bit to just draw one deterministic
+    # example.
+    @settings(
+        max_examples=1,
+        database=None,
+        deadline=None,
+        verbosity=Verbosity.quiet,
+        phases=(Phase.generate,),
+        suppress_health_check=HealthCheck.all(),
+    )
+    @seed(12345)
+    @given(st_passages(version=version))
+    def draw_example(passage):
+       nonlocal result
+       result = passage
 
-        if isinstance(v, Point):
-            data[k] = json.loads(v.json)
+    draw_example()
 
-    return data
+    assert isinstance(result, dict)  # silence mypy
+    return result
 
 
 def get_records_in_partition():
@@ -56,15 +107,21 @@ def get_records_in_partition():
 
 def assert_response(response, payload):
     data = response.data
-    expected = copy.deepcopy(payload)
+    is_version_1 = payload['version'] == 'passage-v1'
+
+    # The response from the POST is always in version-1 (flat) format, but the
+    # payload that was sent could be version-1 (flat) or version-2 (nested)
+    # so to correctly assert we need to do some conversion.
+    snake_case_payload = keymap(to_snakecase, payload)
+    expected = snake_case_payload if is_version_1 else downgrade(snake_case_payload, drop_new_fields=False)
 
     # Check for privacy changes
-    if payload['toegestane_maximum_massa_voertuig'] <= 3500:
+    if expected['toegestane_maximum_massa_voertuig'] <= 3500:
         expected['toegestane_maximum_massa_voertuig'] = 1500
         expected['europese_voertuigcategorie_toevoeging'] = None
         expected['merk'] = None
 
-    if payload['voertuig_soort'].lower() == 'personenauto':
+    if expected['voertuig_soort'].lower() == 'personenauto':
         expected['inrichting'] = 'Personenauto'
 
     expected[
@@ -74,15 +131,15 @@ def assert_response(response, payload):
     expected['datum_tenaamstelling'] = None
 
     for k, v in expected.items():
-        assert data[k] == v, (k, data[k])
+        k = to_snakecase(k)
+        if isinstance(data[k], GeoJsonDict):
+            coordinates = data[k]['coordinates']
+            assert Point(*coordinates).hex == v, (k, data[k])
+        else:
+            assert data[k] == v, (k, data[k])
 
 
-@pytest.mark.django_db
 class TestPassageAPI:
-    """Test the passage endpoint."""
-
-    def setup(self):
-        self.URL = '/v0/milieuzone/passage/'
 
     @pytest.fixture(autouse=True)
     def inject_api_client(self, api_client):
@@ -96,80 +153,102 @@ class TestPassageAPI:
             f"{content_type}" == response["Content-Type"]
         ), "Wrong Content-Type for {}".format(url)
 
-    def test_post_new_passage_camelcase(self, passage_payload):
-        """ Test posting a new camelcase passage """
-        # convert keys to camelcase for test
+    def url(self, version):
+        return f'/v{version - 1}/milieuzone/passage/'
 
-        assert Passage.objects.count() == 0
-        camel_case = {to_camelcase(k): v for k, v in passage_payload.items()}
-        res = self.client.post(self.URL, camel_case, format='json')
-        assert res.status_code == 201, res.data
-        assert Passage.objects.get(id=passage_payload['id'])
-        assert_response(res, passage_payload)
+    def post(self, body):
+        """
+        POST the given body to the passage endpoint.
+        """
+        version = int(body['version'][len('passage-v'):])
+        timestamp = parse_datetime(body['passageAt' if version == 1 else 'timestamp'])
 
-    def test_post_new_passage(self, passage_payload):
+        with connection.cursor() as cursor:
+            for timestamp in (timestamp + timedelta(days=i) for i in range(-1, 2)):
+                cursor.execute(make_partition_sql(timestamp))
+
+        return self.client.post(self.url(version), body, format='json')
+
+
+@pytest.mark.django_db
+@pytest.mark.parametrize('version', [1, 2])
+class TestPassageAPI_Versions_1_2(TestPassageAPI):
+    """Test the passage endpoint (both versions 1 and 2)."""
+
+    def test_post_new_passage(self, version):
         """ Test posting a new passage """
+        passage_payload = get_passage_payload(version)
         assert Passage.objects.count() == 0
-        res = self.client.post(self.URL, passage_payload, format='json')
+        res = self.post(passage_payload)
         assert res.status_code == 201, res.data
         assert Passage.objects.get(id=passage_payload['id'])
         assert_response(res, passage_payload)
 
-    def test_post_new_passage_missing_attr(self, passage_payload):
+    def test_post_new_passage_missing_attr(self, version):
         """Test posting a new passage with missing fields"""
+        passage_payload = get_passage_payload(version)
         assert Passage.objects.count() == 0
-        passage_payload.pop('merk')
-        passage_payload.pop('europese_voertuigcategorie_toevoeging')
-        res = self.client.post(self.URL, passage_payload, format='json')
+        if version == 1:
+            passage_payload.pop('merk')
+            passage_payload.pop('europeseVoertuigcategorieToevoeging')
+        else:
+            passage_payload['voertuig'].pop('merk')
+            passage_payload['voertuig'].pop('europeseVoertuigcategorieToevoeging')
+        res = self.post(passage_payload)
         assert res.status_code == 201, res.data
         assert Passage.objects.get(id=passage_payload['id'])
         assert_response(res, passage_payload)
 
-    def test_post_range_betrouwbaarheid(self, passage_payload):
+    def test_post_range_betrouwbaarheid(self, version):
         """Test posting a invalid range betrouwbaarheid"""
+        passage_payload = get_passage_payload(version)
         before = get_records_in_partition()
-        passage_payload["kenteken_nummer_betrouwbaarheid"] = -1
-        res = self.client.post(self.URL, passage_payload, format='json')
+        if version == 1:
+            passage_payload["kentekenNummerBetrouwbaarheid"] = -1
+        else:
+            passage_payload["betrouwbaarheid"]["kentekenBetrouwbaarheid"] = -1
+        res = self.post(passage_payload)
 
         # check if the record was NOT stored in the correct partition
         assert before == get_records_in_partition()
         assert res.status_code == 400, res.data
 
-    def test_post_duplicate_key(self, passage_payload):
+    def test_post_duplicate_key(self, version):
         """ Test posting a new passage with a duplicate key """
-        before = get_records_in_partition()
-
-        res = self.client.post(self.URL, passage_payload, format='json')
+        passage_payload = get_passage_payload(version)
+        res = self.post(passage_payload)
         assert res.status_code == 201, res.data
 
-        # # Post the same message again
-        res = self.client.post(self.URL, passage_payload, format='json')
+        # Post the same message again
+        res = self.post(passage_payload)
         assert res.status_code == 409, res.data
 
-    def test_get_passages_not_allowed(self, passage_payload):
+    def test_get_passages_not_allowed(self, version):
         PassageFactory.create()
-        response = self.client.get(self.URL)
+        response = self.client.get(self.url(version))
         assert response.status_code == 405
 
-    def test_update_passages_not_allowed(self, passage_payload):
+    def test_update_passages_not_allowed(self, version):
         # first post a record
-        self.client.post(self.URL, passage_payload, format='json')
+        passage_payload = get_passage_payload(version)
+        self.post(passage_payload)
 
         # Then check if I cannot update it
         response = self.client.put(
-            f'{self.URL}{passage_payload["id"]}/', passage_payload, format='json'
+            f'{self.url(version)}{passage_payload["id"]}/', passage_payload, format='json'
         )
         assert response.status_code == 404
 
-    def test_delete_passages_not_allowed(self, passage_payload):
+    def test_delete_passages_not_allowed(self, version):
         # first post a record
-        self.client.post(self.URL, passage_payload, format='json')
+        passage_payload = get_passage_payload(version)
+        self.post(passage_payload)
 
         # Then check if I cannot update it
-        response = self.client.delete(f'{self.URL}{passage_payload["id"]}/')
+        response = self.client.delete(f'{self.url(version)}{passage_payload["id"]}/')
         assert response.status_code == 404
 
-    def test_passage_taxi_export(self):
+    def test_passage_taxi_export(self, version):
 
         baker.make(
             'passage.PassageHourAggregation',
@@ -179,7 +258,7 @@ class TestPassageAPI:
         )
 
         # first post a record
-        url = reverse('v0:passage-export-taxi')
+        url = reverse(f'v{version - 1}:passage-export-taxi')
         response = self.client.get(url)
         assert response.status_code == 200
 
@@ -188,19 +267,19 @@ class TestPassageAPI:
         assert lines == [b'datum,aantal_taxi_passages\r\n', f'{date},1000\r\n'.encode()]
 
     @override_settings(AUTHORIZATION_TOKEN='foo')
-    def test_passage_export_no_auth(self):
-        url = reverse('v0:passage-export')
+    def test_passage_export_no_auth(self, version):
+        url = reverse(f'v{version - 1}:passage-export')
         response = self.client.get(url)
         assert response.status_code == status.HTTP_401_UNAUTHORIZED
 
     @override_settings(AUTHORIZATION_TOKEN='foo')
-    def test_passage_export_wrong_auth(self):
-        url = reverse('v0:passage-export')
+    def test_passage_export_wrong_auth(self, version):
+        url = reverse(f'v{version - 1}:passage-export')
         response = self.client.get(url, HTTP_AUTHORIZATION='Token bar')
         assert response.status_code == status.HTTP_401_UNAUTHORIZED
 
     @override_settings(AUTHORIZATION_TOKEN='foo')
-    def test_passage_export_no_filters(self):
+    def test_passage_export_no_filters(self, version):
 
         reading_count = 4
         camera_count = 3
@@ -236,7 +315,7 @@ class TestPassageAPI:
                     )
 
         # first post a record
-        url = reverse('v0:passage-export')
+        url = reverse(f'v{version - 1}:passage-export')
         response = self.client.get(url, HTTP_AUTHORIZATION='Token foo')
         assert response.status_code == 200
 
@@ -246,7 +325,6 @@ class TestPassageAPI:
         assert header == ['camera_id', 'camera_naam', 'bucket', 'sum']
         assert len(content) == 7 * 24 * camera_count
 
-        i = 0
         expected_content = []
         previous_week = today - timedelta(days=now.weekday(), weeks=1)
         for day in range(7):
@@ -267,10 +345,10 @@ class TestPassageAPI:
         assert set(expected_content) == set(content)
 
     @override_settings(AUTHORIZATION_TOKEN='foo')
-    def test_passage_export_filters(self):
+    def test_passage_export_filters(self, version):
         date = datetime.fromisocalendar(2019, 11, 1)
         # create data for 3 cameras
-        row = baker.make(
+        baker.make(
             'passage.PassageHourAggregation',
             camera_id=cycle(range(1, 4)),
             camera_naam=cycle(f'Camera: {i}' for i in range(1, 4)),
@@ -280,7 +358,7 @@ class TestPassageAPI:
             hour=1,
             _quantity=100,
         )
-        url = reverse('v0:passage-export')
+        url = reverse(f'v{version - 1}:passage-export')
         response = self.client.get(
             url, dict(year=2019, week=12), HTTP_AUTHORIZATION='Token foo'
         )
@@ -304,34 +382,81 @@ class TestPassageAPI:
         # Expect the header and 3 lines
         assert len(lines) == 4
 
-    def test_privacy_maximum_massa(self, api_client, passage_payload):
-        passage_payload['toegestane_maximum_massa_voertuig'] = 3000
+    def test_privacy_maximum_massa(self, version):
+        passage_payload = get_passage_payload(version)
+        if version == 1:
+            passage_payload['toegestaneMaximumMassaVoertuig'] = 3000
+        else:
+            passage_payload['voertuig']['toegestaneMaximumMassaVoertuig'] = 3000
 
-        res = self.client.post(self.URL, passage_payload, format='json')
+        res = self.post(passage_payload)
         assert res.status_code == 201, res.data
         assert Passage.objects.get(id=passage_payload['id'])
         assert_response(res, passage_payload)
 
-    def test_privacy_voertuig_soort(self, api_client, passage_payload):
-        passage_payload['voertuig_soort'] = 'PeRsonEnaUto'
+    def test_privacy_voertuig_soort(self, version):
+        passage_payload = get_passage_payload(version)
+        if version == 1:
+            passage_payload['voertuigSoort'] = 'PeRsonEnaUto'
+        else:
+            passage_payload['voertuig']['voertuigSoort'] = 'PeRsonEnaUto'
 
-        res = self.client.post(self.URL, passage_payload, format='json')
+        res = self.post(passage_payload)
         assert res.status_code == 201, res.data
         assert Passage.objects.get(id=passage_payload['id'])
         assert_response(res, passage_payload)
 
-    def test_privacy_tenaamstelling(self, api_client, passage_payload):
-        passage_payload['datum_tenaamstelling'] = '2020-02-02'
+    def test_privacy_tenaamstelling(self, version):
+        # version 2 only sends datum tenaamstelling
+        if version == 1:
+            passage_payload = get_passage_payload(version)
+            passage_payload['datumTenaamstelling'] = '2020-02-02'
+    
+            res = self.post(passage_payload)
+            assert res.status_code == 201, res.data
+            assert Passage.objects.get(id=passage_payload['id'])
+            assert_response(res, passage_payload)
 
-        res = self.client.post(self.URL, passage_payload, format='json')
+    def test_privacy_datum_eerste_toelating(self, version):
+        # version 2 only sends jaar eerste toelating
+        if version == 1:
+            passage_payload = get_passage_payload(version)
+            passage_payload['datumEersteToelating'] = '2020-02-02'
+
+            res = self.post(passage_payload)
+            assert res.status_code == 201, res.data
+            assert Passage.objects.get(id=passage_payload['id'])
+            assert_response(res, passage_payload)
+
+
+@pytest.mark.django_db
+class TestPassageAPI_Version_2(TestPassageAPI):
+    """Test the passage version 2 endpoint."""
+
+    @pytest.fixture(autouse=True)
+    def inject_api_client(self, api_client):
+        self.client = api_client
+
+    def test_downgraded_version_2_message_should_save_new_fields(self):
+        """
+        Verify that when a version 2 message is flattened that the new fields
+        are correctly saved to the database.
+        """
+        passage_payload = get_passage_payload(2)
+        res = self.post(passage_payload)
         assert res.status_code == 201, res.data
-        assert Passage.objects.get(id=passage_payload['id'])
-        assert_response(res, passage_payload)
 
-    def test_privacy_datum_eerste_toelating(self, api_client, passage_payload):
-        passage_payload['datum_eerste_toelating'] = '2020-02-02'
+        actual = Passage.objects.values('kenteken_hash', *NEW_FIELDS).get(id=passage_payload['id'])
+        actual['vervaldatum_apk'] = str(actual['vervaldatum_apk'])
+        actual['maximum_massa_trekken_geremd'] = int(actual['maximum_massa_trekken_geremd'])
+        actual['maximum_massa_trekken_ongeremd'] = int(actual['maximum_massa_trekken_ongeremd'])
 
-        res = self.client.post(self.URL, passage_payload, format='json')
-        assert res.status_code == 201, res.data
-        assert Passage.objects.get(id=passage_payload['id'])
-        assert_response(res, passage_payload)
+        vehicle_number_plate = {
+            **passage_payload['voertuig']['kenteken'],
+            **passage_payload['voertuig'],
+        }
+        expected = keyfilter(
+            lambda key: key in NEW_FIELDS,
+            keymap(to_snakecase, vehicle_number_plate),
+        )
+        assert actual == expected
