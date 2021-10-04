@@ -2,8 +2,6 @@ version: "2.0"
 services:
   database:
     image: amsterdam/postgres11
-    ports:
-      - "5432:5432"
     environment:
       POSTGRES_DB: iotsignals
       POSTGRES_USER: iotsignals
