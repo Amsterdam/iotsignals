@@ -149,7 +149,6 @@ class PassageViewSet(mixins.CreateModelMixin, viewsets.GenericViewSet):
 
 
 NEW_FIELDS = [
-    'versit_klasse',
     'kenteken_hash',
     'vervaldatum_apk',
     'wam_verzekerd',
@@ -286,7 +285,7 @@ def downgrade(passage, *, drop_new_fields=True):
 
     if drop_new_fields:
         for field in NEW_FIELDS:
-            if field in NEW_FIELDS:
+            if field in vehicle:
                 del vehicle[field]
 
         del number_plate['kenteken_hash']
