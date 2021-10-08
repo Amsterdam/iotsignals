@@ -28,7 +28,7 @@ from passage import views as passage_views
 from iotsignals.routers import (
     IOTSignalsRouterRoot,
     IOTSignalsRouterVersion0,
-    IOTSignalsRouterVersion1,
+    IOTSignalsRouterVersion2,
 )
 
 root_router = IOTSignalsRouterRoot()
@@ -38,10 +38,10 @@ router_v0.register(
      r'milieuzone/passage',
      viewset=passage_views.PassageViewSet, basename='passage')
 
-router_v1 = IOTSignalsRouterVersion1()
+router_v1 = IOTSignalsRouterVersion2()
 router_v1.register(
      r'milieuzone/passage',
-     viewset=passage_views.PassageViewSetVersion1, basename='passage')
+     viewset=passage_views.PassageViewSetVersion2, basename='passage')
 
 urls = root_router.urls
 

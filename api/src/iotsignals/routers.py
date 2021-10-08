@@ -38,7 +38,7 @@ class IOTSignalsAPIRootView(routers.APIRootView):
                 'version': get_version(API_VERSIONS[f'v{version}']),
                 'status': 'in development',
             }
-            for version in range(2)
+            for version in [0, 2]
         }
         return response
 
@@ -47,17 +47,17 @@ class IOTSignalsAPIRootView(routers.APIRootView):
 
 
 class IOTSignalsAPIVersion0(routers.APIRootView):
-    """Signalen API versie 1 (in development)."""
+    """Signalen API versie 0 (in development)."""
 
     def get_view_name(self):
-        return 'Signals API Version 1'
+        return 'Signals API Version 0'
 
 
-class IOTSignalsAPIVersion1(routers.APIRootView):
-    """Signalen API versie 1 (in development)."""
+class IOTSignalsAPIVersion2(routers.APIRootView):
+    """Signalen API versie 2 (in development)."""
 
     def get_view_name(self):
-        return 'Signals API Version 1'
+        return 'Signals API Version 2'
 
 
 class IOTSignalsRouterRoot(routers.DefaultRouter):
@@ -68,6 +68,6 @@ class IOTSignalsRouterVersion0(routers.DefaultRouter):
     APIRootView = IOTSignalsAPIVersion0
 
 
-class IOTSignalsRouterVersion1(routers.DefaultRouter):
-    APIRootView = IOTSignalsAPIVersion1
+class IOTSignalsRouterVersion2(routers.DefaultRouter):
+    APIRootView = IOTSignalsAPIVersion2
 
