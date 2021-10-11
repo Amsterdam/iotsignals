@@ -1,8 +1,6 @@
 # std
-from copy import deepcopy
-from datetime import date, timedelta
+from datetime import timedelta
 # 3rd party
-from django.contrib.gis.geos import Point, GEOSGeometry
 from contrib.rest_framework.authentication import SimpleTokenAuthentication
 from datapunt_api.pagination import HALCursorPagination
 from django.db.models import DateTimeField, ExpressionWrapper, F, Sum
@@ -13,7 +11,7 @@ from rest_framework import mixins, viewsets
 from rest_framework.decorators import action
 from rest_framework.permissions import IsAuthenticated
 # iotsignals
-from downgrade import downgrade
+from passage.conversion import downgrade
 from passage.case_converters import to_snakecase
 from passage.expressions import HoursInterval
 from writers import CSVExport

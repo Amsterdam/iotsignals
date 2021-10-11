@@ -18,9 +18,6 @@ class TestIGORAggregation:
     def test_aggregation(
         self, taxi_indicator, europese_voertuigcategorie, kenteken_land
     ):
-        # required to ensure partitions exist
-        import make_paritions
-
         helper_table_row = Camera.objects.filter(cordon__in=['S100', 'A10']).first()
 
         yesterday = timezone.now() - timedelta(days=1)

@@ -1,5 +1,5 @@
 # Application version (Major, minor, patch)
-from typing import TypeAlias, Literal
+from typing import Literal
 
 VERSION = (0, 0, 1)
 
@@ -10,16 +10,17 @@ API_VERSIONS = {
     'v2': (2, 0, 0),
 }
 
-# This can be a little confusing since the api version (i.e. the one used in the
-# URL) for version 1 of the payload is 0, from version 2 the version numbers are
-# the same. In other words...
+# This can be a little confusing since the api version number (i.e. the one
+# used in the URL) for version 1 of the payload is 0, from version 2 the version
+# numbers are the same. In other words...
 #
 #    payload version  |  api version
 #    --------------------------------
-#    passage-v1       |  0
-#    passage-v2       |
-PayloadVersion: TypeAlias = Literal['passage-v1', 'passage-v2']
-ApiVersion: TypeAlias = Literal['v0', 'v2']
+#    passage-v1       |  v0
+#    passage-v2       |  v2
+#
+PayloadVersion = Literal['passage-v1', 'passage-v2']
+ApiVersion = Literal['v0', 'v2']
 
 
 def to_api_version(payload_version: PayloadVersion) -> ApiVersion:

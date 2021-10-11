@@ -18,4 +18,3 @@ model_bakery
 isort
 black
 time-machine
-hypothesis

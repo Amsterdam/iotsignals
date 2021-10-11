@@ -38,8 +38,8 @@ router_v0.register(
      r'milieuzone/passage',
      viewset=passage_views.PassageViewSet, basename='passage')
 
-router_v1 = IOTSignalsRouterVersion2()
-router_v1.register(
+router_v2 = IOTSignalsRouterVersion2()
+router_v2.register(
      r'milieuzone/passage',
      viewset=passage_views.PassageViewSetVersion2, basename='passage')
 
@@ -49,7 +49,7 @@ urls = root_router.urls
 schema_view = get_schema_view(
     openapi.Info(
         title="IOT Signals API",
-        default_version='v1',
+        default_version='v0',
         description="IOTSignals in Amsterdam",
         terms_of_service="https://data.amsterdam.nl/",
         contact=openapi.Contact(email="datapunt@amsterdam.nl"),
@@ -78,7 +78,7 @@ urlpatterns = [
     path('', include((root_router.urls, 'iotsignals'), namespace='vx')),
     # API Version 0
     path('v0/', include((router_v0.urls, 'iotsignals'), namespace='v0')),
-    path('v1/', include((router_v1.urls, 'iotsignals'), namespace='v1')),
+    path('v2/', include((router_v2.urls, 'iotsignals'), namespace='v2')),
     url(r"^status/", include("health.urls")),
 ]
 
