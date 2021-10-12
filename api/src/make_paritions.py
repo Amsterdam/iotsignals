@@ -1,9 +1,11 @@
 #!/usr/bin/python
 
-import psycopg2
+# std
 from os import environ
-from sys import exit
 from datetime import datetime, timedelta
+# 3rd party
+import psycopg2
+
 
 PARTITIONS_TO_ADD = 6
 
@@ -24,6 +26,23 @@ def make_partition_sql(timestamp):
     """
 
 
+def check_postgres_major_version(cursor, required):
+    """
+    Check postgres version, assert that the required major version is met. We
+    need 10+ for partitions and 11+ for indexes within the partitions.
+
+    :param cursor: The cursor to execute version retrieval query.
+    :param required: The minimum required major version.
+    """
+    cursor.execute("""
+        SELECT substr(setting, 1, strpos(setting, '.')-1)::smallint as version
+        FROM pg_settings
+        WHERE name = 'server_version';
+    """)
+    if next(cursor.fetchone(), 0) < required:
+        raise Exception("Need postgres v11 or higher")
+
+
 def make_partitions(*timestamps):
     """
     Make the partitions for the given timestamps, defaulting to 6 partitions.
@@ -34,28 +53,18 @@ def make_partitions(*timestamps):
         start_date = datetime.today()
         timestamps = (start_date + timedelta(i) for i in range(PARTITIONS_TO_ADD))
 
-    conn = psycopg2.connect(
+    connection = psycopg2.connect(
         host=environ['DATABASE_HOST'],
         dbname=environ['DATABASE_NAME'],
         user=environ['DATABASE_USER'],
         password=environ['DATABASE_PASSWORD']
     )
 
-    with conn.cursor() as cur:
-        # check pg version?, we need 10+ for partitions and 11+ for
-        # indexes within the partitions
-        cur.execute("""
-            SELECT Substr(setting, 1, strpos(setting, '.')-1)::smallint as version
-            FROM pg_settings
-            WHERE name = 'server_version';
-        """)
-        rows = cur.fetchall()
-
-        if len(rows) == 1 and int(rows[0][0]) < 11:
-            raise Exception("Need postgres v11 or higher")
+    with connection.cursor() as cursor:
+        check_postgres_major_version(cursor, 11)
 
         for timestamp in timestamps:
-            cur.execute(make_partition_sql(timestamp))
+            cursor.execute(make_partition_sql(timestamp))
 
 
 if __name__ == '__main__':
