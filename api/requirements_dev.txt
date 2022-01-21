@@ -127,7 +127,7 @@ iniconfig==1.1.1
     # via pytest
 ipdb==0.13.9
     # via -r requirements_dev.in
-ipython==7.28.0
+ipython==7.31.1
     # via ipdb
 isort==5.9.3
     # via -r requirements_dev.in
@@ -227,9 +227,7 @@ ruamel.yaml==0.17.16
     #   -r ./requirements.txt
     #   drf-yasg
 ruamel.yaml.clib==0.2.6
-    # via
-    #   -r ./requirements.txt
-    #   ruamel.yaml
+    # via -r ./requirements.txt
 sentry-sdk==1.4.3
     # via -r ./requirements.txt
 six==1.16.0
