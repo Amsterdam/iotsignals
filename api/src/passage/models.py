@@ -61,7 +61,6 @@ class Passage(models.Model):
 
     kenteken_hash = models.CharField(max_length=255, null=True)
     vervaldatum_apk = models.DateField(null=True)
-    wam_verzekerd = models.BooleanField(null=True)
     massa_ledig_voertuig = models.SmallIntegerField(null=True)
     aantal_assen = models.SmallIntegerField(null=True)
     aantal_staanplaatsen = models.SmallIntegerField(null=True)
