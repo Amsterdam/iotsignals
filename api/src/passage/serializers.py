@@ -66,6 +66,21 @@ class PassageDetailSerializer(serializers.ModelSerializer):
             return 1500
         return value
 
+    def validate_massa_ledig_voertuig(self, value):
+        if value is None:
+            return None
+        if value <= 850:
+            return 750
+        if value <= 1150:
+            return 1000
+        if value <= 2150:
+            return 1500
+        if value <= 3001:
+            return 2600
+        if value <= 3500:
+            return 3250
+        return value
+
     def validate(self, data):
         self._validate_voertuigcategorie(data)
         self._validate_inrichting(data)
