@@ -40,6 +40,28 @@ class TestPassageDetailSerializer:
         serializer = PassageDetailSerializer()
         assert serializer.validate_toegestane_maximum_massa_voertuig(value) == expected
 
+    @pytest.mark.parametrize(
+        "value,expected",
+        [
+            (None, None),
+            (0, 750),
+            (850, 750),
+            (851, 1000),
+            (1150, 1000),
+            (1151, 1500),
+            (2150, 1500),
+            (2151, 2600),
+            (3001, 2600),
+            (3002, 3250),
+            (3500, 3250),
+            (3501, 3501),
+            (9999, 9999),
+        ],
+    )
+    def test_validate_massa_ledig_voertuig(self, value, expected):
+        serializer = PassageDetailSerializer()
+        assert serializer.validate_massa_ledig_voertuig(value) == expected
+
     @mock.patch("passage.serializers.PassageDetailSerializer._validate_inrichting")
     @mock.patch(
         "passage.serializers.PassageDetailSerializer._validate_voertuigcategorie"
@@ -98,5 +120,3 @@ class TestPassageDetailSerializer:
 
         assert data['europese_voertuigcategorie_toevoeging'] == expected_toevoeging
         assert data['merk'] == expected_merk
-
-
