@@ -23,7 +23,15 @@ node {
 
     stage('Test') {
         tryStep "test", {
+            sh "make --directory=api/ clean"
+            sh "docker ps"
+            sh "echo '===================================='"
+            sh "docker-compose ps"
+            sh "echo '===================================='"
+            sh "docker network ls"
+            sh "echo '===================================='"
             sh "make --directory=api/ test"
+            sh "make --directory=api/ clean"
         }
     }
 
