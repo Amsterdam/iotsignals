@@ -137,7 +137,8 @@ class Kenteken(factory.DictFactory):
 class Voertuig(factory.DictFactory):
     kenteken = factory.SubFactory(Kenteken)
     jaarEersteToelating = fuzzy.FuzzyInteger(1990, 2020)
-    toegestaneMaximumMassaVoertuig = fuzzy.FuzzyInteger(0, 1000)
+    # explicitly below 3500 so PassageDetailSerializer will leave its value untouched
+    toegestaneMaximumMassaVoertuig = fuzzy.FuzzyInteger(0, 3500)
     europeseVoertuigcategorie = fuzzy.FuzzyText(length=2)
     europeseVoertuigcategorieToevoeging = fuzzy.FuzzyChoice(string.ascii_uppercase)
     taxiIndicator = factory.Faker('boolean', chance_of_getting_true=50)
@@ -145,7 +146,9 @@ class Voertuig(factory.DictFactory):
     versitKlasse = fuzzy.FuzzyText()
     vervaldatumApk = fuzzy.FuzzyDate(datetime.date(1990, 1, 1))
     wamVerzekerd = factory.Faker('boolean', chance_of_getting_true=50)
-    massaLedigVoertuig = fuzzy.FuzzyInteger(0, 500)
+    # explicitly between 3501 and 5000 so PassageDetailSerializer will leave its
+    # value untouched
+    massaLedigVoertuig = fuzzy.FuzzyInteger(3501, 5000)
     aantalAssen = fuzzy.FuzzyInteger(0, 10)
     aantalStaanplaatsen = fuzzy.FuzzyInteger(0, 100)
     aantalWielen = fuzzy.FuzzyInteger(0, 12)
