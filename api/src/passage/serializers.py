@@ -69,6 +69,7 @@ class PassageDetailSerializer(serializers.ModelSerializer):
     def validate(self, data):
         self._validate_voertuigcategorie(data)
         self._validate_inrichting(data)
+        self._validate_aantal_staanplaatsen(data)
 
         return data
 
@@ -82,3 +83,7 @@ class PassageDetailSerializer(serializers.ModelSerializer):
             if data['toegestane_maximum_massa_voertuig'] <= 3500:
                 data['europese_voertuigcategorie_toevoeging'] = None
                 data['merk'] = None
+
+    def _validate_aantal_staanplaatsen(self, data):
+        if 'voertuig_soort' not in data or data['voertuig_soort'].lower() != 'bus':
+            data['aantal_staanplaatsen'] = -1

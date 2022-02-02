@@ -99,4 +99,23 @@ class TestPassageDetailSerializer:
         assert data['europese_voertuigcategorie_toevoeging'] == expected_toevoeging
         assert data['merk'] == expected_merk
 
+    @pytest.mark.parametrize(
+        "voertuig_soort,staanplaatsen,expected",
+        [
+            (None, 99, -1),
+            ("bus", 56, 56),
+            ("BUS", 14, 14),
+            ("foo", 7, -1),
+        ],
+    )
+    def test_aantal_staanplaatsen(self, voertuig_soort, staanplaatsen, expected):
+        data = {'aantal_staanplaatsen': staanplaatsen}
+        if voertuig_soort is not None:
+            data['voertuig_soort'] = voertuig_soort
+
+        serializer = PassageDetailSerializer()
+        serializer._validate_aantal_staanplaatsen(data)
+
+        assert data['aantal_staanplaatsen'] == expected
+
 
