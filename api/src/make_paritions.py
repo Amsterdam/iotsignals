@@ -39,7 +39,7 @@ def check_postgres_major_version(cursor, required):
         FROM pg_settings
         WHERE name = 'server_version';
     """)
-    if next(cursor.fetchone(), 0) < required:
+    if cursor.fetchone()[0] < required:
         raise Exception("Need postgres v11 or higher")
 
 
