@@ -15,7 +15,7 @@ Including another URLconf
 
 """
 from django.conf import settings
-from django.conf.urls import url, include
+from django.conf.urls import include
 from django.urls import path
 
 from drf_yasg.views import get_schema_view
@@ -79,7 +79,7 @@ urlpatterns = [
     # API Version 0
     path('v0/', include((router_v0.urls, 'iotsignals'), namespace='v0')),
     path('v2/', include((router_v2.urls, 'iotsignals'), namespace='v2')),
-    url(r"^status/", include("health.urls")),
+    path('status/', include("health.urls")),
 ]
 
 
@@ -87,5 +87,5 @@ if settings.DEBUG:
     import debug_toolbar
 
     urlpatterns.extend([
-        url(r'^__debug__/', include(debug_toolbar.urls)),
+        path('__debug__/', include(debug_toolbar.urls)),
     ])
