@@ -31,6 +31,9 @@ build:                              ## Build docker image
 push: build                         ## Push docker image to registry
 	$(dc) push
 
+clean:                              ## Clean docker stuff
+	$(dc) down -v --remove-orphans
+
 test:
 	$(run) dev pytest $(ARGS)
 
