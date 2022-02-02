@@ -36,7 +36,7 @@ class TestPassageDetailSerializer:
             (9999, 9999),
         ],
     )
-    def validate_toegestane_maximum_massa_voertuig(self, value, expected):
+    def test_validate_toegestane_maximum_massa_voertuig(self, value, expected):
         serializer = PassageDetailSerializer()
         assert serializer.validate_toegestane_maximum_massa_voertuig(value) == expected
 
