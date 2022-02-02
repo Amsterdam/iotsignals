@@ -34,6 +34,11 @@ push: build                         ## Push docker image to registry
 test:
 	$(run) dev pytest $(ARGS)
 
+loadtest:
+	$(run) api python /app/manage.py migrate
+	$(run) api python /app/make_paritions.py
+	$(run) locust $(ARGS)
+
 pdb:
 	$(run) dev pytest --pdb $(ARGS)
 
