@@ -44,8 +44,12 @@ class TestPassageDetailSerializer:
     @mock.patch(
         "passage.serializers.PassageDetailSerializer._validate_voertuigcategorie"
     )
+    @mock.patch("passage.serializers.PassageDetailSerializer._validate_handelsbenaming")
     def test_validate(
-        self, mocked_validate_inrichting, mocked_validate_voertuigcategorie
+        self,
+        mocked_validate_inrichting,
+        mocked_validate_voertuigcategorie,
+        mocked_validate_handelsbenaming,
     ):
         data = {"foo": "bar"}
         serializer = PassageDetailSerializer()
@@ -53,6 +57,7 @@ class TestPassageDetailSerializer:
 
         mocked_validate_inrichting.assert_any_call(data)
         mocked_validate_voertuigcategorie.assert_any_call(data)
+        mocked_validate_handelsbenaming.assert_any_call(data)
 
     @pytest.mark.parametrize(
         "voertuig_soort,inrichting,expected",
@@ -99,4 +104,24 @@ class TestPassageDetailSerializer:
         assert data['europese_voertuigcategorie_toevoeging'] == expected_toevoeging
         assert data['merk'] == expected_merk
 
+    @pytest.mark.parametrize(
+        "max_massa,handelsbenaming,expected_handelsbenaming",
+        [
+            (None, 'bar', 'bar'),
+            (9999, 'bar', 'bar'),
+            (3501, 'bar', 'bar'),
+            (3500, 'bar', None),
+            (0, 'bar', None),
+        ],
+    )
+    def test_validate_handelsbenaming(
+        self, max_massa, handelsbenaming, expected_handelsbenaming
+    ):
+        data = {'handelsbenaming': handelsbenaming}
+        if max_massa is not None:
+            data['toegestane_maximum_massa_voertuig'] = max_massa
 
+        serializer = PassageDetailSerializer()
+        serializer._validate_handelsbenaming(data)
+
+        assert data['handelsbenaming'] == expected_handelsbenaming
