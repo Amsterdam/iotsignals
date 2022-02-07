@@ -40,6 +40,21 @@ class TestPassageDetailSerializer:
         serializer = PassageDetailSerializer()
         assert serializer.validate_toegestane_maximum_massa_voertuig(value) == expected
 
+    @pytest.mark.parametrize(
+        "value,expected",
+        [
+            (None, None),
+            (0, -1),
+            (799, -1),
+            (800, -1),
+            (801, 801),
+            (9999, 19999),
+        ],
+    )
+    def validate_lengte(self, value, expected):
+        serializer = PassageDetailSerializer()
+        assert serializer.validate_lengte(value) == expected
+
     @mock.patch("passage.serializers.PassageDetailSerializer._validate_inrichting")
     @mock.patch(
         "passage.serializers.PassageDetailSerializer._validate_voertuigcategorie"
