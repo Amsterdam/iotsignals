@@ -69,6 +69,7 @@ class PassageDetailSerializer(serializers.ModelSerializer):
     def validate(self, data):
         self._validate_voertuigcategorie(data)
         self._validate_inrichting(data)
+        self._validate_max_massa_trekken_geremd(data)
 
         return data
 
@@ -82,3 +83,8 @@ class PassageDetailSerializer(serializers.ModelSerializer):
             if data['toegestane_maximum_massa_voertuig'] <= 3500:
                 data['europese_voertuigcategorie_toevoeging'] = None
                 data['merk'] = None
+
+    def _validate_max_massa_trekken_geremd(self, data):
+        if 'toegestane_maximum_massa_voertuig' in data:
+            if data['toegestane_maximum_massa_voertuig'] <= 3500:
+                data['maximum_massa_trekken_geremd'] = -1
