@@ -44,8 +44,14 @@ class TestPassageDetailSerializer:
     @mock.patch(
         "passage.serializers.PassageDetailSerializer._validate_voertuigcategorie"
     )
+    @mock.patch(
+        "passage.serializers.PassageDetailSerializer._validate_max_massa_trekken_ongeremd"
+    )
     def test_validate(
-        self, mocked_validate_inrichting, mocked_validate_voertuigcategorie
+        self,
+        mocked_validate_inrichting,
+        mocked_validate_voertuigcategorie,
+        mocked_validate_max_massa_trekken_ongeremd,
     ):
         data = {"foo": "bar"}
         serializer = PassageDetailSerializer()
@@ -53,6 +59,7 @@ class TestPassageDetailSerializer:
 
         mocked_validate_inrichting.assert_any_call(data)
         mocked_validate_voertuigcategorie.assert_any_call(data)
+        mocked_validate_max_massa_trekken_ongeremd.assert_any_call(data)
 
     @pytest.mark.parametrize(
         "voertuig_soort,inrichting,expected",
@@ -98,5 +105,3 @@ class TestPassageDetailSerializer:
 
         assert data['europese_voertuigcategorie_toevoeging'] == expected_toevoeging
         assert data['merk'] == expected_merk
-
-

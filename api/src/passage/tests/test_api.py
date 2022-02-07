@@ -437,4 +437,9 @@ class TestPassageAPI_Version_2(TestPassageAPI):
             lambda key: key in NEW_FIELDS,
             keymap(to_snakecase, vehicle_and_number_plate),
         )
+
+        # ensure data minimalisation is done
+        if res.data.get('toegestane_maximum_massa_voertuig', 0) <= 3500:
+            expected['maximum_massa_trekken_ongeremd'] = -1
+
         assert actual == expected
