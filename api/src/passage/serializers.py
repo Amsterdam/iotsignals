@@ -66,6 +66,11 @@ class PassageDetailSerializer(serializers.ModelSerializer):
             return 1500
         return value
 
+    def validate_aantal_zitplaatsen(self, value):
+        if value is not None and value <= 7:
+            return 5
+        return value
+
     def validate(self, data):
         self._validate_voertuigcategorie(data)
         self._validate_inrichting(data)
