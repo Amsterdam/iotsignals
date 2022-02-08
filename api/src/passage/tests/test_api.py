@@ -437,4 +437,9 @@ class TestPassageAPI_Version_2(TestPassageAPI):
             lambda key: key in NEW_FIELDS,
             keymap(to_snakecase, vehicle_and_number_plate),
         )
+
+        # ensure data minimalisation is done
+        if res.data['voertuig_soort'].lower() == 'personenauto':
+            expected['breedte'] = -1
+
         assert actual == expected

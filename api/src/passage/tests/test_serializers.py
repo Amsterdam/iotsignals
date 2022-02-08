@@ -44,8 +44,12 @@ class TestPassageDetailSerializer:
     @mock.patch(
         "passage.serializers.PassageDetailSerializer._validate_voertuigcategorie"
     )
+    @mock.patch("passage.serializers.PassageDetailSerializer._validate_breedte")
     def test_validate(
-        self, mocked_validate_inrichting, mocked_validate_voertuigcategorie
+        self,
+        mocked_validate_inrichting,
+        mocked_validate_voertuigcategorie,
+        mocked_validate_breedte,
     ):
         data = {"foo": "bar"}
         serializer = PassageDetailSerializer()
@@ -53,6 +57,7 @@ class TestPassageDetailSerializer:
 
         mocked_validate_inrichting.assert_any_call(data)
         mocked_validate_voertuigcategorie.assert_any_call(data)
+        mocked_validate_breedte.assert_any_call(data)
 
     @pytest.mark.parametrize(
         "voertuig_soort,inrichting,expected",
@@ -99,4 +104,21 @@ class TestPassageDetailSerializer:
         assert data['europese_voertuigcategorie_toevoeging'] == expected_toevoeging
         assert data['merk'] == expected_merk
 
+    @pytest.mark.parametrize(
+        "voertuig_soort,breedte,expected",
+        [
+            (None, 99, 99),
+            ("personenauto", 56, -1),
+            ("PERSONENAUTO", 14, -1),
+            ("foo", 7, 7),
+        ],
+    )
+    def test_breedte(self, voertuig_soort, breedte, expected):
+        data = {'breedte': breedte}
+        if voertuig_soort is not None:
+            data['voertuig_soort'] = voertuig_soort
 
+        serializer = PassageDetailSerializer()
+        serializer._validate_breedte(data)
+
+        assert data['breedte'] == expected
