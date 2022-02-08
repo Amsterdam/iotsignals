@@ -40,6 +40,22 @@ class TestPassageDetailSerializer:
         serializer = PassageDetailSerializer()
         assert serializer.validate_toegestane_maximum_massa_voertuig(value) == expected
 
+    @pytest.mark.parametrize(
+        "value,expected",
+        [
+            (None, None),
+            (0, 0),
+            (9, 0),
+            (10, 10),
+            (19, 10),
+            (20, 20),
+            (9999, 9990),
+        ],
+    )
+    def test_validate_co2_uitstoot_gewogen(self, value, expected):
+        serializer = PassageDetailSerializer()
+        assert serializer.validate_co2_uitstoot_gewogen(value) == expected
+
     @mock.patch("passage.serializers.PassageDetailSerializer._validate_inrichting")
     @mock.patch(
         "passage.serializers.PassageDetailSerializer._validate_voertuigcategorie"

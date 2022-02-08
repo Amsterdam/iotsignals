@@ -1,4 +1,5 @@
 import logging
+import math
 from datetime import date
 
 from datapunt_api.rest import DisplayField, HALSerializer
@@ -64,6 +65,11 @@ class PassageDetailSerializer(serializers.ModelSerializer):
     def validate_toegestane_maximum_massa_voertuig(self, value):
         if value is not None and value <= 3500:
             return 1500
+        return value
+
+    def validate_co2_uitstoot_gewogen(self, value):
+        if value:
+            return math.floor(value/10)*10
         return value
 
     def validate(self, data):

@@ -1,9 +1,11 @@
 # std
 import csv
 import logging
+import math
 from copy import deepcopy
 from datetime import datetime, timedelta, timezone, date
 from itertools import cycle
+
 # 3rd party
 import pytest
 import pytz
@@ -12,6 +14,7 @@ from django.test import override_settings
 from django.urls import reverse
 from django.utils.dateparse import parse_datetime
 from model_bakery import baker
+
 # iotsignals
 from passage.conversion import upgrade, downgrade, NEW_FIELDS
 from iotsignals import PayloadVersion, to_api_version
@@ -83,9 +86,7 @@ def assert_response(response_data, payload):
     # The model has a DateTimeUTCField for passage_at, but DRF serializer
     # converts the generated UTC timestamp to local time
     response_data['passage_at'] = (
-        parse_datetime(response_data['passage_at'])
-        .astimezone(timezone.utc)
-        .isoformat()
+        parse_datetime(response_data['passage_at']).astimezone(timezone.utc).isoformat()
     )
     post_data['passage_at'] = post_data['passage_at'].isoformat()
 
@@ -157,7 +158,7 @@ class TestPassageAPI_Versions_1_2(TestPassageAPI):
     """
 
     def test_post_new_passage(self, payload_version: PayloadVersion):
-        """ Test posting a new passage """
+        """Test posting a new passage"""
         payload = self.payload(payload_version)
         assert Passage.objects.count() == 0
         res = self.post(payload)
@@ -197,7 +198,7 @@ class TestPassageAPI_Versions_1_2(TestPassageAPI):
         assert res.status_code == 400, res.data
 
     def test_post_duplicate_key(self, payload_version: PayloadVersion):
-        """ Test posting a new passage with a duplicate key """
+        """Test posting a new passage with a duplicate key"""
         payload = self.payload(payload_version)
         res = self.post(payload)
         assert res.status_code == 201, res.data
@@ -430,11 +431,23 @@ class TestPassageAPI_Version_2(TestPassageAPI):
         res = self.post(payload)
         assert res.status_code == 201, res.data
 
-        actual = Passage.objects.values('kenteken_hash', *NEW_FIELDS).get(id=payload['id'])
+        actual = Passage.objects.values('kenteken_hash', *NEW_FIELDS).get(
+            id=payload['id']
+        )
 
-        vehicle_and_number_plate = {**payload['voertuig'], **payload['voertuig']['kenteken']}
+        vehicle_and_number_plate = {
+            **payload['voertuig'],
+            **payload['voertuig']['kenteken'],
+        }
         expected = keyfilter(
             lambda key: key in NEW_FIELDS,
             keymap(to_snakecase, vehicle_and_number_plate),
         )
+
+        # ensure data minimalisation is done
+        if res.data.get('co2_uitstoot_gewogen'):
+            expected['co2_uitstoot_gewogen'] = (
+                math.floor(res.data['co2_uitstoot_gewogen'] / 10) * 10
+            )
+
         assert actual == expected
