@@ -20,7 +20,7 @@ coreschema==0.0.4
     #   drf-yasg
 defusedxml==0.7.1
     # via djangorestframework-xml
-django==3.2.7
+django==3.2.12
     # via
     #   -r requirements.in
     #   django-datetime-utc
@@ -85,10 +85,8 @@ requests==2.26.0
     # via
     #   -r requirements.in
     #   coreapi
-ruamel.yaml==0.17.16
+ruamel-yaml==0.17.16
     # via drf-yasg
-ruamel.yaml.clib==0.2.6
-    # via ruamel.yaml
 sentry-sdk==1.4.3
     # via -r requirements.in
 six==1.16.0
