@@ -31,12 +31,13 @@ class PassageSerializer(HALSerializer):
 
 class PassageDetailSerializer(serializers.ModelSerializer):
     id = serializers.UUIDField(
-        validators=[]
+        validators=[],
+        source='external_id'
     )  # Disable the validators for the id, which improves performance (rps) by over 200%
 
     class Meta:
         model = Passage
-        fields = '__all__'
+        exclude = ['external_id']
 
     def create(self, validated_data):
         try:
@@ -48,7 +49,10 @@ class PassageDetailSerializer(serializers.ModelSerializer):
             # the string argument is the only way to distinguish between
             # different types of IntegrityError.
             if 'duplicate key' in e.args[0]:
-                log.info(f"DuplicateIdError for id {validated_data['id']}")
+                log.info(
+                    f"DuplicateIdError for external_id {validated_data['external_id']}"
+                    f", camera_id {validated_data['camera_id']}"
+                )
                 raise DuplicateIdError(str(e))
             else:
                 raise

@@ -1,6 +1,9 @@
+import uuid
+
 from datetimeutc.fields import DateTimeUTCField
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.contrib.gis.db import models
+from django.db.models import UniqueConstraint
 
 
 class Passage(models.Model):
@@ -11,7 +14,8 @@ class Passage(models.Model):
     should result in a record here.
     """
 
-    id = models.UUIDField(primary_key=True, unique=True)
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    external_id = models.UUIDField(unique=False, null=False)
     passage_at = DateTimeUTCField(db_index=True, null=False)
     created_at = DateTimeUTCField(db_index=True, auto_now_add=True, editable=False)
 
@@ -74,6 +78,13 @@ class Passage(models.Model):
     co2_uitstoot_gewogen = models.FloatField(null=True)
     milieuklasse_eg_goedkeuring_zwaar = models.CharField(max_length=255, null=True)
 
+    class Meta:
+        constraints = [
+            UniqueConstraint(
+                'external_id', 'camera_id', 'passage_at', name='unique_passage_camera'
+            )
+        ]
+
 
 class PassageHourAggregation(models.Model):
     id = models.AutoField(primary_key=True)
@@ -105,8 +116,10 @@ class Camera(models.Model):
     rijrichting = models.IntegerField(null=True, blank=True, db_index=True)
     camera_kijkrichting = models.FloatField(null=True, blank=True, db_index=True)
 
-    order_kaart = models.IntegerField(null=True, blank=True)     # in sheet: volgorde
-    order_naam = models.CharField(max_length=255, null=True, blank=True)      # in sheet: straatnaam
+    order_kaart = models.IntegerField(null=True, blank=True)  # in sheet: volgorde
+    order_naam = models.CharField(
+        max_length=255, null=True, blank=True
+    )  # in sheet: straatnaam
     cordon = models.CharField(max_length=255, db_index=True, null=True, blank=True)
     richting = models.CharField(max_length=10, null=True, blank=True)
     location = models.PointField(srid=4326, null=True, blank=True)
@@ -126,8 +139,9 @@ class HourAggregationBase(models.Model):
     passage_at_hour = models.IntegerField()
 
     order_kaart = models.IntegerField(null=True, blank=True)  # in sheet: volgorde
-    order_naam = models.CharField(max_length=255, null=True,
-                                  blank=True)  # in sheet: straatnaam
+    order_naam = models.CharField(
+        max_length=255, null=True, blank=True
+    )  # in sheet: straatnaam
     cordon = models.CharField(max_length=255, db_index=True, null=True, blank=True)
     richting = models.CharField(max_length=3, null=True, blank=True)
     location = models.PointField(srid=4326, null=True, blank=True)
@@ -144,7 +158,9 @@ class HourAggregationBase(models.Model):
 class HeavyTrafficHourAggregation(HourAggregationBase):
     voertuig_soort = models.CharField(max_length=25, null=True)
     inrichting = models.CharField(max_length=255, null=True)
-    voertuig_klasse_toegestaan_gewicht = models.CharField(max_length=255, null=True, blank=True)
+    voertuig_klasse_toegestaan_gewicht = models.CharField(
+        max_length=255, null=True, blank=True
+    )
 
 
 class IGORHourAggregation(HourAggregationBase):

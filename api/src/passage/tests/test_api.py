@@ -158,7 +158,7 @@ class TestPassageAPI_Versions_1_2(TestPassageAPI):
         assert Passage.objects.count() == 0
         res = self.post(payload)
         assert res.status_code == 201, res.data
-        assert Passage.objects.get(id=payload['id'])
+        assert Passage.objects.get(external_id=payload['id'])
         assert_response(res.data, payload)
 
     def test_post_new_passage_missing_attr(self, payload_version: PayloadVersion):
@@ -174,7 +174,7 @@ class TestPassageAPI_Versions_1_2(TestPassageAPI):
         res = self.post(payload)
         response_data = res.data
         assert res.status_code == 201, res.data
-        assert Passage.objects.get(id=payload['id'])
+        assert Passage.objects.get(external_id=payload['id'])
 
         assert_response(response_data, payload)
 
@@ -193,7 +193,7 @@ class TestPassageAPI_Versions_1_2(TestPassageAPI):
         assert res.status_code == 400, res.data
 
     def test_post_duplicate_key(self, payload_version: PayloadVersion):
-        """ Test posting a new passage with a duplicate key """
+        """ Test posting a new passage with a duplicate (id, cameraId) combination """
         payload = self.payload(payload_version)
         res = self.post(payload)
         assert res.status_code == 201, res.data
@@ -375,7 +375,7 @@ class TestPassageAPI_Versions_1_2(TestPassageAPI):
 
         res = self.post(payload)
         assert res.status_code == 201, res.data
-        assert Passage.objects.get(id=payload['id'])
+        assert Passage.objects.get(external_id=payload['id'])
         assert_response(res.data, payload)
 
     def test_privacy_voertuig_soort(self, payload_version: PayloadVersion):
@@ -387,7 +387,7 @@ class TestPassageAPI_Versions_1_2(TestPassageAPI):
 
         res = self.post(payload)
         assert res.status_code == 201, res.data
-        assert Passage.objects.get(id=payload['id'])
+        assert Passage.objects.get(external_id=payload['id'])
         assert_response(res.data, payload)
 
     def test_privacy_tenaamstelling(self, payload_version: PayloadVersion):
@@ -398,7 +398,7 @@ class TestPassageAPI_Versions_1_2(TestPassageAPI):
 
             res = self.post(payload)
             assert res.status_code == 201, res.data
-            assert Passage.objects.get(id=payload['id'])
+            assert Passage.objects.get(external_id=payload['id'])
             assert_response(res.data, payload)
 
     def test_privacy_datum_eerste_toelating(self, payload_version: PayloadVersion):
@@ -409,7 +409,7 @@ class TestPassageAPI_Versions_1_2(TestPassageAPI):
 
             res = self.post(payload)
             assert res.status_code == 201, res.data
-            assert Passage.objects.get(id=payload['id'])
+            assert Passage.objects.get(external_id=payload['id'])
             assert_response(res.data, payload)
 
 
@@ -426,7 +426,7 @@ class TestPassageAPI_Version_2(TestPassageAPI):
         res = self.post(payload)
         assert res.status_code == 201, res.data
 
-        actual = Passage.objects.values('kenteken_hash', *NEW_FIELDS).get(id=payload['id'])
+        actual = Passage.objects.values('kenteken_hash', *NEW_FIELDS).get(external_id=payload['id'])
 
         vehicle_and_number_plate = {**payload['voertuig'], **payload['voertuig']['kenteken']}
         expected = keyfilter(
