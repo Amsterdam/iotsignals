@@ -95,10 +95,6 @@ def assert_response(response_data, payload):
         'coordinates': response_data['camera_locatie']['coordinates'],
     }
 
-    # Response is a str, POST is a date
-    if payload['version'] == 'passage-v2':
-        post_data['vervaldatum_apk'] = str(post_data['vervaldatum_apk'])
-
     for k, v in response_data.items():
         assert response_data[k] == v, (k, response_data[k])
 
