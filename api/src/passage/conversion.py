@@ -6,7 +6,6 @@ from django.contrib.gis.geos import GEOSGeometry
 
 NEW_FIELDS = [
     'kenteken_hash',
-    'wam_verzekerd',
     'massa_ledig_voertuig',
     'aantal_assen',
     'aantal_staanplaatsen',
@@ -82,7 +81,6 @@ def upgrade(passage):
             ],
             # New fields...
             versit_klasse=passage.pop('versit_klasse', None),
-            wam_verzekerd=passage.pop('wam_verzekerd', None),
             massa_ledig_voertuig=passage.pop('massa_ledig_voertuig', None),
             aantal_assen=passage.pop('aantal_assen', None),
             aantal_staanplaatsen=passage.pop('aantal_staanplaatsen', None),

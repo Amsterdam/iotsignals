@@ -143,7 +143,6 @@ class Voertuig(factory.DictFactory):
     taxiIndicator = factory.Faker('boolean', chance_of_getting_true=50)
     maximaleConstructiesnelheidBromSnorfiets = fuzzy.FuzzyInteger(0, 500)
     versitKlasse = fuzzy.FuzzyText()
-    wamVerzekerd = factory.Faker('boolean', chance_of_getting_true=50)
     massaLedigVoertuig = fuzzy.FuzzyInteger(0, 500)
     aantalAssen = fuzzy.FuzzyInteger(0, 10)
     aantalStaanplaatsen = fuzzy.FuzzyInteger(0, 100)
