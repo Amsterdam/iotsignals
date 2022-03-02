@@ -38,6 +38,7 @@ def upgrade(passage):
         # passage properties
         id=passage.pop('id'),
         version='passage-v2',
+        volgnummer=passage.pop('volgnummer'),
         timestamp=passage.pop('passage_at'),
         automatisch_verwerkbaar=passage.pop('automatisch_verwerkbaar'),
         indicatie_snelheid=passage.pop('indicatie_snelheid'),
@@ -145,6 +146,7 @@ def downgrade(passage, *, drop_new_fields=True):
     passage_v1 = dict(
         # passage properties
         id=passage_v2.pop('id'),
+        volgnummer=passage_v2.pop('volgnummer'),
         automatisch_verwerkbaar=passage_v2.pop('automatisch_verwerkbaar'),
         indicatie_snelheid=passage_v2.pop('indicatie_snelheid'),
         passage_at=passage_v2.pop('timestamp'),

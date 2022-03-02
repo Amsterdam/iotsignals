@@ -14,6 +14,7 @@ class Passage(models.Model):
     id = models.UUIDField(primary_key=True, unique=True)
     passage_at = DateTimeUTCField(db_index=True, null=False)
     created_at = DateTimeUTCField(db_index=True, auto_now_add=True, editable=False)
+    volgnummer = models.IntegerField(null=True, blank=True)
 
     version = models.CharField(max_length=20)
 

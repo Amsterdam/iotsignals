@@ -186,6 +186,7 @@ class Camera(factory.DictFactory):
 class PayloadVersion2(factory.DictFactory):
     id = factory.Faker('uuid4')
     version = "passage-v2"
+    volgnummer = fuzzy.FuzzyInteger(0, 10)
     timestamp = factory.LazyFunction(timezone.now)
     automatischVerwerkbaar = factory.Faker('boolean', chance_of_getting_true=50)
     indicatieSnelheid = fuzzy.FuzzyFloat(0, 150)
