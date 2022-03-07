@@ -426,11 +426,24 @@ class TestPassageAPI_Version_2(TestPassageAPI):
         res = self.post(payload)
         assert res.status_code == 201, res.data
 
-        actual = Passage.objects.values('kenteken_hash', *NEW_FIELDS).get(id=payload['id'])
+        actual = Passage.objects.get(id=payload['id'])
 
-        vehicle_and_number_plate = {**payload['voertuig'], **payload['voertuig']['kenteken']}
-        expected = keyfilter(
-            lambda key: key in NEW_FIELDS,
-            keymap(to_snakecase, vehicle_and_number_plate),
-        )
-        assert actual == expected
+        vehicle = payload['voertuig']
+        number_plate = vehicle['kenteken']
+
+        assert actual.kenteken_hash == number_plate['kentekenHash']
+        assert actual.massa_ledig_voertuig == vehicle['massaLedigVoertuig']
+        assert actual.aantal_assen == vehicle['aantalAssen']
+        assert actual.aantal_staanplaatsen == vehicle['aantalStaanplaatsen']
+        assert actual.aantal_wielen == vehicle['aantalWielen']
+        assert actual.aantal_zitplaatsen == vehicle['aantalZitplaatsen']
+        assert actual.handelsbenaming == vehicle['handelsbenaming']
+        assert actual.lengte == vehicle['lengte']
+        assert actual.breedte == vehicle['breedte']
+        assert actual.maximum_massa_trekken_ongeremd == vehicle['maximumMassaTrekkenOngeremd']
+        assert actual.maximum_massa_trekken_geremd == vehicle['maximumMassaTrekkenGeremd']
+
+        # these moved into brandstoffen
+        assert actual.co2_uitstoot_gecombineerd is None
+        assert actual.co2_uitstoot_gewogen is None
+        assert actual.milieuklasse_eg_goedkeuring_zwaar is None
