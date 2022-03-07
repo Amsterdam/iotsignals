@@ -92,9 +92,6 @@ def upgrade(passage):
             breedte=passage.pop('breedte', None),
             maximum_massa_trekken_ongeremd=passage.pop('maximum_massa_trekken_ongeremd', None),
             maximum_massa_trekken_geremd=passage.pop('maximum_massa_trekken_geremd', None),
-            co2_uitstoot_gecombineerd=passage.pop('co2_uitstoot_gecombineerd', None),
-            co2_uitstoot_gewogen=passage.pop('co2_uitstoot_gewogen', None),
-            milieuklasse_eg_goedkeuring_zwaar=passage.pop('milieuklasse_eg_goedkeuring_zwaar', None),
         )
     )
 

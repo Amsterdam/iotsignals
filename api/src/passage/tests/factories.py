@@ -53,7 +53,14 @@ def get_brandstoffen_v1():
 
 def get_brandstoffen_v2():
     return [
-        dict(naam=random.choice(FUELS), volgnummer=n, emissieklasse=random.choice(string.digits))
+        dict(
+            naam=random.choice(FUELS),
+            volgnummer=n,
+            emissieklasse=random.choice(string.digits),
+            co2UitstootGecombineerd=random.randint(0, 100),
+            co2UitstootGewogen=random.randint(0, 100),
+            milieuklasseEgGoedkeuringZwaar=random.choice(string.ascii_letters),
+        )
         for n in range(random.randint(1, 5))
     ]
 
@@ -156,9 +163,6 @@ class Voertuig(factory.DictFactory):
     voertuigSoort = fuzzy.FuzzyChoice(VOERTUIG_SOORTEN)
     merk = factory.Faker('first_name')
     inrichting = factory.Faker('first_name')
-    co2UitstootGecombineerd = fuzzy.FuzzyFloat(0, 100)
-    co2UitstootGewogen = fuzzy.FuzzyFloat(0, 100)
-    milieuklasseEgGoedkeuringZwaar = fuzzy.FuzzyText()
     brandstoffen = factory.LazyFunction(get_brandstoffen_v2)
 
 
