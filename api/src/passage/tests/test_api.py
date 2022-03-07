@@ -442,6 +442,7 @@ class TestPassageAPI_Version_2(TestPassageAPI):
         assert actual.breedte == vehicle['breedte']
         assert actual.maximum_massa_trekken_ongeremd == vehicle['maximumMassaTrekkenOngeremd']
         assert actual.maximum_massa_trekken_geremd == vehicle['maximumMassaTrekkenGeremd']
+        assert actual.indicatie_snelheid == vehicle['indicatieSnelheid']
 
         # these moved into brandstoffen
         assert actual.co2_uitstoot_gecombineerd is None

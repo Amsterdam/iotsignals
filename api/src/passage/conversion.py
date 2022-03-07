@@ -54,7 +54,7 @@ def downgrade(passage):
         id=passage_v2.pop('id'),
         volgnummer=passage_v2.pop('volgnummer'),
         automatisch_verwerkbaar=passage_v2.pop('automatisch_verwerkbaar'),
-        indicatie_snelheid=passage_v2.pop('indicatie_snelheid'),
+        indicatie_snelheid=vehicle.pop('indicatie_snelheid'),
         passage_at=passage_v2.pop('timestamp'),
         version='passage-v1',
         kenteken_land_betrouwbaarheid=betrouwbaarheid.pop('landcode_betrouwbaarheid'),

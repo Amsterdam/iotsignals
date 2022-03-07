@@ -173,6 +173,7 @@ class Voertuig(factory.DictFactory):
     merk = factory.Faker('first_name')
     inrichting = factory.Faker('first_name')
     brandstoffen = factory.LazyFunction(get_brandstoffen_v2)
+    indicatieSnelheid = fuzzy.FuzzyFloat(0, 150)
 
 
 class Betrouwbaarheid(factory.DictFactory):
@@ -202,7 +203,6 @@ class PayloadVersion2(factory.DictFactory):
     volgnummer = fuzzy.FuzzyInteger(0, 10)
     timestamp = factory.LazyFunction(timezone.now)
     automatischVerwerkbaar = factory.Faker('boolean', chance_of_getting_true=50)
-    indicatieSnelheid = fuzzy.FuzzyFloat(0, 150)
     camera = factory.SubFactory(Camera)
     voertuig = factory.SubFactory(Voertuig)
     betrouwbaarheid = factory.SubFactory(Betrouwbaarheid)
