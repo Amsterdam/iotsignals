@@ -13,7 +13,7 @@ from django.urls import reverse
 from django.utils.dateparse import parse_datetime
 from model_bakery import baker
 # iotsignals
-from passage.conversion import upgrade, downgrade, NEW_FIELDS
+from passage.conversion import downgrade, NEW_FIELDS
 from iotsignals import PayloadVersion, to_api_version
 from passage.case_converters import to_snakecase
 from passage.models import Passage
