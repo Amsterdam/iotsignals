@@ -2,6 +2,7 @@
 import datetime
 import random
 import string
+
 # 3rd party
 from functools import partial
 
@@ -10,6 +11,7 @@ from django.contrib.gis.geos import Point
 from django.utils import timezone
 from factory import fuzzy
 from factory.django import DjangoModelFactory
+
 # iotsignals
 from passage.models import Passage
 
@@ -29,16 +31,13 @@ def get_point_in_amsterdam_as_json():
         "type": "Point",
         "coordinates": [
             fuzzy.FuzzyFloat(*AMSTERDAM_LONGITUDE).fuzz(),
-            fuzzy.FuzzyFloat(*AMSTERDAM_LATITUDE).fuzz()
+            fuzzy.FuzzyFloat(*AMSTERDAM_LATITUDE).fuzz(),
         ],
     }
 
 
 def kenteken_karakter_betrouwbaarheid():
-    return [
-        dict(betrouwbaarheid=random.randint(1, 1000), positie=n)
-        for n in range(6)
-    ]
+    return [dict(betrouwbaarheid=random.randint(1, 1000), positie=n) for n in range(6)]
 
 
 FUELS = ('Diesel', 'Elektriciteit', 'Benzine', 'LPG', 'CNG')
@@ -85,7 +84,9 @@ class PassageFactory(DjangoModelFactory):
     kenteken_land = fuzzy.FuzzyText(length=2)
     kenteken_nummer_betrouwbaarheid = fuzzy.FuzzyInteger(1, 1000)
     kenteken_land_betrouwbaarheid = fuzzy.FuzzyInteger(1.0, 1000.0, 1)
-    kenteken_karakters_betrouwbaarheid = factory.LazyFunction(kenteken_karakter_betrouwbaarheid)
+    kenteken_karakters_betrouwbaarheid = factory.LazyFunction(
+        kenteken_karakter_betrouwbaarheid
+    )
     indicatie_snelheid = fuzzy.FuzzyFloat(0, 500)
     automatisch_verwerkbaar = factory.Faker('boolean', chance_of_getting_true=50)
     voertuig_soort = fuzzy.FuzzyChoice(VOERTUIG_SOORTEN)
@@ -115,7 +116,9 @@ class PayloadVersion1(factory.DictFactory):
     kentekenLand = fuzzy.FuzzyText(length=2)
     kentekenNummerBetrouwbaarheid = fuzzy.FuzzyInteger(1, 1000)
     kentekenLandBetrouwbaarheid = fuzzy.FuzzyInteger(1, 1000)
-    kentekenKaraktersBetrouwbaarheid = factory.LazyFunction(kenteken_karakter_betrouwbaarheid)
+    kentekenKaraktersBetrouwbaarheid = factory.LazyFunction(
+        kenteken_karakter_betrouwbaarheid
+    )
     indicatieSnelheid = fuzzy.FuzzyFloat(0, 500)
     automatischVerwerkbaar = factory.Faker('boolean', chance_of_getting_true=50)
     voertuigSoort = fuzzy.FuzzyChoice(VOERTUIG_SOORTEN)
@@ -130,9 +133,15 @@ class PayloadVersion1(factory.DictFactory):
     maximaleConstructieSnelheidBromsnorfiets = fuzzy.FuzzyInteger(0, 500)
     brandstoffen = factory.LazyFunction(get_brandstoffen_v1)
     extraData = {}
-    diesel = factory.LazyAttribute(lambda self: int('Diesel' in {x['brandstof'] for x in self.brandstoffen}))
-    gasoline = factory.LazyAttribute(lambda self: int('Benzine' in {x['brandstof'] for x in self.brandstoffen}))
-    electric = factory.LazyAttribute(lambda self: int('Elektriciteit' in {x['brandstof'] for x in self.brandstoffen}))
+    diesel = factory.LazyAttribute(
+        lambda self: int('Diesel' in {x['brandstof'] for x in self.brandstoffen})
+    )
+    gasoline = factory.LazyAttribute(
+        lambda self: int('Benzine' in {x['brandstof'] for x in self.brandstoffen})
+    )
+    electric = factory.LazyAttribute(
+        lambda self: int('Elektriciteit' in {x['brandstof'] for x in self.brandstoffen})
+    )
     versitKlasse = fuzzy.FuzzyText()
 
 
