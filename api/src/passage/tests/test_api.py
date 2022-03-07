@@ -53,7 +53,7 @@ def assert_response(response_data, payload):
     if payload['version'] == 'passage-v1':
         post_data.update(dict.fromkeys(NEW_FIELDS))
     elif payload['version'] == 'passage-v2':
-        post_data = downgrade(post_data, drop_new_fields=False)
+        post_data = downgrade(post_data)
     else:
         raise ValueError(f"Unsupported version number {payload['version']}")
 

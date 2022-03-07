@@ -113,7 +113,7 @@ def upgrade(passage):
     return result
 
 
-def downgrade(passage, *, drop_new_fields=True):
+def downgrade(passage):
     """
     Downgrade the given payload from v2 to v1.
 
@@ -135,13 +135,6 @@ def downgrade(passage, *, drop_new_fields=True):
     betrouwbaarheid = passage_v2.pop('betrouwbaarheid')
     number_plate = vehicle.pop('kenteken')
     fuels = {fuel['naam'] for fuel in vehicle.get('brandstoffen') or []}
-
-    if drop_new_fields:
-        for field in NEW_FIELDS:
-            if field in vehicle:
-                del vehicle[field]
-
-        del number_plate['kenteken_hash']
 
     passage_v1 = dict(
         # passage properties

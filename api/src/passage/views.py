@@ -152,6 +152,6 @@ class PassageViewSetVersion2(PassageViewSet):
     def create(self, request, *args, **kwargs):
         # convert to snakecase, and downgrade to a flattened structure.
         passage_v1 = keymap(to_snakecase, request.data)
-        passage_v2 = downgrade(passage_v1, drop_new_fields=False)
+        passage_v2 = downgrade(passage_v1)
         request.data.update(passage_v2)
         return super().create(request, *args, **kwargs)
