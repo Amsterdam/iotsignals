@@ -194,7 +194,6 @@ class Camera(factory.DictFactory):
     locatie = factory.SubFactory(Locatie)
     naam = factory.Faker('name')
     straat = factory.Faker('name')
-    rijstrook = fuzzy.FuzzyInteger(1, 10)
 
 
 class PayloadVersion2(factory.DictFactory):
@@ -205,4 +204,5 @@ class PayloadVersion2(factory.DictFactory):
     automatischVerwerkbaar = factory.Faker('boolean', chance_of_getting_true=50)
     camera = factory.SubFactory(Camera)
     voertuig = factory.SubFactory(Voertuig)
+    rijstrook = fuzzy.FuzzyInteger(1, 10)
     rijrichting = fuzzy.FuzzyChoice(("VAN", "NAAR"))

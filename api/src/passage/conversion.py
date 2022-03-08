@@ -83,6 +83,7 @@ def downgrade(passage):
             "type": "Point",
             "coordinates": [camera_location['latitude'], camera_location['longitude']]
         },
+        rijstrook=passage_v2.pop('rijstrook'),
         rijrichting=RIJRICHTING_MAPPING[passage_v2.pop('rijrichting')],
         **camera,
     )

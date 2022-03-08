@@ -447,6 +447,7 @@ class TestPassageAPI_Version_2(TestPassageAPI):
         assert actual.kenteken_nummer_betrouwbaarheid == reliability['kentekenBetrouwbaarheid']
         assert actual.kenteken_karakters_betrouwbaarheid == reliability['karaktersBetrouwbaarheid']
         assert actual.kenteken_land_betrouwbaarheid == reliability['landcodeBetrouwbaarheid']
+        assert actual.rijstrook == payload['rijstrook']
         assert actual.rijrichting == RIJRICHTING_MAPPING[payload['rijrichting']]
 
         # these moved into brandstoffen
