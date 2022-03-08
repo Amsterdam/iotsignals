@@ -31,12 +31,19 @@ class PassageSerializer(HALSerializer):
 
 class PassageDetailSerializer(serializers.ModelSerializer):
     id = serializers.UUIDField(
-        validators=[]
+        validators=[],
+        source='passage_id'
     )  # Disable the validators for the id, which improves performance (rps) by over 200%
 
     class Meta:
         model = Passage
-        fields = '__all__'
+        # exclude passage_id. We map id (on the serializer) to passage_id (on the model)
+        # therefore we are practically excluding the Passage.id field
+        exclude = ['passage_id']
+        validators = [
+            # Disable UniqueTogetherValidator for (passage_id, volgnummer)
+            # for performance
+        ]
 
     def create(self, validated_data):
         try:
@@ -48,7 +55,7 @@ class PassageDetailSerializer(serializers.ModelSerializer):
             # the string argument is the only way to distinguish between
             # different types of IntegrityError.
             if 'duplicate key' in e.args[0]:
-                log.info(f"DuplicateIdError for id {validated_data['id']}")
+                log.info(f"DuplicateIdError for passage_id {validated_data['passage_id']}, volgnummer {validated_data.get('volgnummer', '*missing*')}")
                 raise DuplicateIdError(str(e))
             else:
                 raise

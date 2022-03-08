@@ -71,7 +71,7 @@ class PassageFactory(DjangoModelFactory):
     class Meta:
         model = Passage
 
-    id = factory.Faker('uuid4')
+    passage_id = factory.Faker('uuid4')
     version = "passage-v1"
     passage_at = factory.LazyFunction(timezone.now)
     straat = factory.Faker('name')

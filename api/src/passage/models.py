@@ -1,3 +1,5 @@
+import uuid
+
 from datetimeutc.fields import DateTimeUTCField
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.contrib.gis.db import models
@@ -11,10 +13,11 @@ class Passage(models.Model):
     should result in a record here.
     """
 
-    id = models.UUIDField(primary_key=True, unique=True)
+    id = models.UUIDField(primary_key=True, unique=True, default=uuid.uuid4)
+    passage_id = models.UUIDField(null=True, blank=True)
     passage_at = DateTimeUTCField(db_index=True, null=False)
     created_at = DateTimeUTCField(db_index=True, auto_now_add=True, editable=False)
-    volgnummer = models.IntegerField(null=True, blank=True)
+    volgnummer = models.IntegerField(default=1, null=False, blank=False)
 
     version = models.CharField(max_length=20)
 
