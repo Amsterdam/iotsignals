@@ -13,7 +13,7 @@ from django.urls import reverse
 from django.utils.dateparse import parse_datetime
 from model_bakery import baker
 # iotsignals
-from passage.conversion import downgrade, NEW_FIELDS
+from passage.conversion import downgrade, NEW_FIELDS, RIJRICHTING_MAPPING
 from iotsignals import PayloadVersion, to_api_version
 from passage.case_converters import to_snakecase
 from passage.models import Passage
@@ -447,6 +447,7 @@ class TestPassageAPI_Version_2(TestPassageAPI):
         assert actual.kenteken_nummer_betrouwbaarheid == reliability['kentekenBetrouwbaarheid']
         assert actual.kenteken_karakters_betrouwbaarheid == reliability['karaktersBetrouwbaarheid']
         assert actual.kenteken_land_betrouwbaarheid == reliability['landcodeBetrouwbaarheid']
+        assert actual.rijrichting == RIJRICHTING_MAPPING[payload['rijrichting']]
 
         # these moved into brandstoffen
         assert actual.co2_uitstoot_gecombineerd is None
