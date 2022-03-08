@@ -192,7 +192,6 @@ class TestPassageAPI_Versions_1_2(TestPassageAPI):
         assert before == get_num_records_in_partition()
         assert res.status_code == 400, res.data
 
-    @pytest.mark.skip
     def test_post_duplicate_key(self, payload_version: PayloadVersion):
         """ Test posting a new passage with a duplicate key """
         payload = self.payload(payload_version)
