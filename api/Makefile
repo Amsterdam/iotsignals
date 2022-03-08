@@ -55,4 +55,4 @@ migrate:
 	$(manage) migrate
 
 migrations:
-	$(manage) makemigrations
+	$(manage) makemigrations $(ARGS)
