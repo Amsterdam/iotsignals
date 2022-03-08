@@ -185,7 +185,7 @@ class TestPassageAPI_Versions_1_2(TestPassageAPI):
         if payload_version == 'passage-v1':
             payload["kentekenNummerBetrouwbaarheid"] = -1
         else:
-            payload["betrouwbaarheid"]["kentekenBetrouwbaarheid"] = -1
+            payload["voertuig"]["kenteken"]["betrouwbaarheid"]["kentekenBetrouwbaarheid"] = -1
         res = self.post(payload)
 
         # check if the record was NOT stored in the correct partition
@@ -430,6 +430,7 @@ class TestPassageAPI_Version_2(TestPassageAPI):
 
         vehicle = payload['voertuig']
         number_plate = vehicle['kenteken']
+        reliability = number_plate['betrouwbaarheid']
 
         assert actual.kenteken_hash == number_plate['kentekenHash']
         assert actual.massa_ledig_voertuig == vehicle['massaLedigVoertuig']
@@ -443,6 +444,9 @@ class TestPassageAPI_Version_2(TestPassageAPI):
         assert actual.maximum_massa_trekken_ongeremd == vehicle['maximumMassaTrekkenOngeremd']
         assert actual.maximum_massa_trekken_geremd == vehicle['maximumMassaTrekkenGeremd']
         assert actual.indicatie_snelheid == vehicle['indicatieSnelheid']
+        assert actual.kenteken_nummer_betrouwbaarheid == reliability['kentekenBetrouwbaarheid']
+        assert actual.kenteken_karakters_betrouwbaarheid == reliability['karaktersBetrouwbaarheid']
+        assert actual.kenteken_land_betrouwbaarheid == reliability['landcodeBetrouwbaarheid']
 
         # these moved into brandstoffen
         assert actual.co2_uitstoot_gecombineerd is None

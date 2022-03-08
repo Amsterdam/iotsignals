@@ -145,9 +145,16 @@ class PayloadVersion1(factory.DictFactory):
     versitKlasse = fuzzy.FuzzyText()
 
 
+class Betrouwbaarheid(factory.DictFactory):
+    landcodeBetrouwbaarheid = fuzzy.FuzzyInteger(1, 1000)
+    kentekenBetrouwbaarheid = fuzzy.FuzzyInteger(1, 1000)
+    karaktersBetrouwbaarheid = factory.LazyFunction(kenteken_karakter_betrouwbaarheid)
+
+
 class Kenteken(factory.DictFactory):
     kentekenHash = fuzzy.FuzzyText(chars=string.hexdigits, length=40)
     landcode = fuzzy.FuzzyText(chars=string.ascii_uppercase, length=2)
+    betrouwbaarheid = factory.SubFactory(Betrouwbaarheid)
 
 
 class Voertuig(factory.DictFactory):
@@ -176,12 +183,6 @@ class Voertuig(factory.DictFactory):
     indicatieSnelheid = fuzzy.FuzzyFloat(0, 150)
 
 
-class Betrouwbaarheid(factory.DictFactory):
-    landcodeBetrouwbaarheid = fuzzy.FuzzyInteger(1, 1000)
-    kentekenBetrouwbaarheid = fuzzy.FuzzyInteger(1, 1000)
-    karaktersBetrouwbaarheid = factory.LazyFunction(kenteken_karakter_betrouwbaarheid)
-
-
 class Locatie(factory.DictFactory):
     longitude = fuzzy.FuzzyFloat(*AMSTERDAM_LONGITUDE)
     latitude = fuzzy.FuzzyFloat(*AMSTERDAM_LATITUDE)
@@ -205,4 +206,3 @@ class PayloadVersion2(factory.DictFactory):
     automatischVerwerkbaar = factory.Faker('boolean', chance_of_getting_true=50)
     camera = factory.SubFactory(Camera)
     voertuig = factory.SubFactory(Voertuig)
-    betrouwbaarheid = factory.SubFactory(Betrouwbaarheid)

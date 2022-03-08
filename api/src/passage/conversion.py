@@ -45,8 +45,8 @@ def downgrade(passage):
     camera = passage_v2.pop('camera')
     camera_location = camera.pop('locatie')
     vehicle = passage_v2.pop('voertuig')
-    betrouwbaarheid = passage_v2.pop('betrouwbaarheid')
     number_plate = vehicle.pop('kenteken')
+    betrouwbaarheid = number_plate.pop('betrouwbaarheid')
     fuels = {fuel['naam'] for fuel in vehicle.get('brandstoffen') or []}
 
     passage_v1 = dict(
