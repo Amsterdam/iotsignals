@@ -11,7 +11,7 @@ from rest_framework import mixins, viewsets
 from rest_framework.decorators import action
 from rest_framework.permissions import IsAuthenticated
 # iotsignals
-from passage.conversion import downgrade
+from passage.conversion import convert_to_v1
 from passage.case_converters import to_snakecase
 from passage.expressions import HoursInterval
 from writers import CSVExport
@@ -152,6 +152,6 @@ class PassageViewSetVersion2(PassageViewSet):
     def create(self, request, *args, **kwargs):
         # convert to snakecase, and downgrade to a flattened structure.
         passage_v1 = keymap(to_snakecase, request.data)
-        passage_v2 = downgrade(passage_v1)
+        passage_v2 = convert_to_v1(passage_v1)
         request.data.update(passage_v2)
         return super().create(request, *args, **kwargs)

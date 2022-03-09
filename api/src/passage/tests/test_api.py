@@ -13,7 +13,7 @@ from django.urls import reverse
 from django.utils.dateparse import parse_datetime
 from model_bakery import baker
 # iotsignals
-from passage.conversion import downgrade, NEW_FIELDS, RIJRICHTING_MAPPING
+from passage.conversion import convert_to_v1, NEW_FIELDS, RIJRICHTING_MAPPING
 from iotsignals import PayloadVersion, to_api_version
 from passage.case_converters import to_snakecase
 from passage.models import Passage
@@ -53,7 +53,7 @@ def assert_response(response_data, payload):
     if payload['version'] == 'passage-v1':
         post_data.update(dict.fromkeys(NEW_FIELDS))
     elif payload['version'] == 'passage-v2':
-        post_data = downgrade(post_data)
+        post_data = convert_to_v1(post_data)
     else:
         raise ValueError(f"Unsupported version number {payload['version']}")
 

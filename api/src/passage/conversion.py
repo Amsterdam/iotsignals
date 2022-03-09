@@ -26,18 +26,16 @@ RIJRICHTING_MAPPING = {'VAN': -1, 'NAAR': 1}
 RIJRICHTING_MAPPING_INVERSE = {value: key for key, value in RIJRICHTING_MAPPING.items()}
 
 
-def downgrade(passage):
+def convert_to_v1(passage):
     """
-    Downgrade the given payload from v2 to v1.
+    Convert the given payload from v2 to v1.
 
-    Note that a downgraded message is never exactly the same as a version 1
-    message, some fields from version 1 do not exist in version 2, and when
-    keeping new fields there will be a number of additional fields present that
+    Note that a converted message is never exactly the same as a version 1
+    message: some fields from version 1 do not exist in version 2,
+    and there will be a number of additional fields present that
     you wouldn't normally expect in a version 1 message.
 
     :param passage: The passage payload to downgrade (keys in snakecase)
-    :param drop_new_fields: True to remove new fields, False to keep them.
-
     :return: Dictionary with the payload converted to 'version 1' format.
     """
     passage_v2 = deepcopy(passage)
