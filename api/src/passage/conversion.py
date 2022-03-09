@@ -56,7 +56,7 @@ def downgrade(passage):
         automatisch_verwerkbaar=passage_v2.pop('automatisch_verwerkbaar'),
         indicatie_snelheid=vehicle.pop('indicatie_snelheid'),
         passage_at=passage_v2.pop('timestamp'),
-        version='passage-v1',
+        version='passage-v2',
         kenteken_land_betrouwbaarheid=betrouwbaarheid.pop('landcode_betrouwbaarheid'),
         kenteken_nummer_betrouwbaarheid=betrouwbaarheid.pop('kenteken_betrouwbaarheid'),
         kenteken_karakters_betrouwbaarheid=betrouwbaarheid.pop('karakters_betrouwbaarheid'),
