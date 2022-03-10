@@ -31,8 +31,16 @@ build:                              ## Build docker image
 push: build                         ## Push docker image to registry
 	$(dc) push
 
+clean:                              ## Clean docker stuff
+	$(dc) down -v --remove-orphans
+
 test:
 	$(run) dev pytest $(ARGS)
+
+loadtest:
+	$(run) api python /app/manage.py migrate
+	$(run) api python /app/make_paritions.py
+	$(run) locust $(ARGS)
 
 pdb:
 	$(run) dev pytest --pdb $(ARGS)

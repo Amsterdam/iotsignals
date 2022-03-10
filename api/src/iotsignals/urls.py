@@ -15,27 +15,33 @@ Including another URLconf
 
 """
 from django.conf import settings
-from django.conf.urls import url, include
+from django.conf.urls import include
 from django.urls import path
 
 from drf_yasg.views import get_schema_view
 from drf_yasg import openapi
 
-from rest_framework import routers
 from rest_framework import permissions
 
 from passage import views as passage_views
 
-from iotsignals.routers import IOTSignalsRouterRoot
-from iotsignals.routers import IOTSignalsRouterVersion0
+from iotsignals.routers import (
+    IOTSignalsRouterRoot,
+    IOTSignalsRouterVersion0,
+    IOTSignalsRouterVersion2,
+)
 
 root_router = IOTSignalsRouterRoot()
 
 router_v0 = IOTSignalsRouterVersion0()
-
 router_v0.register(
      r'milieuzone/passage',
      viewset=passage_views.PassageViewSet, basename='passage')
+
+router_v2 = IOTSignalsRouterVersion2()
+router_v2.register(
+     r'milieuzone/passage',
+     viewset=passage_views.PassageViewSetVersion2, basename='passage')
 
 urls = root_router.urls
 
@@ -43,7 +49,7 @@ urls = root_router.urls
 schema_view = get_schema_view(
     openapi.Info(
         title="IOT Signals API",
-        default_version='v1',
+        default_version='v0',
         description="IOTSignals in Amsterdam",
         terms_of_service="https://data.amsterdam.nl/",
         contact=openapi.Contact(email="datapunt@amsterdam.nl"),
@@ -72,7 +78,8 @@ urlpatterns = [
     path('', include((root_router.urls, 'iotsignals'), namespace='vx')),
     # API Version 0
     path('v0/', include((router_v0.urls, 'iotsignals'), namespace='v0')),
-    url(r"^status/", include("health.urls")),
+    path('v2/', include((router_v2.urls, 'iotsignals'), namespace='v2')),
+    path('status/', include("health.urls")),
 ]
 
 
@@ -80,5 +87,5 @@ if settings.DEBUG:
     import debug_toolbar
 
     urlpatterns.extend([
-        url(r'^__debug__/', include(debug_toolbar.urls)),
+        path('__debug__/', include(debug_toolbar.urls)),
     ])

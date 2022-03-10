@@ -53,9 +53,6 @@ class TestZwaarVerkeerAggregation:
         toegestane_maximum_massa_voertuig,
         expected_klasse_toegestaan_gewicht,
     ):
-        # required to ensure partitions exist
-        import make_paritions
-
         helper_table_row = Camera.objects.filter(
             cordon__in=['S100', 'A10']
         ).first()

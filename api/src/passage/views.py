@@ -1,22 +1,23 @@
-from datetime import date, timedelta
-
+# std
+from datetime import timedelta
+# 3rd party
 from contrib.rest_framework.authentication import SimpleTokenAuthentication
 from datapunt_api.pagination import HALCursorPagination
-from datapunt_api.rest import DatapuntViewSetWritable
 from django.db.models import DateTimeField, ExpressionWrapper, F, Sum
 from django.utils import timezone
-from django.utils.dateparse import parse_datetime
 from django_filters.filterset import filterset_factory
 from django_filters.rest_framework import DjangoFilterBackend, FilterSet
-from passage.case_converters import to_snakecase
-from passage.expressions import HoursInterval
-from rest_framework import exceptions, generics, mixins, viewsets
+from rest_framework import mixins, viewsets
 from rest_framework.decorators import action
 from rest_framework.permissions import IsAuthenticated
-from rest_framework.response import Response
+# iotsignals
+from passage.conversion import convert_to_v1
+from passage.case_converters import to_snakecase
+from passage.expressions import HoursInterval
 from writers import CSVExport
 
 from . import models, serializers
+from .util import keymap
 
 
 class PassageFilter(FilterSet):
@@ -144,3 +145,13 @@ class PassageViewSet(mixins.CreateModelMixin, viewsets.GenericViewSet):
 
         # 3. Export (download) the file
         return csv_export.export("export", qs.iterator(), streaming=True)
+
+
+class PassageViewSetVersion2(PassageViewSet):
+
+    def create(self, request, *args, **kwargs):
+        # convert to snakecase, and downgrade to a flattened structure.
+        passage_v1 = keymap(to_snakecase, request.data)
+        passage_v2 = convert_to_v1(passage_v1)
+        request.data.update(passage_v2)
+        return super().create(request, *args, **kwargs)

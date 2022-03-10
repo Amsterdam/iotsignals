@@ -1,5 +1,4 @@
 from datetimeutc.fields import DateTimeUTCField
-from django.contrib.postgres.fields import JSONField
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.contrib.gis.db import models
 
@@ -15,6 +14,7 @@ class Passage(models.Model):
     id = models.UUIDField(primary_key=True, unique=True)
     passage_at = DateTimeUTCField(db_index=True, null=False)
     created_at = DateTimeUTCField(db_index=True, auto_now_add=True, editable=False)
+    volgnummer = models.IntegerField(null=True, blank=True)
 
     version = models.CharField(max_length=20)
 
@@ -35,9 +35,9 @@ class Passage(models.Model):
     kenteken_land_betrouwbaarheid = models.SmallIntegerField(
         validators=[MaxValueValidator(1000), MinValueValidator(0)]
     )
-    kenteken_karakters_betrouwbaarheid = JSONField(null=True)
+    kenteken_karakters_betrouwbaarheid = models.JSONField(null=True)
     indicatie_snelheid = models.FloatField(null=True)
-    automatisch_verwerkbaar = models.NullBooleanField()
+    automatisch_verwerkbaar = models.BooleanField(null=True)
     voertuig_soort = models.CharField(max_length=25, null=True)
     merk = models.CharField(max_length=255, null=True)
     inrichting = models.CharField(max_length=255, null=True)
@@ -46,12 +46,12 @@ class Passage(models.Model):
     toegestane_maximum_massa_voertuig = models.IntegerField(null=True)
     europese_voertuigcategorie = models.CharField(max_length=2, null=True)
     europese_voertuigcategorie_toevoeging = models.CharField(max_length=1, null=True)
-    taxi_indicator = models.NullBooleanField()
+    taxi_indicator = models.BooleanField(null=True)
     maximale_constructie_snelheid_bromsnorfiets = models.SmallIntegerField(null=True)
 
     # fuel properties
-    brandstoffen = JSONField(null=True)
-    extra_data = JSONField(null=True)
+    brandstoffen = models.JSONField(null=True)
+    extra_data = models.JSONField(null=True)
     diesel = models.SmallIntegerField(null=True)
     gasoline = models.SmallIntegerField(null=True)
     electric = models.SmallIntegerField(null=True)
@@ -60,8 +60,24 @@ class Passage(models.Model):
     # Zie ook: https://www.tno.nl/media/2451/lowres_tno_versit.pdf
     versit_klasse = models.CharField(null=True, max_length=255)
 
+    kenteken_hash = models.CharField(max_length=255, null=True)
+    massa_ledig_voertuig = models.SmallIntegerField(null=True)
+    aantal_assen = models.SmallIntegerField(null=True)
+    aantal_staanplaatsen = models.SmallIntegerField(null=True)
+    aantal_wielen = models.SmallIntegerField(null=True)
+    aantal_zitplaatsen = models.SmallIntegerField(null=True)
+    handelsbenaming = models.CharField(max_length=255, null=True)
+    lengte = models.SmallIntegerField(null=True)
+    breedte = models.SmallIntegerField(null=True)
+    maximum_massa_trekken_ongeremd = models.PositiveIntegerField(null=True)
+    maximum_massa_trekken_geremd = models.PositiveIntegerField(null=True)
+    co2_uitstoot_gecombineerd = models.FloatField(null=True)
+    co2_uitstoot_gewogen = models.FloatField(null=True)
+    milieuklasse_eg_goedkeuring_zwaar = models.CharField(max_length=255, null=True)
+
 
 class PassageHourAggregation(models.Model):
+    id = models.AutoField(primary_key=True)
     date = models.DateField()
     year = models.IntegerField()
     month = models.IntegerField()
@@ -76,7 +92,7 @@ class PassageHourAggregation(models.Model):
     kenteken_land = models.TextField()
     voertuig_soort = models.CharField(max_length=25, null=True)
     europese_voertuigcategorie = models.CharField(max_length=2, null=True)
-    taxi_indicator = models.NullBooleanField()
+    taxi_indicator = models.BooleanField(null=True)
     diesel = models.IntegerField(null=True)
     gasoline = models.IntegerField(null=True)
     electric = models.IntegerField(null=True)
@@ -85,6 +101,7 @@ class PassageHourAggregation(models.Model):
 
 
 class Camera(models.Model):
+    id = models.AutoField(primary_key=True)
     camera_naam = models.CharField(max_length=255, db_index=True)
     rijrichting = models.IntegerField(null=True, blank=True, db_index=True)
     camera_kijkrichting = models.FloatField(null=True, blank=True, db_index=True)
@@ -99,6 +116,7 @@ class Camera(models.Model):
 
 
 class HourAggregationBase(models.Model):
+    id = models.AutoField(primary_key=True)
     passage_at_timestamp = DateTimeUTCField()
     passage_at_date = models.DateField()
     passage_at_year = models.IntegerField()
@@ -131,5 +149,5 @@ class HeavyTrafficHourAggregation(HourAggregationBase):
 
 
 class IGORHourAggregation(HourAggregationBase):
-    taxi_indicator = models.NullBooleanField()
+    taxi_indicator = models.BooleanField(null=True)
     europese_voertuigcategorie = models.CharField(max_length=2, null=True)

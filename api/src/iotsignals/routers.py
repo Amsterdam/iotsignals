@@ -27,16 +27,18 @@ class IOTSignalsAPIRootView(routers.APIRootView):
         response = super().get(request, *args, **kwargs)
 
         # Appending the index view with API version 0 information.
-        v1root = request._request.build_absolute_uri(reverse('v0:api-root'))
-
-        response.data['v0'] = {
-            '_links': {
-                'self': {
-                    'href': v1root,
-                }
-            },
-            'version': get_version(API_VERSIONS['v0']),
-            'status': 'in development',
+        response.data = {
+            f'v{version}': {
+                '_links': {
+                    'self': {
+                        'href': request._request.build_absolute_uri(
+                            reverse(f'v{version}:api-root')),
+                    }
+                },
+                'version': get_version(API_VERSIONS[f'v{version}']),
+                'status': 'in development',
+            }
+            for version in [0, 2]
         }
         return response
 
@@ -51,9 +53,21 @@ class IOTSignalsAPIVersion0(routers.APIRootView):
         return 'Signals API Version 0'
 
 
+class IOTSignalsAPIVersion2(routers.APIRootView):
+    """Signalen API versie 2 (in development)."""
+
+    def get_view_name(self):
+        return 'Signals API Version 2'
+
+
 class IOTSignalsRouterRoot(routers.DefaultRouter):
     APIRootView = IOTSignalsAPIRootView
 
 
 class IOTSignalsRouterVersion0(routers.DefaultRouter):
     APIRootView = IOTSignalsAPIVersion0
+
+
+class IOTSignalsRouterVersion2(routers.DefaultRouter):
+    APIRootView = IOTSignalsAPIVersion2
+

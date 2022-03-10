@@ -1,69 +1,71 @@
 #!/usr/bin/python
 
-import psycopg2
+# std
 from os import environ
-from sys import exit
 from datetime import datetime, timedelta
-import logging
+# 3rd party
+import psycopg2
 
-PTABLE = "passage_passage"
+
 PARTITIONS_TO_ADD = 6
-conn = None
-
-log = logging.getLogger(__name__)
-log.setLevel(logging.DEBUG)
-
-# add 7 partitions in advance if needed (range is a day)
-try:
-    dbparam = {
-        'host': environ['DATABASE_HOST'],
-        'dbname': environ['DATABASE_NAME'],
-        'user': environ['DATABASE_USER'],
-        'password': environ['DATABASE_PASSWORD']
-        }
-    conn = psycopg2.connect(**dbparam)
-except Exception as e:
-    print(e)
-    log.error(e)
-    log.error("Database connection Failed!")
-    exit(-1)
 
 
-SQL_VERSION = """
-    SELECT Substr(setting, 1, strpos(setting, '.')-1)::smallint as version
-    FROM pg_settings
-    WHERE name = 'server_version';
-"""
+def make_partition_sql(timestamp):
+    """
+    Get the SQL for making a partition for the passage table for a particular day
 
-try:
-    # check pg version?, we need 10+ for partitions and 11+ for
-    # indexes within the partitions
-    cur = conn.cursor()
-    cur.execute(SQL_VERSION)
-    rows = cur.fetchall()
+    :param timestamp: datetime of the date to get the sql for.
 
-    if len(rows) == 1 and int(rows[0][0]) < 11:
-        print("Need postgres v11 or higher")
-        exit(-1)
-
-    start_date = datetime.today().date()
-    for i in range(PARTITIONS_TO_ADD):
-        partition_date = start_date + timedelta(i)
-        partition_str = partition_date.strftime("%Y%m%d")
-
-        SQL_CREATE_PARTITION = f"""
-        CREATE table IF NOT EXISTS {PTABLE}_{partition_str}
-        PARTITION OF {PTABLE}
+    :return: SQL query for generating the the passage partition.
+    """
+    return f"""
+        CREATE table IF NOT EXISTS passage_passage_{timestamp.strftime("%Y%m%d")}
+        PARTITION OF passage_passage
         FOR VALUES
-        FROM ('{partition_date}') TO ('{partition_date + timedelta(1)}');
-        """
-        print(SQL_CREATE_PARTITION)
-        cur.execute(SQL_CREATE_PARTITION)
+        FROM ('{timestamp.date()}') TO ('{timestamp.date() + timedelta(1)}');
+    """
 
-    conn.commit()
-except Exception as e:
-    print(e)
-    log.error(e)
-finally:
-    if conn is not None:
-        conn.close()
+
+def check_postgres_major_version(cursor, required):
+    """
+    Check postgres version, assert that the required major version is met. We
+    need 10+ for partitions and 11+ for indexes within the partitions.
+
+    :param cursor: The cursor to execute version retrieval query.
+    :param required: The minimum required major version.
+    """
+    cursor.execute("""
+        SELECT substr(setting, 1, strpos(setting, '.')-1)::smallint as version
+        FROM pg_settings
+        WHERE name = 'server_version';
+    """)
+    if cursor.fetchone()[0] < required:
+        raise Exception("Need postgres v11 or higher")
+
+
+def make_partitions(*timestamps):
+    """
+    Make the partitions for the given timestamps, defaulting to 6 partitions.
+
+    :param timestamps: Iterable of timestamps to generated partitions for.
+    """
+    if not timestamps:
+        start_date = datetime.today()
+        timestamps = (start_date + timedelta(i) for i in range(PARTITIONS_TO_ADD))
+
+    connection = psycopg2.connect(
+        host=environ['DATABASE_HOST'],
+        dbname=environ['DATABASE_NAME'],
+        user=environ['DATABASE_USER'],
+        password=environ['DATABASE_PASSWORD']
+    )
+
+    with connection.cursor() as cursor:
+        check_postgres_major_version(cursor, 11)
+
+        for timestamp in timestamps:
+            cursor.execute(make_partition_sql(timestamp))
+
+
+if __name__ == '__main__':
+    make_partitions()

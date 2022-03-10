@@ -23,7 +23,9 @@ node {
 
     stage('Test') {
         tryStep "test", {
-            sh "api/deploy/test/test.sh"
+            sh "make --directory=api/ clean"
+            sh "make --directory=api/ test"
+            sh "make --directory=api/ clean"
         }
     }
 
