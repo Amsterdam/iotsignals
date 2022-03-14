@@ -14,7 +14,7 @@ class Passage(models.Model):
     """
 
     id = models.UUIDField(primary_key=True, unique=True, default=uuid.uuid4)
-    passage_id = models.UUIDField(null=True, blank=True)
+    passage_id = models.UUIDField(null=False, blank=False)
     passage_at = DateTimeUTCField(db_index=True, null=False)
     created_at = DateTimeUTCField(db_index=True, auto_now_add=True, editable=False)
     volgnummer = models.IntegerField(default=1, null=False, blank=False)
@@ -77,6 +77,11 @@ class Passage(models.Model):
     co2_uitstoot_gecombineerd = models.FloatField(null=True)
     co2_uitstoot_gewogen = models.FloatField(null=True)
     milieuklasse_eg_goedkeuring_zwaar = models.CharField(max_length=255, null=True)
+
+    class Meta:
+        # create a unique index for (passage_id, volgnummer).
+        # passage_at is included as it is required; it is used to partition
+        unique_together = ('passage_id', 'volgnummer', 'passage_at')
 
 
 class PassageHourAggregation(models.Model):
