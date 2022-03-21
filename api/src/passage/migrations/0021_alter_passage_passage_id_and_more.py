@@ -19,4 +19,9 @@ class Migration(migrations.Migration):
             name='passage',
             unique_together={('passage_id', 'volgnummer', 'passage_at')},
         ),
+        migrations.AlterField(
+            model_name='passage',
+            name='volgnummer',
+            field=models.IntegerField(default=1),
+        ),
     ]
