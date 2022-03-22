@@ -62,7 +62,7 @@ class PassageDetailSerializer(serializers.ModelSerializer):
 
     def validate_datum_eerste_toelating(self, value):
         if value is None:
-            raise ValidationError()
+            return None
         return date(year=value.year, month=1, day=1)
 
     def validate_datum_tenaamstelling(self, value):
