@@ -432,6 +432,7 @@ class TestPassageAPI_Version_2(TestPassageAPI):
         number_plate = vehicle['kenteken']
         reliability = number_plate['betrouwbaarheid']
 
+        assert str(actual.passage_id) == payload['id']
         assert actual.kenteken_hash == number_plate['kentekenHash']
         assert actual.massa_ledig_voertuig == vehicle['massaLedigVoertuig']
         assert actual.aantal_assen == vehicle['aantalAssen']
@@ -454,3 +455,55 @@ class TestPassageAPI_Version_2(TestPassageAPI):
         assert actual.co2_uitstoot_gecombineerd is None
         assert actual.co2_uitstoot_gewogen is None
         assert actual.milieuklasse_eg_goedkeuring_zwaar is None
+
+    def test_downgraded_version_2_empty_fields(self):
+        """
+        Verify that when a version 2 message, where all optional fields are missing,
+        is flattened and is correctly saved to the database.
+        """
+        payload = self.payload('passage-v2')
+
+        # remove all fields that are not required (version only used for test)
+        required_passage_keys = [
+            'id', 'voertuig', 'volgnummer', 'timestamp', 'camera', 'version'
+        ]
+        for key in list(payload.keys()):
+            if key not in required_passage_keys:
+                del payload[key]
+
+        # remove all data in voertuig, all keys are optional
+        payload['voertuig'] = {}
+
+        # remove all fields from camera that are not required
+        required_camera_keys = ['id']
+        for key in list(payload['camera'].keys()):
+            if key not in required_camera_keys:
+                del payload['camera'][key]
+
+        res = self.post(payload)
+        assert res.status_code == 201, res.data
+
+        actual = Passage.objects.get(passage_id=payload['id'])
+
+        # assert that the required fields are correct
+        assert str(actual.passage_id) == payload['id']
+        assert actual.volgnummer == payload['volgnummer']
+        assert actual.passage_at == payload['timestamp']
+        assert actual.camera_id == payload['camera']['id']
+
+        # assert the rest of the optional fields are empty (id, created_at, version
+        # fields are added because they are auto-populated
+        required_fields = [
+            'id',
+            'created_at',
+            'version',
+            'brandstoffen',
+            'passage_id',
+            'volgnummer',
+            'passage_at',
+            'camera_id',
+        ]
+        assert actual.brandstoffen == []
+        for field in Passage._meta.get_fields():
+            if field.name not in required_fields:
+                assert getattr(actual, field.name) is None

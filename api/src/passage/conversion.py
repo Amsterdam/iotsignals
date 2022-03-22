@@ -73,9 +73,9 @@ def convert_to_v1(passage):
         kenteken_karakters_betrouwbaarheid=betrouwbaarheid.pop('karakters_betrouwbaarheid', None),
         # vehicle properties
         kenteken_land=number_plate.pop('landcode', None),
-        diesel=int('Diesel' in fuels),
-        gasoline=int('Benzine' in fuels),
-        electric=int('Elektriciteit' in fuels),
+        diesel=int('Diesel' in fuels) if fuels else None,
+        gasoline=int('Benzine' in fuels) if fuels else None,
+        electric=int('Elektriciteit' in fuels) if fuels else None,
         datum_eerste_toelating=datum_eerste_toelating,
         extra_data=None,
         maximale_constructie_snelheid_bromsnorfiets=vehicle.pop('maximale_constructiesnelheid_brom_snorfiets', None),
@@ -87,7 +87,7 @@ def convert_to_v1(passage):
         **vehicle,
         **number_plate,
         # camera properties
-        camera_id=camera.pop('id', None),
+        camera_id=camera.pop('id'),
         camera_naam=camera.pop('naam', None),
         camera_kijkrichting=camera.pop('kijkrichting', None),
         camera_locatie=camera_locatie,
