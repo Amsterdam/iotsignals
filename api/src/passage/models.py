@@ -17,7 +17,7 @@ class Passage(models.Model):
     passage_id = models.UUIDField(null=False, blank=False)
     passage_at = DateTimeUTCField(db_index=True, null=False)
     created_at = DateTimeUTCField(db_index=True, auto_now_add=True, editable=False)
-    volgnummer = models.IntegerField(default=1, null=False, blank=False)
+    volgnummer = models.PositiveIntegerField(default=1, null=False, blank=False)
 
     version = models.CharField(max_length=20)
 
@@ -41,7 +41,7 @@ class Passage(models.Model):
     kenteken_karakters_betrouwbaarheid = models.JSONField(null=True)
     indicatie_snelheid = models.FloatField(null=True)
     automatisch_verwerkbaar = models.BooleanField(null=True)
-    voertuig_soort = models.CharField(max_length=25, null=True)
+    voertuig_soort = models.CharField(max_length=64, null=True)
     merk = models.CharField(max_length=255, null=True)
     inrichting = models.CharField(max_length=255, null=True)
     datum_eerste_toelating = models.DateField(null=True)
@@ -72,8 +72,8 @@ class Passage(models.Model):
     handelsbenaming = models.CharField(max_length=255, null=True)
     lengte = models.SmallIntegerField(null=True)
     breedte = models.SmallIntegerField(null=True)
-    maximum_massa_trekken_ongeremd = models.PositiveIntegerField(null=True)
-    maximum_massa_trekken_geremd = models.PositiveIntegerField(null=True)
+    maximum_massa_trekken_ongeremd = models.IntegerField(null=True)
+    maximum_massa_trekken_geremd = models.IntegerField(null=True)
     co2_uitstoot_gecombineerd = models.FloatField(null=True)
     co2_uitstoot_gewogen = models.FloatField(null=True)
     milieuklasse_eg_goedkeuring_zwaar = models.CharField(max_length=255, null=True)
