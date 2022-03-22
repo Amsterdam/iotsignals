@@ -23,20 +23,20 @@ class Passage(models.Model):
 
     # camera properties
     straat = models.CharField(max_length=255, null=True)
-    rijrichting = models.SmallIntegerField()
-    rijstrook = models.SmallIntegerField()
-    camera_id = models.CharField(max_length=255)
-    camera_naam = models.CharField(max_length=255)
-    camera_kijkrichting = models.FloatField()
-    camera_locatie = models.PointField(srid=4326)
+    rijrichting = models.SmallIntegerField(null=True)
+    rijstrook = models.SmallIntegerField(null=True)
+    camera_id = models.CharField(max_length=255, null=True)
+    camera_naam = models.CharField(max_length=255, null=True)
+    camera_kijkrichting = models.FloatField(null=True)
+    camera_locatie = models.PointField(srid=4326, null=True)
 
     # car properties
-    kenteken_land = models.CharField(max_length=2)
+    kenteken_land = models.CharField(max_length=2, null=True)
     kenteken_nummer_betrouwbaarheid = models.SmallIntegerField(
-        validators=[MaxValueValidator(1000), MinValueValidator(0)]
+        validators=[MaxValueValidator(1000), MinValueValidator(0)], null=True
     )
     kenteken_land_betrouwbaarheid = models.SmallIntegerField(
-        validators=[MaxValueValidator(1000), MinValueValidator(0)]
+        validators=[MaxValueValidator(1000), MinValueValidator(0)], null=True
     )
     kenteken_karakters_betrouwbaarheid = models.JSONField(null=True)
     indicatie_snelheid = models.FloatField(null=True)
