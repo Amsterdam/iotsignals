@@ -169,8 +169,8 @@ class TestPassageAPI_Versions_1_2(TestPassageAPI):
             payload.pop('merk')
             payload.pop('europeseVoertuigcategorieToevoeging')
         else:
-            payload['voertuig'].pop('merk')
-            payload['voertuig'].pop('europeseVoertuigcategorieToevoeging')
+            payload['voertuig'].pop('merk', None)
+            payload['voertuig'].pop('europeseVoertuigcategorieToevoeging', None)
         res = self.post(payload)
         response_data = res.data
         assert res.status_code == 201, res.data
