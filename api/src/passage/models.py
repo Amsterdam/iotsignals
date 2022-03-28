@@ -64,7 +64,7 @@ class Passage(models.Model):
     versit_klasse = models.CharField(null=True, blank=True, max_length=255)
 
     kenteken_hash = models.CharField(max_length=255, null=True, blank=True)
-    massa_ledig_voertuig = models.SmallIntegerField(null=True, blank=True)
+    massa_ledig_voertuig = models.IntegerField(null=True, blank=True)
     aantal_assen = models.SmallIntegerField(null=True, blank=True)
     aantal_staanplaatsen = models.SmallIntegerField(null=True, blank=True)
     aantal_wielen = models.SmallIntegerField(null=True, blank=True)
