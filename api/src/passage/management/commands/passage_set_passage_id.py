@@ -14,7 +14,7 @@ logger = logging.getLogger(__name__)
 
 class Command(BaseCommand):
     def add_arguments(self, parser):
-        parser.add_argument('--sleep', nargs='?', default=1, type=int)
+        parser.add_argument('--sleep', nargs='?', default=1, type=float)
 
     def handle(self, **options):
         logger.info("message")
