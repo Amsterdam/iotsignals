@@ -1,0 +1,140 @@
+
+
+Migration steps:
+    1) Migrate up to 0021
+    2) Run command `passage_set_passage_id`
+    3) Migrate the rest
+
+-----
+
+Initial local test:
+- generate 3GB data
+- measure initial state
+    - measure dead_tuple_count
+    - measure total db size
+- run migration
+    - in same transaction measure state (dead_tuple_count, total_db_size)
+- analyze:
+    - did the database grow?
+    - How much?
+    - Why?
+
+Second local test:
+- same test as initial local test, but now purposely write new data (volgnummer, default=1).
+- analyze:
+    - how does growth compare to initial test?
+
+------
+
+# Get database size
+SELECT pg_size_pretty(pg_database_size('iotsignals'));
+
+# Get indices size
+SELECT pg_size_pretty(SUM(pg_indexes_size(relid))) as index_size
+FROM pg_catalog.pg_statio_user_tables
+WHERE relname LIKE 'passage_passage%';
+
+
+
+---------------------------
+
+Test one, no optimizations
+
+1) Migration up to 21 & generate test data:
+database size: 3922
+index size: 784
+
+2) Set passage_id
+database size: 4149 (+5%)
+index size: 731
+
+4) Migrate
+Slow migrations:
+- 22
+- 25 (very slow)
+
+database size: 3840
+index size: 691
+
+---------------------------
+
+Test 2, vacuum after data generation
+
+1) Migration up to 21 & generate test data:
+database size: 4275
+index size: 784
+
+2) Vacuum
+database size: 4180
+index size: 691
+
+3) Set passage_id
+database size: 4845 (+15%)
+index size: 787
+
+4) Migrates
+
+- passage 22
+database size: 4845
+index size: 787
+
+- passage 23
+database size: 4846
+index size: 787
+
+- passage 24
+database size: 4846
+index size: 787
+
+- passage 25
+database size:
+index size:
+
+tijdens 25:
+
+7410
+7677
+7895
+8088
+8126
+8339
+8529
+4190
+
+============
+
+De migration:
+
+BEGIN;
+--
+-- Alter field massa_ledig_voertuig on passage
+--
+ALTER TABLE "passage_passage" ALTER COLUMN "massa_ledig_voertuig" TYPE integer USING "massa_ledig_voertuig"::integer;
+COMMIT;
+
+Aanname: db is te groot voor memory, rewrite moet op disk.
+
+----
+
+Wat zien we hier?
+
+- Begin/commit: transaction
+-
+
+https://www.postgresql.org/docs/11/routine-vacuuming.html#VACUUM-FOR-SPACE-RECOVERY
+
+---------
+
+Relevante postgres docs:
+
+In PostgreSQL, an UPDATE or DELETE of a row does not immediately remove the old version of the row. This approach is necessary to gain the benefits of multiversion concurrency control (MVCC, see Chapter 13): the row version must not be deleted while it is still potentially visible to other transactions. But eventually, an outdated or deleted row version is no longer of interest to any transaction. The space it occupies must then be reclaimed for reuse by new rows, to avoid unbounded growth of disk space requirements. This is done by running VACUUM.
+
+Plain VACUUM may not be satisfactory when a table contains large numbers of dead row versions as a result of massive update or delete activity. If you have such a table and you need to reclaim the excess disk space it occupies, you will need to use VACUUM FULL, or alternatively CLUSTER or one of the table-rewriting variants of ALTER TABLE. These commands rewrite an entire new copy of the table and build new indexes for it. All these options require an ACCESS EXCLUSIVE lock. Note that they also temporarily use extra disk space approximately equal to the size of the table, since the old copies of the table and indexes can't be released until the new ones are complete.
+zijn relevant hierin.. en verder, over de ALTER TABLE waarin een table-rewrite nodig is:
+-> https://www.postgresql.org/docs/11/routine-vacuuming.html#VACUUM-FOR-SPACE-RECOVERY
+
+Adding a column with a volatile DEFAULT or changing the type of an existing column will require the entire table and its indexes to be rewritten. As an exception, when changing the type of an existing column, if the USING clause does not change the column contents and the old type is either binary coercible to the new type or an unconstrained domain over the new type, a table rewrite is not needed; but any indexes on the affected columns must still be rebuilt. Adding or removing a system oid column also requires rewriting the entire table. Table and/or index rebuilds may take a significant amount of time for a large table; and will temporarily require as much as double the disk space.
+-> https://www.postgresql.org/docs/11/sql-createcast.html
+
+Over table rewrites:
+https://www.postgresql.org/docs/11/sql-altertable.html#SQL-ALTERTABLE-NOTES

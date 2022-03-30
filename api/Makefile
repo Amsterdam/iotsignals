@@ -52,7 +52,12 @@ shell:
 	$(manage) shell_plus
 
 migrate:
-	$(manage) migrate
+	$(manage) migrate $(ARGS)
 
 migrations:
 	$(manage) makemigrations $(ARGS)
+
+testmigrate: clean build
+	$(manage) migrate contenttypes
+	$(manage) migrate passage 0021
+# 	$(manage) migration_test --num_days=365 --num_rows_per_day=10000
