@@ -67,11 +67,11 @@ vehicles = load_data(os.environ.get('VEHICLE_CSV', '/opt/src/api/data/vehicle.cs
 random.seed(0)
 
 
-def create_message():
+def create_message(timestamp):
     message = {
         "id": str(uuid4()),
-        "passage_at": get_dt_with_tz_info(),
-        "created_at": get_dt_with_tz_info(),
+        "passage_at": timestamp,
+        "created_at": timestamp,
         "version": "1",
         "kenteken_nummer_betrouwbaarheid": random.randint(0, 1000),
         "kenteken_land_betrouwbaarheid": random.randint(0, 1000),
@@ -96,4 +96,5 @@ class CarsBehaviour(HttpUser):
 
     @task(1)
     def post_cars(self):
-        self.client.post(PASSAGE_ENDPOINT_URL, json=create_message())
+        timestamp = get_dt_with_tz_info()
+        self.client.post(PASSAGE_ENDPOINT_URL, json=create_message(timestamp))
