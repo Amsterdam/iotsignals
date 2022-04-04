@@ -65,6 +65,9 @@ class Passage(models.Model):
 
     kenteken_hash = models.CharField(max_length=255, null=True, blank=True)
     massa_ledig_voertuig = models.IntegerField(null=True, blank=True)
+    # massa_ledig_voertuig_new is required to perform a complex schema migration
+    # and will be removed once finished on both ACC and PROD.
+    massa_ledig_voertuig_new = models.IntegerField(null=True, blank=True)
     aantal_assen = models.SmallIntegerField(null=True, blank=True)
     aantal_staanplaatsen = models.SmallIntegerField(null=True, blank=True)
     aantal_wielen = models.SmallIntegerField(null=True, blank=True)
