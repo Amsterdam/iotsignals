@@ -13,6 +13,6 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='passage',
             name='volgnummer',
-            field=models.IntegerField(blank=True, null=True),
+            field=models.PositiveIntegerField(blank=True, null=True),
         ),
     ]

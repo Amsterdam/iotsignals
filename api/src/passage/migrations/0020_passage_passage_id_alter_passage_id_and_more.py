@@ -21,4 +21,9 @@ class Migration(migrations.Migration):
             name='id',
             field=models.UUIDField(default=uuid.uuid4, primary_key=True, serialize=False, unique=True),
         ),
+        migrations.AddField(
+            model_name='passage',
+            name='massa_ledig_voertuig_new',
+            field=models.IntegerField(blank=True, null=True),
+        ),
     ]
