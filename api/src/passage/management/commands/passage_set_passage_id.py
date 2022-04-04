@@ -40,7 +40,12 @@ class Command(BaseCommand):
             num_updated_rows = Passage.objects.filter(
                 passage_at__gte=date,
                 passage_at__lt=date + timedelta(days=1),
-            ).update(passage_id=F('id'), volgnummer=1)
+            ).update(
+                passage_id=F('id'),
+                volgnummer=1,
+                massa_ledig_voertuig_new=F('massa_ledig_voertuig'),
+                massa_ledig_voertuig=None
+            )
             self.stdout.write(f'Processed: {self.style.SUCCESS(num_updated_rows)}')
 
             if num_updated_rows > 0:
