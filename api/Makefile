@@ -51,6 +51,9 @@ bash:
 shell:
 	$(manage) shell_plus
 
+dbshell:
+	$(manage) dbshell $(ARGS)
+
 migrate:
 	$(manage) migrate $(ARGS)
 
