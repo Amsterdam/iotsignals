@@ -33,7 +33,7 @@ pipeline {
 
         stage('Locust load test') {
             steps {
-                sh "make --directory=api/ loadtest"
+                sh "./api/deploy/docker-locust-load-test.sh"
             }
         }
 
