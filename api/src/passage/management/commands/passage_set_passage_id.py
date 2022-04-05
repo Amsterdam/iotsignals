@@ -7,6 +7,8 @@ from django.db import connection
 from django.db.models import Case, F, Max, Min, Value, When
 from django.db.models.functions import TruncDay, TruncYear
 from django.db.utils import ProgrammingError
+
+from iotsignals import settings
 from passage.models import Passage
 
 logger = logging.getLogger(__name__)
@@ -48,6 +50,7 @@ class Command(BaseCommand):
             )
             self.stdout.write(f'Processed: {self.style.SUCCESS(num_updated_rows)}')
 
+
             if num_updated_rows > 0:
                 self.stdout.write(f'sleeping for: {self.style.SUCCESS(sleep)}')
                 time.sleep(sleep)
@@ -57,11 +60,19 @@ class Command(BaseCommand):
 
             partition_name = f'passage_passage_{date:%Y%m%d}'
             vacuum_query = f'VACUUM FULL ANALYZE {partition_name}'
+            size_query = (
+                "SELECT pg_size_pretty(pg_database_size("
+                f"'{settings.DATABASES['default']['NAME']}'));"
+            )
+
             self.stdout.write(f'Starting vacuum: {vacuum_query}')
             try:
                 with connection.cursor() as cursor:
+                    cursor.execute(size_query)
+                    size = cursor.fetchone()[0]
+                    self.stdout.write(f'Total DB size before vacuum: {self.style.SUCCESS(size)}')
                     cursor.execute(vacuum_query)
-            except ProgrammingError as e:
+            except Exception as e:
                 self.stderr.write(f'Error vacuuming: {e}')
             self.stdout.write(f'sleeping for: {self.style.SUCCESS(sleep)}')
             time.sleep(sleep)
