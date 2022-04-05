@@ -60,7 +60,7 @@ pipeline {
                             ]
                         ])
                         retry(3) {
-                            sh 'make --directory=api/push_semver'
+                            sh 'make --directory=api/ push_semver'
                         }
                     }
                 }
