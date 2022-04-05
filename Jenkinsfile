@@ -41,7 +41,7 @@ pipeline {
 
         stage('Build') {
             steps {
-                sh 'make build'
+                sh 'make --directory=api/ build'
             }
         }
 
@@ -62,7 +62,7 @@ pipeline {
                             ]
                         ])
                         retry(3) {
-                            sh 'make push_semver'
+                            sh 'make --directory=api/push_semver'
                         }
                     }
                 }
@@ -74,7 +74,7 @@ pipeline {
                         }
                     }
                     steps {
-                        sh 'VERSION=acceptance make push'
+                        sh 'VERSION=acceptance make --directory=api/ push'
                         build job: 'Subtask_Openstack_Playbook', parameters: [
                             string(name: 'PLAYBOOK', value: PLAYBOOK),
                             string(name: 'INVENTORY', value: "acceptance"),
@@ -96,7 +96,7 @@ pipeline {
                 stage('Deploy to production') {
                     when { tag pattern: "\\d+\\.\\d+\\.\\d+\\.*", comparator: "REGEXP" }
                     steps {
-                        sh 'VERSION=production make push'
+                        sh 'VERSION=production make --directory=api/ push'
                         build job: 'Subtask_Openstack_Playbook', parameters: [
                             string(name: 'PLAYBOOK', value: PLAYBOOK),
                             string(name: 'INVENTORY', value: "production"),
@@ -120,7 +120,7 @@ pipeline {
     }
     post {
         always {
-            sh 'make clean'
+            sh 'make --directory=api/ clean'
         }
         failure {
             slackSend(channel: SLACK_CHANNEL, attachments: [SLACK_MESSAGE <<
