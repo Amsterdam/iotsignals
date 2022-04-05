@@ -27,9 +27,7 @@ pipeline {
     stages {
         stage('Test') {
             steps {
-                sh "make --directory=api/ clean"
                 sh "make --directory=api/ test"
-                sh "make --directory=api/ clean"
             }
         }
 
