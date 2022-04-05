@@ -62,5 +62,6 @@ migrations:
 
 testmigrate: clean build
 	$(manage) migrate contenttypes
-	$(manage) migrate passage 0021
-# 	$(manage) migration_test --num_days=365 --num_rows_per_day=10000
+	$(manage) migrate passage 0020
+	$(manage) migration_test --num_days=365 --num_rows_per_day=10000
+
