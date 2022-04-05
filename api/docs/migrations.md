@@ -266,10 +266,10 @@ dbsize: 3695mb
 indices: 559mb
 
 2) Partitioned vacuum
-dbsize: 3646
+dbsize: 3646 (-1.5%, -15GB)
 indices: 510
 
-3) Run command
+3) Set passage_id script:
 dbsize: 4162mb (+13% = 130GB)
 indices: 568mb
 
