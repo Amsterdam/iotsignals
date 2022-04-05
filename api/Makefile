@@ -31,6 +31,11 @@ build:                              ## Build docker image
 push: build                         ## Push docker image to registry
 	$(dc) push
 
+push_semver:
+	VERSION=$${VERSION} $(MAKE) push
+	VERSION=$${VERSION%\.*} $(MAKE) push
+	VERSION=$${VERSION%%\.*} $(MAKE) push
+
 clean:                              ## Clean docker stuff
 	$(dc) down -v --remove-orphans
 
