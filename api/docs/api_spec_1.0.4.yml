@@ -1,0 +1,234 @@
+openapi: 3.0.0
+info:
+  title: Datapunt ontvangst API
+  description: 'De API van Datapunt'
+  version: 1.0.4
+paths:
+  /v1/passage:
+    post:
+      operationId: passage_post
+      summary: Passage ontvangst
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Passage'
+      responses:
+        '200':
+          description: OK
+        '409':
+          description: CONFLICT. Indien passage reeds eerder verstuurd is.
+      tags:
+        - passages
+    parameters: []
+servers:
+  - url: /api
+components:
+  schemas:
+    Passage:
+      type: object
+      required:
+        - id
+        - voertuig
+        - volgnummer
+        - timestamp
+        - camera
+      properties:
+        id:
+          description: de ID van de passage als GUID
+          type: string
+          maxLength: 36
+        volgnummer:
+          description: volgnummer binnen deze passage, indien er meerdere kentekens tot deze passage behoren (doro een gecombineerde camera die zowel voor- als achterzijde voertuig(combinatie) ziet, kan deze oplopen, gezamenlijk met het id veld is dit een unieke combinatie
+          type: integer
+          minimum: 1
+        timestamp:
+          type: string
+          format: date-time
+        camera:
+          $ref: '#/components/schemas/Camera'
+        rijrichting:
+          $ref: '#/components/schemas/Rijrichting'
+        rijstrook:
+          type: integer
+        voertuig:
+          $ref: '#/components/schemas/Voertuig'
+        automatischVerwerkbaar:
+          description: geeft aan of de kentekenherkenning voldoende betrouwbaar is
+          type: boolean
+    Betrouwbaarheid:
+      type: object
+      description: metadata rondom de betrouwbaarheid van de kentekenherkenning. Hoe hoger de waarde hoe betrouwbaarder.
+      properties:
+        landcodeBetrouwbaarheid:
+          description: de betrouwbaarheid van de landcode tussen 0 en 1000.
+          type: integer
+          minimum: 0
+          maximum: 1000
+        kentekenBetrouwbaarheid:
+          description: de betrouwbaarheid van het kenteken tussen 0 en 1000
+          type: integer
+          minimum: 0
+          maximum: 1000
+        karaktersBetrouwbaarheid:
+          description: de betrouwbaarheid per karakter in het kenteken
+          type: array
+          items:
+            type: object
+            properties:
+              positie:
+                description: de positie van het karakter in het kenteken
+                type: integer
+                minimum: 1
+              betrouwbaarheid:
+                description: de betrouwbaarheid van het karakter tussen 0 en 1000
+                type: integer
+                minimum: 0
+                maximum: 1000
+    Camera:
+      type: object
+      required:
+        - id
+      properties:
+        id:
+          description: de id van de camera
+          type: string
+          maxLength: 36
+        kijkrichting:
+          description: de kijkrichting van de camera in graden
+          type: number
+          format: double
+          minimum: 0
+          maximum: 360
+          multipleOf: 0.1
+        locatie:
+          $ref: '#/components/schemas/Coordinaat'
+        naam:
+          description: de naam van de camera
+          type: string
+          maxLength: 255
+        straat:
+          type: string
+          maxLength: 128
+    Coordinaat:
+      type: object
+      required:
+        - latitude
+        - longitude
+      properties:
+        longitude:
+          type: number
+          format: double
+        latitude:
+          type: number
+          format: double
+    Rijrichting:
+      type: string
+      enum:
+        - VAN
+        - NAAR
+    Voertuig:
+      type: object
+      properties:
+        kenteken:
+          $ref: '#/components/schemas/Kenteken'
+        indicatieSnelheid:
+          type: number
+          format: double
+          minimum: 0.0
+          multipleOf: 0.1
+        jaarEersteToelating:
+          description: het jaar uit de datum toelating van het voertuig
+          type: integer
+          minimum: 0
+        toegestaneMaximumMassaVoertuig:
+          description: de toegestane maximum massa van het voertuig
+          type: integer
+          minimum: 0
+        europeseVoertuigcategorie:
+          type: string
+          maxLength: 2
+        europeseVoertuigcategorieToevoeging:
+          type: string
+          maxLength: 1
+        taxiIndicator:
+          type: boolean
+        maximaleConstructiesnelheidBromSnorfiets:
+          type: integer
+        versitKlasse:
+          type: string
+          maxLength: 32
+        massaLedigVoertuig:
+          type: integer
+        aantalAssen:
+          type: integer
+        aantalStaanplaatsen:
+          type: integer
+        aantalWielen:
+          type: integer
+        aantalZitplaatsen:
+          type: integer
+        handelsbenaming:
+          type: string
+          maxLength: 255
+        lengte:
+          type: integer
+        breedte:
+          type: integer
+        maximumMassaTrekkenOngeremd:
+          type: integer
+        maximumMassaTrekkenGeremd:
+          type: integer
+        voertuigSoort:
+          type: string
+          maxLength: 64
+        inrichting:
+          type: string
+          maxLength: 64
+        merk:
+          type: string
+          maxLength: 64
+        brandstoffen:
+          type: array
+          items:
+            $ref: '#/components/schemas/Brandstof'
+    Kenteken:
+      type: object
+      properties:
+        kentekenHash:
+          description: een hash van het kenteken en enkele andere attributen
+          type: string
+          maxLength: 40
+        landcode:
+          description: de landcode in ISO 3166-1 alpha-2 formaat
+          type: string
+          maxLength: 2
+        betrouwbaarheid:
+          $ref: '#/components/schemas/Betrouwbaarheid'
+    Brandstof:
+      type: object
+      required:
+        - naam
+        - volgnummer
+      properties:
+        naam:
+          description: de naam van het brandstof
+          type: string
+          maxLength: 30
+        volgnummer:
+          description: het volgnummer van het brandstof
+          type: integer
+          minimum: 1
+        emissieklasse:
+          description: emissiklasse van het brandstof
+          type: string
+          maxLength: 3
+        co2UitstootGecombineerd:
+          type: number
+          format: double
+        co2UitstootGewogen:
+          type: number
+          format: double
+        milieuklasseEgGoedkeuringZwaar:
+          type: string
+          maxLength: 255

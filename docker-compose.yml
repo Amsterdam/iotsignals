@@ -13,8 +13,6 @@ services:
       - ./api/src:/app
     depends_on:
       - database
-    ports:
-      - "8001:8001"
     environment:
       - DATABASE_NAME=iotsignals
       - DATABASE_HOST=database
@@ -55,7 +53,7 @@ services:
       - PYTHONDONTWRITEBYTECODE=1
     links:
       - api
-    command: bash -c "locust -f /opt/src/locustfile.py --host=http://api:8001 --headless --users 250 --hatch-rate 25 --run-time 30s"
+    command: bash -c "locust -f /opt/src/locustfile.py --host=http://api:8001 --headless --users 250 --spawn-rate 25 --run-time 30s"
 
   passage_hour_aggregation:
     build: ./api
