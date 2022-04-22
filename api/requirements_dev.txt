@@ -54,7 +54,7 @@ defusedxml==0.7.1
     # via
     #   -r ./requirements.txt
     #   djangorestframework-xml
-django==4.0.2
+django==4.0.4
     # via
     #   -r ./requirements.txt
     #   django-datetime-utc
@@ -228,14 +228,14 @@ requests==2.27.1
     #   locust
 roundrobin==0.0.2
     # via locust
-ruamel.yaml==0.17.20
+ruamel-yaml==0.17.20
     # via
     #   -r ./requirements.txt
     #   drf-yasg
-ruamel.yaml.clib==0.2.6
+ruamel-yaml-clib==0.2.6
     # via
     #   -r ./requirements.txt
-    #   ruamel.yaml
+    #   ruamel-yaml
 sentry-sdk==1.5.4
     # via -r ./requirements.txt
 six==1.16.0
@@ -267,9 +267,7 @@ traitlets==5.1.1
     #   ipython
     #   matplotlib-inline
 typing-extensions==4.0.1
-    # via
-    #   black
-    #   locust
+    # via locust
 unicodecsv==0.14.1
     # via
     #   -r ./requirements.txt
@@ -292,9 +290,9 @@ werkzeug==2.0.2
     #   locust
 wheel==0.37.1
     # via pip-tools
-zope.event==4.5.0
+zope-event==4.5.0
     # via gevent
-zope.interface==5.4.0
+zope-interface==5.4.0
     # via gevent
 
 # The following packages are considered to be unsafe in a requirements file:
