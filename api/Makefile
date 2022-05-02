@@ -44,7 +44,7 @@ test:
 
 loadtest:
 	$(run) api python /app/manage.py migrate
-	$(run) api python /app/make_paritions.py
+	$(manage) make_partitions $(ARGS)
 	$(run) locust $(ARGS)
 
 pdb:

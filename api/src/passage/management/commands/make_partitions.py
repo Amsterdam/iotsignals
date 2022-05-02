@@ -45,7 +45,7 @@ def check_postgres_major_version(cursor, required):
         raise Exception("Need postgres v11 or higher")
 
 
-def make_partitions(*timestamps):
+def make_partitions(timestamps):
     """
     Make the partitions for the given timestamps, defaulting to 6 partitions.
 

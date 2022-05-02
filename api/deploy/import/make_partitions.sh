@@ -14,6 +14,6 @@ dc stop
 dc rm --force
 dc pull
 
-dc run --rm iotsignals python make_paritions.py
+dc run --rm iotsignals python manage.py make_partitions
 
 dc stop
