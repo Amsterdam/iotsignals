@@ -32,7 +32,7 @@ class Command(BaseCommand):
             self.stdout.write('No data to be processed')
             return
 
-        date_min = dates['min'] + timedelta(days=1)
+        date_min = dates['min'] - timedelta(days=1)
         date_max = dates['max'] + timedelta(days=2)
 
         for date in (
