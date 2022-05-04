@@ -10,5 +10,5 @@ cd /app/
 yes yes | python manage.py migrate contenttypes --noinput
 
 # migrate passage up to specific migration during schema migration process
-yes yes | python manage.py migrate passage 0020 --noinput
+yes yes | python manage.py migrate passage 0022 --noinput
 
