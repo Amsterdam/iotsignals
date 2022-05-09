@@ -98,7 +98,7 @@ class PassageHourAggregation(models.Model):
     rijrichting = models.IntegerField()
     camera_kijkrichting = models.FloatField()
     kenteken_land = models.TextField()
-    voertuig_soort = models.CharField(max_length=25, null=True, blank=True)
+    voertuig_soort = models.CharField(max_length=64, null=True, blank=True)
     europese_voertuigcategorie = models.CharField(max_length=2, null=True, blank=True)
     taxi_indicator = models.BooleanField(null=True, blank=True)
     diesel = models.IntegerField(null=True, blank=True)
