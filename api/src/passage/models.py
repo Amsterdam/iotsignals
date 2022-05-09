@@ -151,7 +151,7 @@ class HourAggregationBase(models.Model):
 
 
 class HeavyTrafficHourAggregation(HourAggregationBase):
-    voertuig_soort = models.CharField(max_length=25, null=True)
+    voertuig_soort = models.CharField(max_length=64, null=True)
     inrichting = models.CharField(max_length=255, null=True)
     voertuig_klasse_toegestaan_gewicht = models.CharField(max_length=255, null=True, blank=True)
 
