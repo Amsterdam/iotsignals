@@ -37,9 +37,6 @@ class Command(BaseCommand):
                 passage_at_week,
                 passage_at_day_of_week,
                 passage_at_hour,
-                camera_id,
-                camera_naam,
-                vma_linknr,
                 order_kaart,
                 order_naam,
                 cordon,
@@ -61,12 +58,17 @@ class Command(BaseCommand):
                 extract(MONTH FROM p.passage_at)::int AS month,
                 extract(DAY FROM p.passage_at)::int AS day,
                 extract(WEEK FROM p.passage_at)::int AS week,
-                extract(DOW FROM p.passage_at)::int AS dow, -- aangepast d.d. 10-3-'20
+                CASE
+                    WHEN extract(DOW FROM p.passage_at)::int = 0 then '7 zondag'
+                    WHEN extract(DOW FROM p.passage_at)::int = 1 then '1 maandag'
+                    WHEN extract(DOW FROM p.passage_at)::int = 2 then '2 dinsdag'
+                    WHEN extract(DOW FROM p.passage_at)::int = 3 then '3 woensdag'
+                    WHEN extract(DOW FROM p.passage_at)::int = 4 then '4 donderdag'
+                    WHEN extract(DOW FROM p.passage_at)::int = 5 then '5 vrijdag'
+                    WHEN extract(DOW FROM p.passage_at)::int = 6 then '6 zaterdag'
+                ELSE 'onbekend ' END AS dow,
                 extract(HOUR FROM p.passage_at)::int AS hour,
                 --  blok camera informatie
-                h.camera_id,    	-- toegevoegd d.d. 10-3-'20
-                h.camera_naam,		-- toegevoegd d.d. 10-3-'20
-                h.vma_linknr, 		-- toegevoegd d.d. 10-3-'20
                 h.order_kaart,
                 h.order_naam,
                 h.cordon,
@@ -88,7 +90,7 @@ class Command(BaseCommand):
                             p.rijrichting = h.rijrichting
                 WHERE passage_at >= '{run_date}'
                 AND passage_at < '{run_date + timedelta(days=1)}'
---                 AND h.cordon  in ('S100','A10') -- deze where clausule weggehaald d.d. 10-3-'22
+                AND h.cordon  in ('S100','A10')
         
         
                 group by
@@ -99,7 +101,15 @@ class Command(BaseCommand):
                 extract(MONTH FROM p.passage_at),
                 extract(DAY FROM p.passage_at),
                 extract(WEEK FROM p.passage_at),
-                extract(DOW FROM p.passage_at), -- aangepast d.d. 10-3-'20
+                CASE
+                    WHEN extract(DOW FROM p.passage_at)::int = 0 then '7 zondag'
+                    WHEN extract(DOW FROM p.passage_at)::int = 1 then '1 maandag'
+                    WHEN extract(DOW FROM p.passage_at)::int = 2 then '2 dinsdag'
+                    WHEN extract(DOW FROM p.passage_at)::int = 3 then '3 woensdag'
+                    WHEN extract(DOW FROM p.passage_at)::int = 4 then '4 donderdag'
+                    WHEN extract(DOW FROM p.passage_at)::int = 5 then '5 vrijdag'
+                    WHEN extract(DOW FROM p.passage_at)::int = 6 then '6 zaterdag'
+                ELSE 'onbekend ' END,
                 extract(HOUR FROM p.passage_at),
                 --  blok camera informatie
                 h.order_kaart,
@@ -109,7 +119,6 @@ class Command(BaseCommand):
                 h.geom,
                 h.location,
                 h.azimuth,
-                --  blok voertuig informatie 
                 p.kenteken_land,
                 p.taxi_indicator,
                 p.europese_voertuigcategorie;

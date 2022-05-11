@@ -110,8 +110,6 @@ class PassageHourAggregation(models.Model):
 
 class Camera(models.Model):
     id = models.AutoField(primary_key=True)
-    camera_id = models.CharField(max_length=255, null=True, blank=True)
-    vma_linknr = models.CharField(max_length=255, null=True, blank=True)
     camera_naam = models.CharField(max_length=255, db_index=True)
     rijrichting = models.IntegerField(null=True, blank=True, db_index=True)
     camera_kijkrichting = models.FloatField(null=True, blank=True, db_index=True)
@@ -134,7 +132,7 @@ class HourAggregationBase(models.Model):
     passage_at_day = models.IntegerField()
     passage_at_week = models.IntegerField()
     passage_at_day_of_week = models.CharField(max_length=20)  # day of week
-    passage_at_hour = models.IntegerField(db_index=True)
+    passage_at_hour = models.IntegerField()
 
     order_kaart = models.IntegerField(null=True, blank=True)  # in sheet: volgorde
     order_naam = models.CharField(max_length=255, null=True,
@@ -159,9 +157,5 @@ class HeavyTrafficHourAggregation(HourAggregationBase):
 
 
 class IGORHourAggregation(HourAggregationBase):
-    camera_id = models.CharField(max_length=255, null=True, blank=True)
-    vma_linknr = models.CharField(max_length=255, null=True, blank=True)
-    camera_naam = models.CharField(max_length=255, null=True, blank=True, db_index=True)
     taxi_indicator = models.BooleanField(null=True)
     europese_voertuigcategorie = models.CharField(max_length=2, null=True)
-
