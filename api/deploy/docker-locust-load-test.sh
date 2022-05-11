@@ -11,7 +11,7 @@ docker-compose rm -f
 # Run migrations
 docker-compose run api /deploy/docker-wait.sh
 docker-compose run api /deploy/docker-migrate.sh
-docker-compose run api python /app/make_paritions.py
+docker-compose run api python manage.py make_partitions
 
 # Run the load test
 docker-compose up locust

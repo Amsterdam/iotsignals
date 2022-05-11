@@ -19,4 +19,18 @@ class Migration(migrations.Migration):
             name='passage',
             unique_together={('passage_id', 'volgnummer', 'passage_at')},
         ),
+        migrations.AlterField(
+            model_name='passage',
+            name='volgnummer',
+            field=models.IntegerField(default=1),
+        ),
+        migrations.RemoveField(
+            model_name='passage',
+            name='massa_ledig_voertuig'
+        ),
+        migrations.RenameField(
+            model_name='passage',
+            old_name='massa_ledig_voertuig_new',
+            new_name='massa_ledig_voertuig'
+        )
     ]

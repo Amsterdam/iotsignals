@@ -1,13 +1,15 @@
-#!/usr/bin/python
+import logging
+import time
+from datetime import timedelta, datetime
 
-# std
-from os import environ
-from datetime import datetime, timedelta
-# 3rd party
-import psycopg2
+from django.core.management.base import BaseCommand
+from django.db import connection
+from django.db.models import Case, F, Max, Min, Value, When
+from django.db.models.functions import TruncDay, TruncYear
+from django.db.utils import ProgrammingError
+from passage.models import Passage
 
-
-PARTITIONS_TO_ADD = 6
+log = logging.getLogger(__name__)
 
 
 def make_partition_sql(timestamp):
@@ -43,29 +45,44 @@ def check_postgres_major_version(cursor, required):
         raise Exception("Need postgres v11 or higher")
 
 
-def make_partitions(*timestamps):
+def make_partitions(timestamps):
     """
     Make the partitions for the given timestamps, defaulting to 6 partitions.
 
     :param timestamps: Iterable of timestamps to generated partitions for.
     """
-    if not timestamps:
-        start_date = datetime.today()
-        timestamps = (start_date + timedelta(i) for i in range(PARTITIONS_TO_ADD))
-
-    connection = psycopg2.connect(
-        host=environ['DATABASE_HOST'],
-        dbname=environ['DATABASE_NAME'],
-        user=environ['DATABASE_USER'],
-        password=environ['DATABASE_PASSWORD']
-    )
+    log.info("Creating partitions")
 
     with connection.cursor() as cursor:
         check_postgres_major_version(cursor, 11)
 
         for timestamp in timestamps:
-            cursor.execute(make_partition_sql(timestamp))
+            query = make_partition_sql(timestamp)
+            log.info(query)
+            cursor.execute(query)
+
+    with connection.cursor() as cursor:
+        for timestamp in timestamps:
+            test_query = f"""
+            SELECT EXISTS (
+                SELECT FROM 
+                    pg_tables
+                WHERE 
+                    schemaname = 'public' AND 
+                    tablename  = 'passage_passage_{timestamp.strftime("%Y%m%d")}'
+                );
+            """
+            cursor.execute(test_query)
+            result = cursor.fetchone()
+            assert result[0] is True
 
 
-if __name__ == '__main__':
-    make_partitions()
+class Command(BaseCommand):
+    def add_arguments(self, parser):
+        parser.add_argument('--days', nargs='?', default=6, type=int)
+
+    def handle(self, **options):
+        num_days = options.get('days')
+        start_date = datetime.today()
+        timestamps = [start_date + timedelta(i) for i in range(num_days)]
+        make_partitions(timestamps)
