@@ -110,6 +110,8 @@ class PassageHourAggregation(models.Model):
 
 class Camera(models.Model):
     id = models.AutoField(primary_key=True)
+    camera_id = models.CharField(max_length=255, null=True, blank=True)
+    vma_linknr = models.CharField(max_length=255, null=True, blank=True)
     camera_naam = models.CharField(max_length=255, db_index=True)
     rijrichting = models.IntegerField(null=True, blank=True, db_index=True)
     camera_kijkrichting = models.FloatField(null=True, blank=True, db_index=True)
@@ -157,5 +159,9 @@ class HeavyTrafficHourAggregation(HourAggregationBase):
 
 
 class IGORHourAggregation(HourAggregationBase):
+    camera_id = models.CharField(max_length=255, null=True, blank=True)
+    vma_linknr = models.CharField(max_length=255, null=True, blank=True)
+    camera_naam = models.CharField(max_length=255, null=True, blank=True)
     taxi_indicator = models.BooleanField(null=True)
     europese_voertuigcategorie = models.CharField(max_length=2, null=True)
+
