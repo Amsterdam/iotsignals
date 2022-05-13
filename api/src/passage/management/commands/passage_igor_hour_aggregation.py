@@ -102,6 +102,9 @@ class Command(BaseCommand):
                 extract(DOW FROM p.passage_at), -- aangepast d.d. 10-3-'20
                 extract(HOUR FROM p.passage_at),
                 --  blok camera informatie
+                h.camera_id,    	-- toegevoegd d.d. 10-3-'20
+                h.camera_naam,		-- toegevoegd d.d. 10-3-'20
+                h.vma_linknr, 		-- toegevoegd d.d. 10-3-'20
                 h.order_kaart,
                 h.order_naam,
                 h.cordon,

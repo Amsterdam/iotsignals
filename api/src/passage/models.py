@@ -133,7 +133,7 @@ class HourAggregationBase(models.Model):
     passage_at_month = models.IntegerField()
     passage_at_day = models.IntegerField()
     passage_at_week = models.IntegerField()
-    passage_at_day_of_week = models.CharField(max_length=20)  # day of week
+    passage_at_day_of_week = models.CharField(max_length=20)
     passage_at_hour = models.IntegerField(db_index=True)
 
     order_kaart = models.IntegerField(null=True, blank=True)  # in sheet: volgorde
