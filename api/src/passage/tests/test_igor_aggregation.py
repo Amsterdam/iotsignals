@@ -5,6 +5,7 @@ import time_machine
 from django.core.management import call_command
 from django.utils import timezone
 
+from passage.management.commands.make_partitions import make_partitions
 from passage.models import Camera, IGORHourAggregation
 from passage.tests.factories import PassageFactory
 
@@ -34,12 +35,13 @@ class TestIGORAggregation:
         )
         # create some more for different days
         other_days = [
-            yesterday + timedelta(days=1),
-            yesterday + timedelta(days=2),
-            yesterday + timedelta(days=3),
+            yesterday - timedelta(days=1),
+            yesterday - timedelta(days=2),
+            yesterday - timedelta(days=3),
         ]
-        other_days = []
+
         for day in other_days:
+            make_partitions([day])
             PassageFactory.create_batch(
                 size=5,
                 passage_at=day,
@@ -51,7 +53,7 @@ class TestIGORAggregation:
         assert IGORHourAggregation.objects.count() == 0
         call_command(
             'passage_igor_hour_aggregation',
-            from_date=yesterday.date(),
+            from_date=other_days[2].date(),
         )
 
         expected_timestamp = yesterday.replace(minute=0, second=0, microsecond=0)
@@ -60,7 +62,7 @@ class TestIGORAggregation:
         expected_month = yesterday.month
         expected_day = yesterday.day
         expected_week = int(yesterday.strftime("%U"))
-        expected_day_of_week = self._get_expected_dow(yesterday)
+        expected_day_of_week = str(yesterday.isoweekday())
         expected_hour = yesterday.hour
 
         # (implicitly) assert there is one result for today by using get
@@ -95,30 +97,12 @@ class TestIGORAggregation:
             'location',
             'geom',
             'azimuth',
+            'camera_id',
+            'camera_naam',
+            'vma_linknr'
         ]
         for attr in helper_fields:
             assert getattr(result, attr) == getattr(helper_table_row, attr)
 
         # check the most important (calculated) attribute: intensity
         assert result.intensiteit == 10
-
-    def _get_expected_dow(self, timestamp):
-        """
-        Get the expected day of week
-        """
-        dow = timestamp.weekday()
-        if dow == 0:
-            return '1 maandag'
-        elif dow == 1:
-            return '2 dinsdag'
-        elif dow == 2:
-            return '3 woensdag'
-        elif dow == 3:
-            return '4 donderdag'
-        elif dow == 4:
-            return '5 vrijdag'
-        elif dow == 5:
-            return '6 zaterdag'
-        elif dow == 6:
-            return '7 zondag'
-        return 'onbekend'
