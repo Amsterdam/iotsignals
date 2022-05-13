@@ -15,3 +15,8 @@ psycopg2-binary
 pytz
 requests
 sentry-sdk
+
+# locust requires jinja<3.1.0 which collides with our latest requirement.
+# locust fixed this, but did not create a release.
+# See https://github.com/locustio/locust/issues/2061
+Jinja2<3.1.0
