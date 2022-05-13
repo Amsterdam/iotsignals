@@ -143,7 +143,7 @@ class HourAggregationBase(models.Model):
     richting = models.CharField(max_length=3, null=True, blank=True)
     location = models.PointField(srid=4326, null=True, blank=True)
     geom = models.CharField(max_length=255, null=True, blank=True)
-    azimuth = models.FloatField()
+    azimuth = models.FloatField(null=True, blank=True)
 
     kenteken_land = models.TextField()
     intensiteit = models.IntegerField(null=True, blank=True)
