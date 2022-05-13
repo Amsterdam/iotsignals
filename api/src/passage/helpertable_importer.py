@@ -42,6 +42,12 @@ def _import_helper_table(CameraModel):
                         float(lat), float(lon), srid=4326
                     )
 
+                if CameraModel.__name__ == 'ZwaarVerkeerHelperTable':
+                    # we call this in migration 0015, and this version of the
+                    # table does not have these new fields (added in 0025).
+                    row.pop('camera_id')
+                    row.pop('vma_linknr')
+
                 inserts.append(CameraModel(**row))
 
         CameraModel.objects.bulk_create(inserts)
