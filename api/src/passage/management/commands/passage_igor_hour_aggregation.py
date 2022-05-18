@@ -19,7 +19,7 @@ class Command(BaseCommand):
 
     def _get_delete_query(self, run_date):
         return f""" 
-        DELETE FROM passage_heavytraffichouraggregation
+        DELETE FROM passage_igorhouraggregation
         WHERE passage_at_year = {run_date.year}
         AND passage_at_month = {run_date.month}
         AND passage_at_day = {run_date.day}
