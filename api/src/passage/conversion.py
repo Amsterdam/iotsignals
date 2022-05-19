@@ -22,7 +22,7 @@ NEW_FIELDS = [
 ]
 
 
-RIJRICHTING_MAPPING = {'VAN': -1, 'NAAR': 1}
+RIJRICHTING_MAPPING = {'VAN': 1, 'NAAR': -1}
 RIJRICHTING_MAPPING_INVERSE = {value: key for key, value in RIJRICHTING_MAPPING.items()}
 
 
