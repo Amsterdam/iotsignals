@@ -20,23 +20,14 @@ class Command(BaseCommand):
     def handle(self, **options):
         sleep = options['sleep']
 
-        date_min = datetime.datetime(2022, 5, 6, 13, 12)
-        date_max = datetime.datetime.today()
+        date_min = datetime.datetime.today().date()
+        date_max = datetime.datetime.today().date()
 
         for from_date in (
             date_min + timedelta(n) for n in range((date_max - date_min).days + 1)
         ):
-            if from_date != date_min:
-                # for the first date we want a specific timestamp (13:00). For all
-                # following days we want the full day (starting at 00:00)
-                from_date = from_date.date()
-
             to_date = from_date + timedelta(days=1)
-            if isinstance(to_date, datetime.datetime):
-                # in case to_date is a datetime (happens during the first iteration),
-                # ensure to_date is always a date.
-                to_date = to_date.date()
-
+            print(from_date, to_date)
             self.stdout.write(
                 f"Selecting data in: {self.style.SQL_KEYWORD(from_date)} "
                 f"- {self.style.SQL_KEYWORD(to_date)}"
