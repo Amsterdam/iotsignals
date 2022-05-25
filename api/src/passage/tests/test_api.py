@@ -449,7 +449,7 @@ class TestPassageAPI_Version_2(TestPassageAPI):
         assert actual.kenteken_karakters_betrouwbaarheid == reliability['karaktersBetrouwbaarheid']
         assert actual.kenteken_land_betrouwbaarheid == reliability['landcodeBetrouwbaarheid']
         assert actual.rijstrook == payload['rijstrook']
-        assert actual.rijrichting == RIJRICHTING_MAPPING[payload['rijrichting']]
+        assert actual.rijrichting == 1 if payload['rijrichting'] == 'VAN' else -1
 
         # these moved into brandstoffen
         assert actual.co2_uitstoot_gecombineerd is None
