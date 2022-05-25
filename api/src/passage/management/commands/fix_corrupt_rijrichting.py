@@ -20,7 +20,7 @@ class Command(BaseCommand):
     def handle(self, **options):
         sleep = options['sleep']
 
-        date_min = datetime.datetime(2022, 5, 6, 13, 0)
+        date_min = datetime.datetime(2022, 5, 6, 13, 12)
         date_max = datetime.datetime.today()
 
         for from_date in (
