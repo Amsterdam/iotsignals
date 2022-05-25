@@ -18,8 +18,6 @@ class Command(BaseCommand):
         parser.add_argument('--sleep', nargs='?', default=1, type=float)
 
     def handle(self, **options):
-        logger.info("message")
-
         sleep = options['sleep']
 
         date_min = datetime.datetime(2022, 5, 6, 13, 0)
@@ -53,12 +51,9 @@ class Command(BaseCommand):
             ))
             self.stdout.write(f'Processed: {self.style.SUCCESS(num_updated_rows)}')
 
-            if num_updated_rows > 0:
-                self.stdout.write(f'sleeping for: {self.style.SUCCESS(sleep)}')
-                time.sleep(sleep)
-            else:
-                self.stdout.write(f'sleeping for: {self.style.SUCCESS(0.1)}')
-                time.sleep(0.1)
+            sleep_for = sleep if num_updated_rows > 0 else 0.1
+            self.stdout.write(f'sleeping for: {self.style.SUCCESS(sleep_for)}')
+            time.sleep(sleep_for)
 
             partition_name = f'passage_passage_{from_date:%Y%m%d}'
             vacuum_query = f'VACUUM FULL ANALYZE {partition_name}'
