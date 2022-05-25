@@ -25,18 +25,28 @@ class Command(BaseCommand):
         date_min = datetime.datetime(2022, 5, 6, 13, 0)
         date_max = datetime.datetime.today()
 
-        for date in (
+        for from_date in (
             date_min + timedelta(n) for n in range((date_max - date_min).days + 1)
         ):
-            if date != date_min:
+            if from_date != date_min:
                 # for the first date we want a specific timestamp (13:00). For all
                 # following days we want the full day (starting at 00:00)
-                date = date.date()
+                from_date = from_date.date()
 
-            self.stdout.write(f"Selecting data in: {self.style.SQL_KEYWORD(date)}")
+            to_date = from_date + timedelta(days=1)
+            if isinstance(to_date, datetime.datetime):
+                # in case to_date is a datetime (happens during the first iteration),
+                # ensure to_date is always a date.
+                to_date = to_date.date()
+
+            self.stdout.write(
+                f"Selecting data in: {self.style.SQL_KEYWORD(from_date)} "
+                f"- {self.style.SQL_KEYWORD(to_date)}"
+            )
+
             num_updated_rows = Passage.objects.filter(
-                passage_at__gte=date,
-                passage_at__lt=date + timedelta(days=1),
+                passage_at__gte=from_date,
+                passage_at__lt=to_date,
             ).update(rijrichting=Case(
                 When(rijrichting=-1, then=Value(1)),
                 When(rijrichting=1, then=Value(-1)),
@@ -50,7 +60,7 @@ class Command(BaseCommand):
                 self.stdout.write(f'sleeping for: {self.style.SUCCESS(0.1)}')
                 time.sleep(0.1)
 
-            partition_name = f'passage_passage_{date:%Y%m%d}'
+            partition_name = f'passage_passage_{from_date:%Y%m%d}'
             vacuum_query = f'VACUUM FULL ANALYZE {partition_name}'
             size_query = (
                 "SELECT pg_size_pretty(pg_database_size("
