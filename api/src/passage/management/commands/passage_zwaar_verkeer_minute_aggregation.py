@@ -26,7 +26,7 @@ class Command(BaseCommand):
         ;
         """
 
-    def _get_aggreagation_query(self, run_date):
+    def _get_aggregation_query(self, run_date):
        return f"""
         INSERT INTO passage_heavytrafficminuteaggregation (
             date, 
@@ -228,7 +228,7 @@ class Command(BaseCommand):
             log.info(f"Deleted {cursor.rowcount} records")
 
         log.info(f"Run aggregation for date {run_date}")
-        aggregation_query = self._get_aggreagation_query(run_date)
+        aggregation_query = self._get_aggregation_query(run_date)
         log.info(f"Run the following query:")
         log.info(aggregation_query)
 
