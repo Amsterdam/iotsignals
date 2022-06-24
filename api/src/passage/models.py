@@ -114,6 +114,7 @@ class Camera(models.Model):
     vma_linknr = models.CharField(max_length=255, null=True, blank=True)
     camera_naam = models.CharField(max_length=255, db_index=True)
     rijrichting = models.IntegerField(null=True, blank=True, db_index=True)
+    rijrichting_correct = models.CharField(max_length=10, null=True, blank=True)
     camera_kijkrichting = models.FloatField(null=True, blank=True, db_index=True)
 
     order_kaart = models.IntegerField(null=True, blank=True)     # in sheet: volgorde
