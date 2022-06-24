@@ -41,6 +41,7 @@ class Command(BaseCommand):
 			camera_locatie,
             camera_kijkrichting,
 			rijrichting,
+			rijrichting_correct,
 			straat,
 			cordon,
 			cordon_order_kaart,
