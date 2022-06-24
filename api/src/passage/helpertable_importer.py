@@ -42,11 +42,21 @@ def _import_helper_table(CameraModel):
                         float(lat), float(lon), srid=4326
                     )
 
-                if CameraModel.__name__ == 'ZwaarVerkeerHelperTable':
-                    # we call this in migration 0015, and this version of the
-                    # table does not have these new fields (added in 0025).
-                    row.pop('camera_id')
-                    row.pop('vma_linknr')
+                # the following fields have been added to the initial table
+                # during migrations. Depending on the migration, fields may
+                # not exist.
+                existing_field_names = [f.name for f in CameraModel._meta.fields]
+                later_added_fields = [
+                    # migration 0015
+                    'camera_id',
+                    'vma_linknr',
+                    # migration 0029
+                    'rijrichting_correct'
+                ]
+
+                for fieldname in later_added_fields:
+                    if fieldname not in existing_field_names:
+                        row.pop(fieldname)
 
                 inserts.append(CameraModel(**row))
 
