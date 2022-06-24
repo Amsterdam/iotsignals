@@ -20,22 +20,22 @@ class Command(BaseCommand):
     def _get_delete_query(self, run_date):
         return f""" 
         DELETE FROM passage_heavytraffichouraggregation_v2
-        WHERE year = {run_date.year}
-        AND month = {run_date.month}
-        AND day = {run_date.day}
+        WHERE passage_at_year = {run_date.year}
+        AND passage_at_month = {run_date.month}
+        AND passage_at_day = {run_date.day}
         ;
         """
 
     def _get_aggregation_query(self, run_date):
         return f"""
         INSERT INTO passage_heavytraffichouraggregation_v2 (
-            date, 
-            year, 
-            month, 
-            day, 
-            week, 
-            dow, 
-            hour,
+            passage_at_date,
+            passage_at_year,
+            passage_at_month,
+            passage_at_day,
+            passage_at_week,
+            passage_at_day_of_week,
+            passage_at_hour,
 			camera_id, 
             camera_naam,
 			camera_locatie,
