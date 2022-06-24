@@ -207,3 +207,58 @@ class HeavyTrafficHourAggregationV2(models.Model):
 
     class Meta:
         db_table = 'passage_heavytraffichouraggregation_v2'
+
+
+class HeavyTrafficMinuteAggregation(models.Model):
+    id = models.AutoField(primary_key=True)
+    passage_at_date = models.DateField()
+    passage_at_year = models.SmallIntegerField()
+    passage_at_month = models.SmallIntegerField()
+    passage_at_day = models.SmallIntegerField()
+    passage_at_week = models.SmallIntegerField()
+    passage_at_day_of_week = models.CharField(max_length=20)
+    passage_at_hour = models.SmallIntegerField(db_index=True)
+    passage_at_minute = models.SmallIntegerField()
+
+    camera_id = models.CharField(max_length=255, null=True, blank=True)
+    camera_naam = models.CharField(max_length=255, null=True, blank=True)
+    camera_locatie = models.PointField(srid=4326, null=True, blank=True)
+    camera_kijkrichting = models.FloatField(null=True, blank=True)
+
+    rijrichting = models.SmallIntegerField(null=True, blank=True)
+    rijrichting_correct = models.CharField(max_length=10, null=True, blank=True)
+    straat = models.CharField(max_length=255, null=True, blank=True)
+
+    cordon = models.CharField(max_length=255, db_index=True, null=True, blank=True)
+    cordon_order_kaart = models.IntegerField(null=True, blank=True)
+    cordon_order_naam = models.CharField(max_length=255, null=True, blank=True)
+
+    kenteken_hash = models.CharField(max_length=255, null=True, blank=True)
+    kenteken_land = models.CharField(max_length=2, null=True, blank=True)
+    datum_eerste_toelating = models.DateField(null=True, blank=True)
+
+    massa_ledig_voertuig = models.CharField(max_length=255, null=True, blank=True)
+    toegestane_maximum_massa_voertuig = models.CharField(max_length=255, null=True, blank=True)
+
+    aantal_assen = models.SmallIntegerField(null=True, blank=True)
+    aantal_wielen = models.SmallIntegerField(null=True, blank=True)
+    lengte = models.SmallIntegerField(null=True, blank=True)
+    breedte = models.SmallIntegerField(null=True, blank=True)
+    maximum_massa_trekken_ongeremd = models.IntegerField(null=True, blank=True)
+    maximum_massa_trekken_geremd = models.IntegerField(null=True, blank=True)
+
+    voertuig_soort = models.CharField(max_length=64, null=True, blank=True)
+    inrichting = models.CharField(max_length=255, null=True, blank=True)
+    europese_voertuigcategorie = models.CharField(max_length=2, null=True, blank=True)
+    europese_voertuigcategorie_toevoeging = models.CharField(max_length=1, null=True,
+                                                             blank=True)
+    versit_klasse = models.CharField(null=True, blank=True, max_length=255)
+    brandstoffen = models.JSONField(null=True, blank=True)
+    co2_uitstoot_gecombineerd = models.FloatField(null=True, blank=True)
+    co2_uitstoot_gewogen = models.FloatField(null=True, blank=True)
+    milieuklasse_eg_goedkeuring_zwaar = models.CharField(max_length=255, null=True,
+                                                         blank=True)
+    count = models.IntegerField(null=True, blank=True)
+
+    class Meta:
+        db_table = 'passage_heavytrafficminuteaggregation'
