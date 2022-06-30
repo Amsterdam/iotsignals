@@ -106,7 +106,7 @@ class Command(BaseCommand):
 				europese_voertuigcategorie_toevoeging,
                 brandstoffen,
                CASE 
-                WHEN lengte <= 1000 THEN '01 0t/m1000'
+                WHEN lengte <= 1000 THEN '01 <=1000'
                 WHEN lengte >  1000 THEN '02 >1000'
                 ELSE '03 onbekend' 
                END as lengte,
