@@ -42,6 +42,12 @@ def _import_helper_table(CameraModel):
                         float(lat), float(lon), srid=4326
                     )
 
+                # convert ja/nee to boolean, or None
+                rijrichting_correct = row.get('rijrichting_correct')
+                if rijrichting_correct is not None:
+                    rijrichting_correct = rijrichting_correct.lower() == 'ja'
+                row['rijrichting_correct'] = rijrichting_correct
+
                 # the following fields have been added to the initial table
                 # during migrations. Depending on the migration, fields may
                 # not exist.

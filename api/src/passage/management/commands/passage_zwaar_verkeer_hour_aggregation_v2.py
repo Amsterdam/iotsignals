@@ -118,11 +118,19 @@ class Command(BaseCommand):
                     p.rijrichting = h.rijrichting
         WHERE p.passage_at >= '{run_date}'
         AND p.passage_at < '{run_date + timedelta(days=1)}'
-		AND p.voertuig_soort = 'Bedrijfsauto' OR p.toegestane_maximum_massa_voertuig > 3500
-		AND h.rijrichting_correct = 'ja'
+		AND (
+		    (p.voertuig_soort = 'Bedrijfsauto' AND p.toegestane_maximum_massa_voertuig > 3500) OR 
+		    p.toegestane_maximum_massa_voertuig > 7500
+        )
+		AND h.rijrichting_correct = True
 		GROUP BY
 			   DATE(p.passage_at),
-               EXTRACT(HOUR FROM p.passage_at) :: int  AS HOUR,
+               EXTRACT(YEAR FROM p.passage_at) :: int,
+               EXTRACT(MONTH FROM p.passage_at) :: int,
+               EXTRACT(DAY FROM p.passage_at) :: int,
+               EXTRACT(week FROM p.passage_at) :: int,
+               EXTRACT(dow FROM p.passage_at) :: int,
+               EXTRACT(HOUR FROM p.passage_at) :: int,
                p.camera_id,
                p.camera_naam,
 			   p.camera_locatie,
@@ -131,8 +139,8 @@ class Command(BaseCommand):
 			   h.rijrichting_correct,
 			   p.straat,
 				h.cordon,
-				h.order_kaart as cordon_order_kaart,
-				h.order_naam as cordon_order_naam,
+				h.order_kaart,
+				h.order_naam,
 			   CASE
 				WHEN massa_ledig_voertuig <= 3500 THEN 'klasse01_0-3500'
 				WHEN massa_ledig_voertuig <= 7500 THEN 'klasse02_3501-7500'
@@ -166,11 +174,11 @@ class Command(BaseCommand):
                 WHEN lengte <= 1000 THEN '01 0t/m1000'
                 WHEN lengte >  1000 THEN '02 >1000'
                 ELSE '03 onbekend' 
-               END,
+               END
         ORDER  BY p.camera_id,
 				  p.rijrichting,
                   DATE(passage_at),
-				  EXTRACT(HOUR FROM passage_at) :: int;
+                  EXTRACT(HOUR FROM passage_at) :: int;
         """
 
     def _run_query_from_date(self, run_date):
