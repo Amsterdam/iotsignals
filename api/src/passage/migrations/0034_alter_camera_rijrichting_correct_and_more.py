@@ -2,14 +2,21 @@
 
 from django.db import migrations, models
 
+from passage.helpertable_importer import import_helper_table_into_camera
+
+
+def delete_camera_data(apps, schema_editor):
+    Camera = apps.get_model('passage', 'Camera')
+    Camera.objects.all().delete()
+
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ('passage', '0033_remove_heavytraffichouraggregationv2_co2_uitstoot_gecombineerd_and_more'),
     ]
 
     operations = [
+        migrations.RunPython(delete_camera_data, migrations.RunPython.noop),
         migrations.AlterField(
             model_name='camera',
             name='rijrichting_correct',
@@ -25,4 +32,5 @@ class Migration(migrations.Migration):
             name='rijrichting_correct',
             field=models.BooleanField(blank=True, null=True),
         ),
+        migrations.RunPython(import_helper_table_into_camera, migrations.RunPython.noop)
     ]
