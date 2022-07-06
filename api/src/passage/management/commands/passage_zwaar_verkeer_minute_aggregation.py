@@ -36,8 +36,8 @@ class Command(BaseCommand):
             passage_at_week,
             passage_at_day_of_week,
             passage_at_hour,
-            passage_at_minute,
-            camera_id, 
+			passage_at_minute,
+			camera_id, 
             camera_naam,
 			camera_locatie,
             camera_kijkrichting,
@@ -48,45 +48,24 @@ class Command(BaseCommand):
 			cordon_order_kaart,
             cordon_order_naam,
 			kenteken_hash,
-			kenteken_land,
-			datum_eerste_toelating,
 			massa_ledig_voertuig,
 			toegestane_maximum_massa_voertuig,
-			aantal_assen,
-			aantal_wielen,
-			lengte,
-			maximum_massa_trekken_ongeremd,
-			maximum_massa_trekken_geremd,
-			breedte,
 			voertuig_soort, 
 			inrichting,
             europese_voertuigcategorie,
 			europese_voertuigcategorie_toevoeging,
-			versit_klasse,
--- 			brandstof_alcohol,
--- 			brandstof_benzine,
--- 			brandstof_cng,
--- 			brandstof_diesel,
--- 			brandstof_electriciteit,
--- 			brandstof_lng,
--- 			brandstof_lpg,
--- 			brandstof_niet_geregistreerd,
--- 			brandstof_waterstof,
--- 			meerdere_brandstoffen,
             brandstoffen,
-			co2_uitstoot_gecombineerd,
-			co2_uitstoot_gewogen,
-			milieuklasse_eg_goedkeuring_zwaar,
+            lengte,
             count
         )
         SELECT DATE(p.passage_at),
-               EXTRACT(YEAR FROM p.passage_at)::int AS YEAR,
-               EXTRACT(MONTH FROM p.passage_at)::int AS MONTH,
-               EXTRACT(DAY FROM p.passage_at)::int AS DAY,
-               EXTRACT(week FROM p.passage_at)::int AS week,
-               EXTRACT(dow FROM p.passage_at)::int AS dow,
-               EXTRACT(HOUR FROM p.passage_at)::int AS HOUR,
-			   EXTRACT(MINUTE FROM p.passage_at)::int AS MINUTE,
+               EXTRACT(YEAR FROM p.passage_at) :: int  AS YEAR,
+               EXTRACT(MONTH FROM p.passage_at) :: int AS MONTH,
+               EXTRACT(DAY FROM p.passage_at) :: int   AS DAY,
+               EXTRACT(week FROM p.passage_at) :: int  AS week,
+               EXTRACT(dow FROM p.passage_at) :: int   AS dow,
+               EXTRACT(HOUR FROM p.passage_at) :: int  AS HOUR,
+			   EXTRACT(MINUTE FROM p.passage_at) :: int  AS MINUTE,
                p.camera_id,
                p.camera_naam,
 			   p.camera_locatie,
@@ -98,8 +77,6 @@ class Command(BaseCommand):
 				h.order_kaart as cordon_order_kaart,
 				h.order_naam as cordon_order_naam,
 				p.kenteken_hash,
-				p.kenteken_land,
-				p.datum_eerste_toelating,
 			   CASE
 				WHEN massa_ledig_voertuig <= 3500 THEN 'klasse01_0-3500'
 				WHEN massa_ledig_voertuig <= 7500 THEN 'klasse02_3501-7500'
@@ -108,7 +85,8 @@ class Command(BaseCommand):
 				WHEN massa_ledig_voertuig <= 20000 THEN 'klasse05_15001-20000'
 				WHEN massa_ledig_voertuig <= 30000 THEN 'klasse06_20001-30000'
 				WHEN massa_ledig_voertuig <= 45000 THEN 'klasse07_30001-45000'
-				ELSE 'klasse08_45001'
+                WHEN massa_ledig_voertuig >  45000 THEN 'klasse08_45001'
+				ELSE 'onbekend'
 				END
 			   AS
 			   massa_ledig_voertuig,
@@ -122,35 +100,20 @@ class Command(BaseCommand):
                  WHEN toegestane_maximum_massa_voertuig <= 50000 THEN 'klasse07_40001-50000'
                  WHEN toegestane_maximum_massa_voertuig <= 60000 THEN 'klasse08_50001-60000'
                  WHEN toegestane_maximum_massa_voertuig <= 70000 THEN 'klasse09_60001-70000'
-                 WHEN toegestane_maximum_massa_voertuig <= 80000 THEN 'klasse10_70001-80000'
-                 ELSE 'klasse11_80001'
+                 WHEN toegestane_maximum_massa_voertuig >  70000 THEN 'klasse10_70001'
+                 ELSE 'onbekend'
                END                                   AS
                toegestane_maximum_massa_voertuig,
-				aantal_assen,
-				aantal_wielen,
-				lengte,
-				maximum_massa_trekken_ongeremd,
-				maximum_massa_trekken_geremd,
-				breedte,
 				voertuig_soort, 
 				inrichting,
 				europese_voertuigcategorie,
 				europese_voertuigcategorie_toevoeging,
-				versit_klasse,
--- 				brandstof_alcohol,
--- 				brandstof_benzine,
--- 				brandstof_cng,
--- 				brandstof_diesel,
--- 				brandstof_electriciteit,
--- 				brandstof_lng,
--- 				brandstof_lpg,
--- 				brandstof_niet_geregistreerd,
--- 				brandstof_waterstof,
--- 				meerdere_brandstoffen,
                 brandstoffen,
-				co2_uitstoot_gecombineerd,
-				co2_uitstoot_gewogen,
-				milieuklasse_eg_goedkeuring_zwaar,
+               CASE 
+                WHEN lengte <= 1000 THEN '01 <=1000'
+                WHEN lengte >  1000 THEN '02 >1000'
+                ELSE '03 onbekend' 
+               END as lengte,
 				COUNT(*)
         FROM passage_passage as p
 		left join	passage_camera AS h
@@ -159,17 +122,20 @@ class Command(BaseCommand):
                     p.rijrichting = h.rijrichting
         WHERE p.passage_at >= '{run_date}'
         AND p.passage_at < '{run_date + timedelta(days=1)}'
-		AND p.voertuig_soort = 'Bedrijfsauto' OR p.toegestane_maximum_massa_voertuig > 3500
-		AND h.rijrichting_correct = 'ja'
+		AND (
+		    (p.voertuig_soort = 'Bedrijfsauto' AND p.toegestane_maximum_massa_voertuig > 3500) OR 
+		    p.toegestane_maximum_massa_voertuig > 7500
+        )
+		AND h.rijrichting_correct = True
 		GROUP BY
-			   DATE(passage_at),
-               EXTRACT(YEAR FROM passage_at)::int,
-               EXTRACT(MONTH FROM passage_at)::int,
-               EXTRACT(DAY FROM passage_at)::int,
-               EXTRACT(week FROM passage_at)::int,
-               EXTRACT(dow FROM passage_at)::int,
-               EXTRACT(HOUR FROM passage_at)::int,
-			   EXTRACT(MINUTE FROM passage_at)::int,
+			   DATE(p.passage_at),
+               EXTRACT(YEAR FROM p.passage_at) :: int,
+               EXTRACT(MONTH FROM p.passage_at) :: int,
+               EXTRACT(DAY FROM p.passage_at) :: int,
+               EXTRACT(week FROM p.passage_at) :: int,
+               EXTRACT(dow FROM p.passage_at) :: int,
+               EXTRACT(HOUR FROM p.passage_at) :: int,
+			   EXTRACT(MINUTE FROM p.passage_at) :: int,
                p.camera_id,
                p.camera_naam,
 			   p.camera_locatie,
@@ -178,43 +144,49 @@ class Command(BaseCommand):
 			   h.rijrichting_correct,
 			   p.straat,
 				h.cordon,
-				cordon_order_kaart,
-				cordon_order_naam,
+				h.order_kaart,
+				h.order_naam,
 				p.kenteken_hash,
-				p.kenteken_land,
-				p.datum_eerste_toelating,
-			   massa_ledig_voertuig,
-               toegestane_maximum_massa_voertuig,
-				aantal_assen,
-				aantal_wielen,
-				lengte,
-				maximum_massa_trekken_ongeremd,
-				maximum_massa_trekken_geremd,
-				breedte,
+			   CASE
+				WHEN massa_ledig_voertuig <= 3500 THEN 'klasse01_0-3500'
+				WHEN massa_ledig_voertuig <= 7500 THEN 'klasse02_3501-7500'
+				WHEN massa_ledig_voertuig <= 11250 THEN 'klasse03_7501-11250'
+				WHEN massa_ledig_voertuig <= 15000 THEN 'klasse04_11251-15000'
+				WHEN massa_ledig_voertuig <= 20000 THEN 'klasse05_15001-20000'
+				WHEN massa_ledig_voertuig <= 30000 THEN 'klasse06_20001-30000'
+				WHEN massa_ledig_voertuig <= 45000 THEN 'klasse07_30001-45000'
+                WHEN massa_ledig_voertuig >  45000 THEN 'klasse08_45001'
+				ELSE 'onbekend'
+				END,
+               CASE
+                 WHEN toegestane_maximum_massa_voertuig <= 3500 THEN 'klasse01_0-3500'
+                 WHEN toegestane_maximum_massa_voertuig <= 7500 THEN 'klasse02_3501-7500'
+                 WHEN toegestane_maximum_massa_voertuig <= 10000 THEN 'klasse03_7501-10000'
+                 WHEN toegestane_maximum_massa_voertuig <= 20000 THEN 'klasse04_10001-20000'
+                 WHEN toegestane_maximum_massa_voertuig <= 30000 THEN 'klasse05_20001-30000'
+                 WHEN toegestane_maximum_massa_voertuig <= 40000 THEN 'klasse06_30001-40000'
+                 WHEN toegestane_maximum_massa_voertuig <= 50000 THEN 'klasse07_40001-50000'
+                 WHEN toegestane_maximum_massa_voertuig <= 60000 THEN 'klasse08_50001-60000'
+                 WHEN toegestane_maximum_massa_voertuig <= 70000 THEN 'klasse09_60001-70000'
+                 WHEN toegestane_maximum_massa_voertuig >  70000 THEN 'klasse10_70001'
+                 ELSE 'onbekend'
+               END,
 				voertuig_soort, 
 				inrichting,
 				europese_voertuigcategorie,
 				europese_voertuigcategorie_toevoeging,
-				versit_klasse,
---                 brandstof_alcohol,
---                 brandstof_benzine,
---                 brandstof_cng,
---                 brandstof_diesel,
---                 brandstof_electriciteit,
---                 brandstof_lng,
---                 brandstof_lpg,
---                 brandstof_niet_geregistreerd,
---                 brandstof_waterstof,
---                 meerdere_brandstoffen,
                 brandstoffen,
-				co2_uitstoot_gecombineerd,
-				co2_uitstoot_gewogen,
-				milieuklasse_eg_goedkeuring_zwaar
+               CASE 
+                WHEN lengte <= 1000 THEN '01 <=1000'
+                WHEN lengte >  1000 THEN '02 >1000'
+                ELSE '03 onbekend' 
+               END
         ORDER  BY p.camera_id,
 				  p.rijrichting,
                   DATE(passage_at),
-				  EXTRACT(HOUR FROM passage_at)::int,
-				  EXTRACT(MINUTE FROM passage_at)::int;
+                  EXTRACT(HOUR FROM passage_at) :: int,
+				  EXTRACT(MINUTE FROM passage_at) :: int,
+				  kenteken_hash;
         """
 
     def _run_query_from_date(self, run_date):
