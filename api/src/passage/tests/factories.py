@@ -3,9 +3,6 @@ import datetime
 import random
 import string
 
-# 3rd party
-from functools import partial
-
 import factory
 from django.contrib.gis.geos import Point
 from django.utils import timezone

@@ -31,6 +31,21 @@ class Command(BaseCommand):
             help='The number rows per day to generate',
         )
 
+    def handle(self, *args, **options):
+        num_days = options.get('num_days', 7)
+        num_rows_per_day = options.get('num_rows_per_day', 1000)
+        self.create_data_range(num_days, num_rows_per_day)
+
+    def create_data_range(self, num_days=7, num_rows_per_day=1000):
+        timestamp_range = [datetime.today() - timedelta(days=i) for i in range(num_days)]
+        timestamp_range = sorted(timestamp_range)
+        make_partitions(timestamp_range)
+
+        today = datetime.now(tz=pytz.utc)
+        for i in range(num_days):
+            dt = today - timedelta(days=i)
+            self.create_data(dt, num_rows=num_rows_per_day)
+
     def create_data(self, dt, num_rows=10000):
         log.info(f"========================== {dt} ==========================")
 
@@ -47,18 +62,3 @@ class Command(BaseCommand):
         Passage.objects.bulk_create(passages)
 
         log.info(f"Created {len(passages)} passages")
-
-    def create_data_range(self, num_days=7, num_rows_per_day=1000):
-        timestamp_range = [datetime.today() - timedelta(days=i) for i in range(num_days)]
-        timestamp_range = sorted(timestamp_range)
-        make_partitions(*timestamp_range)
-
-        today = datetime.now(tz=pytz.utc)
-        for i in range(num_days):
-            dt = today - timedelta(days=i)
-            self.create_data(dt, num_rows=num_rows_per_day)
-
-    def handle(self, *args, **options):
-        num_days = options.get('num_days', 7)
-        num_rows_per_day = options.get('num_rows_per_day', 1000)
-        self.create_data_range(num_days, num_rows_per_day)

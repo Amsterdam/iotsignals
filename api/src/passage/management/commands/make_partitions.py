@@ -1,13 +1,8 @@
 import logging
-import time
 from datetime import timedelta, datetime
 
 from django.core.management.base import BaseCommand
 from django.db import connection
-from django.db.models import Case, F, Max, Min, Value, When
-from django.db.models.functions import TruncDay, TruncYear
-from django.db.utils import ProgrammingError
-from passage.models import Passage
 
 log = logging.getLogger(__name__)
 

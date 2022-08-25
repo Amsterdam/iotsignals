@@ -110,3 +110,6 @@ venv.bak/
 
 # vscode
 .vscode
+
+# Local settings that should never be committed
+docker-compose.override.yml
