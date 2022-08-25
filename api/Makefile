@@ -42,10 +42,15 @@ clean:                              ## Clean docker stuff
 test:
 	$(run) dev pytest $(ARGS)
 
-loadtest:
-	$(run) api python /app/manage.py migrate
+dev: migrate						## Run the development app (and run extra migrations first)
+	$(run) --service-ports dev
+
+loadtest: migrate
 	$(manage) make_partitions $(ARGS)
 	$(run) locust $(ARGS)
+
+test_data:
+	$(manage) generate_test_data --num_days 25 --num_rows_per_day 2000
 
 pdb:
 	$(run) dev pytest --pdb $(ARGS)
