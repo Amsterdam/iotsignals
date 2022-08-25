@@ -40,7 +40,6 @@ services:
 
   dev:
     <<: *api
-    entrypoint: /deploy/docker-wait.sh
     command:
       python manage.py runserver_plus 0.0.0.0:8001 --print-sql
 
