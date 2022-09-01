@@ -26,7 +26,7 @@ class Passage(models.Model):
     rijrichting = models.SmallIntegerField(null=True, blank=True)
     rijstrook = models.SmallIntegerField(null=True, blank=True)
     camera_id = models.CharField(max_length=255, null=True, blank=True)
-    camera_naam = models.CharField(max_length=255, null=True, blank=True, db_index=True)
+    camera_naam = models.CharField(max_length=255, null=True, blank=True)
     camera_kijkrichting = models.FloatField(null=True, blank=True)
     camera_locatie = models.PointField(srid=4326, null=True, blank=True)
 
