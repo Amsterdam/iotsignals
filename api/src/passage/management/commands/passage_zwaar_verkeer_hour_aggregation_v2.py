@@ -46,6 +46,7 @@ class Command(BaseCommand):
 			cordon,
 			cordon_order_kaart,
             cordon_order_naam,
+			richting,
 			massa_ledig_voertuig,
 			toegestane_maximum_massa_voertuig,
 			voertuig_soort, 
@@ -73,6 +74,7 @@ class Command(BaseCommand):
 				h.cordon,
 				h.order_kaart as cordon_order_kaart,
 				h.order_naam as cordon_order_naam,
+				h.richting,
 			   CASE
 				WHEN massa_ledig_voertuig <= 3500 THEN 'klasse01_0-3500'
 				WHEN massa_ledig_voertuig <= 7500 THEN 'klasse02_3501-7500'
@@ -106,7 +108,7 @@ class Command(BaseCommand):
 				europese_voertuigcategorie_toevoeging,
                 brandstoffen,
                CASE 
-                WHEN lengte <= 1000 THEN '01 <=1000'
+                WHEN lengte <= 1000 THEN '01 0t/m1000'
                 WHEN lengte >  1000 THEN '02 >1000'
                 ELSE '03 onbekend' 
                END as lengte,
@@ -118,14 +120,14 @@ class Command(BaseCommand):
                     p.rijrichting = h.rijrichting
         WHERE p.passage_at >= '{run_date}'
         AND p.passage_at < '{run_date + timedelta(days=1)}'
-		AND (
+        AND (
 		    (p.voertuig_soort = 'Bedrijfsauto' AND p.toegestane_maximum_massa_voertuig > 3500) OR 
 		    p.toegestane_maximum_massa_voertuig > 7500
         )
 		AND h.rijrichting_correct = True
 		GROUP BY
 			   DATE(p.passage_at),
-               EXTRACT(YEAR FROM p.passage_at) :: int,
+			   EXTRACT(YEAR FROM p.passage_at) :: int,
                EXTRACT(MONTH FROM p.passage_at) :: int,
                EXTRACT(DAY FROM p.passage_at) :: int,
                EXTRACT(week FROM p.passage_at) :: int,
@@ -141,6 +143,7 @@ class Command(BaseCommand):
 				h.cordon,
 				h.order_kaart,
 				h.order_naam,
+				h.richting,
 			   CASE
 				WHEN massa_ledig_voertuig <= 3500 THEN 'klasse01_0-3500'
 				WHEN massa_ledig_voertuig <= 7500 THEN 'klasse02_3501-7500'
@@ -171,7 +174,7 @@ class Command(BaseCommand):
 				europese_voertuigcategorie_toevoeging,
                 brandstoffen,
                CASE 
-                WHEN lengte <= 1000 THEN '01 <=1000'
+                WHEN lengte <= 1000 THEN '01 0t/m1000'
                 WHEN lengte >  1000 THEN '02 >1000'
                 ELSE '03 onbekend' 
                END

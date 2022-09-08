@@ -189,7 +189,7 @@ class HeavyTrafficAggregationBase(models.Model):
     cordon = models.CharField(max_length=255, db_index=True, null=True, blank=True)
     cordon_order_kaart = models.IntegerField(null=True, blank=True)
     cordon_order_naam = models.CharField(max_length=255, null=True, blank=True)
-
+    richting = models.CharField(max_length=10, null=True, blank=True)
     massa_ledig_voertuig = models.CharField(max_length=255, null=True, blank=True)
     toegestane_maximum_massa_voertuig = models.CharField(max_length=255, null=True, blank=True)
     voertuig_soort = models.CharField(max_length=64, null=True, blank=True)
