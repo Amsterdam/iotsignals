@@ -120,7 +120,10 @@ class Command(BaseCommand):
                     p.rijrichting = h.rijrichting
         WHERE p.passage_at >= '{run_date}'
         AND p.passage_at < '{run_date + timedelta(days=1)}'
-		AND (p.voertuig_soort = 'Bedrijfsauto' OR p.toegestane_maximum_massa_voertuig > 3500)
+        AND (
+		    (p.voertuig_soort = 'Bedrijfsauto' AND p.toegestane_maximum_massa_voertuig > 3500) OR 
+		    p.toegestane_maximum_massa_voertuig > 7500
+        )
 		AND h.rijrichting_correct = True
 		GROUP BY
 			   DATE(p.passage_at),
