@@ -124,11 +124,7 @@ class Command(BaseCommand):
 		AND h.rijrichting_correct = True
 		GROUP BY
 			   DATE(p.passage_at),
-               EXTRACT(YEAR FROM p.passage_at) :: int,
-               EXTRACT(MONTH FROM p.passage_at) :: int,
-               EXTRACT(DAY FROM p.passage_at) :: int,
-               EXTRACT(week FROM p.passage_at) :: int,
-               EXTRACT(dow FROM p.passage_at) :: int,
+			   EXTRACT(HOUR FROM p.passage_at) :: int,
                p.camera_id,
                p.camera_naam,
 			   p.camera_locatie,
