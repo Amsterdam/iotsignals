@@ -47,6 +47,7 @@ class Command(BaseCommand):
 			cordon,
 			cordon_order_kaart,
             cordon_order_naam,
+            richting,
 			kenteken_hash,
 			massa_ledig_voertuig,
 			toegestane_maximum_massa_voertuig,
@@ -76,6 +77,7 @@ class Command(BaseCommand):
 				h.cordon,
 				h.order_kaart as cordon_order_kaart,
 				h.order_naam as cordon_order_naam,
+                h.richting,
 				p.kenteken_hash,
 			   CASE
 				WHEN massa_ledig_voertuig <= 3500 THEN 'klasse01_0-3500'
@@ -122,10 +124,7 @@ class Command(BaseCommand):
                     p.rijrichting = h.rijrichting
         WHERE p.passage_at >= '{run_date}'
         AND p.passage_at < '{run_date + timedelta(days=1)}'
-		AND (
-		    (p.voertuig_soort = 'Bedrijfsauto' AND p.toegestane_maximum_massa_voertuig > 3500) OR 
-		    p.toegestane_maximum_massa_voertuig > 7500
-        )
+        AND (p.voertuig_soort = 'Bedrijfsauto' OR p.toegestane_maximum_massa_voertuig > 3500)
 		AND h.rijrichting_correct = True
 		GROUP BY
 			   DATE(p.passage_at),
@@ -146,6 +145,7 @@ class Command(BaseCommand):
 				h.cordon,
 				h.order_kaart,
 				h.order_naam,
+                h.richting,
 				p.kenteken_hash,
 			   CASE
 				WHEN massa_ledig_voertuig <= 3500 THEN 'klasse01_0-3500'
@@ -190,11 +190,11 @@ class Command(BaseCommand):
         """
 
     def _run_query_from_date(self, run_date):
+
         log.info(f"Delete previously made aggregations for date {run_date}")
         delete_query = self._get_delete_query(run_date)
         log.info(f"Run the following query:")
         log.info(delete_query)
-
         with connection.cursor() as cursor:
             cursor.execute(delete_query)
             log.info(f"Deleted {cursor.rowcount} records")
@@ -203,7 +203,6 @@ class Command(BaseCommand):
         aggregation_query = self._get_aggregation_query(run_date)
         log.info(f"Run the following query:")
         log.info(aggregation_query)
-
         with connection.cursor() as cursor:
             cursor.execute(aggregation_query)
             log.info(f"Inserted {cursor.rowcount} records")
