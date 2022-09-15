@@ -3,8 +3,8 @@
 from django.urls import reverse
 from rest_framework import routers
 
-from iotsignals import API_VERSIONS
-from iotsignals.version import get_version
+from main import API_VERSIONS
+from main.version import get_version
 
 
 class IOTSignalsAPIRootView(routers.APIRootView):

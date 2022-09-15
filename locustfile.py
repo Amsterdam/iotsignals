@@ -59,8 +59,8 @@ def load_data(filename):
 
 # allow caller to provide camera / vehicle data, or default to unique camera
 # and vehicle data selected from 2021-09-01
-cameras = load_data(os.environ.get('CAMERA_CSV', '/opt/src/api/data/camera.csv'))
-vehicles = load_data(os.environ.get('VEHICLE_CSV', '/opt/src/api/data/vehicle.csv'))
+cameras = load_data(os.environ.get('CAMERA_CSV', '/opt/src/data/camera.csv'))
+vehicles = load_data(os.environ.get('VEHICLE_CSV', '/opt/src/data/vehicle.csv'))
 
 
 # make sure sampling is reproducible

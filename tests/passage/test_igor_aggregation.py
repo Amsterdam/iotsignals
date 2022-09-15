@@ -7,7 +7,7 @@ from django.utils import timezone
 
 from passage.management.commands.make_partitions import make_partitions
 from passage.models import Camera, IGORHourAggregation
-from passage.tests.factories import PassageFactory
+from .factories import PassageFactory
 
 
 @pytest.mark.django_db

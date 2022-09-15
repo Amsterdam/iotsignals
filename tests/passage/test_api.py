@@ -6,7 +6,6 @@ from datetime import datetime, timedelta, timezone, date
 from itertools import cycle
 # 3rd party
 import pytest
-import pytz
 from django.db import connection
 from django.test import override_settings
 from django.urls import reverse
@@ -14,12 +13,12 @@ from django.utils.dateparse import parse_datetime
 from model_bakery import baker
 # iotsignals
 from passage.conversion import convert_to_v1, NEW_FIELDS, RIJRICHTING_MAPPING
-from iotsignals import PayloadVersion, to_api_version
+from main import PayloadVersion, to_api_version
 from passage.case_converters import to_snakecase
 from passage.models import Passage
 from rest_framework import status
 from .factories import PassageFactory, PayloadVersion2, PayloadVersion1
-from ..util import keymap, keyfilter
+from passage.util import keymap, keyfilter
 
 log = logging.getLogger(__name__)
 

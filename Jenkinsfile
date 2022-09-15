@@ -33,7 +33,7 @@ pipeline {
 
         stage('Locust load test') {
             steps {
-                sh "./api/deploy/docker-locust-load-test.sh"
+                sh "./deploy/docker-locust-load-test.sh"
             }
         }
 

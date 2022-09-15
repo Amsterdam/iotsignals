@@ -6,7 +6,7 @@ from django.core.management import call_command
 from django.utils import timezone
 
 from passage.models import Camera, HeavyTrafficHourAggregation
-from passage.tests.factories import PassageFactory
+from .factories import PassageFactory
 
 
 @pytest.mark.django_db

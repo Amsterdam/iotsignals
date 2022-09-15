@@ -14,9 +14,9 @@ import os
 import sentry_sdk
 from sentry_sdk.integrations.django import DjangoIntegration
 
-from iotsignals.settings_common import *  # noqa F403
-from iotsignals.settings_common import INSTALLED_APPS
-from iotsignals.settings_common import REST_FRAMEWORK # noqa
+from main.settings_common import *  # noqa F403
+from main.settings_common import INSTALLED_APPS
+from main.settings_common import REST_FRAMEWORK # noqa
 
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -36,11 +36,9 @@ HEALTH_MODEL = 'passage.Passage'
 INSTALLED_APPS += [
     'health',
     'datetimeutc',
-    'iotsignals',
+    'main',
     'passage',
 ]
-
-ROOT_URLCONF = 'iotsignals.urls'
 
 TEMPLATES = [
     {
@@ -58,15 +56,14 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'iotsignals.wsgi.application'
 
 
 # Database
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
 
-ROOT_URLCONF = "iotsignals.urls"
+ROOT_URLCONF = "main.urls"
 
-WSGI_APPLICATION = "iotsignals.wsgi.application"
+WSGI_APPLICATION = "main.wsgi.application"
 
 DATABASES = {
     "default": {
@@ -95,7 +92,7 @@ USE_L10N = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
-STATIC_URL = '/iotsignals/static/'
+STATIC_URL = '/main/static/'
 STATIC_ROOT = '/static/'
 
 

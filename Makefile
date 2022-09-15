@@ -39,8 +39,8 @@ push_semver:
 clean:                              ## Clean docker stuff
 	$(dc) down -v --remove-orphans
 
-test:
-	$(run) dev pytest $(ARGS)
+test:                               ## Execute tests
+	$(dc) run --rm test pytest /app/tests $(ARGS)
 
 dev: migrate						## Run the development app (and run extra migrations first)
 	$(run) --service-ports dev

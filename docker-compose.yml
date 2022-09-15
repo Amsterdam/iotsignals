@@ -8,9 +8,13 @@ services:
       POSTGRES_USER: iotsignals
       POSTGRES_PASSWORD: insecure
   api: &api
-    build: ./api
+    build:
+      context: .
+      target: api
     volumes:
-      - ./api/src:/app
+      - ./src:/app/src
+      - ./tests:/app/tests
+      - ./deploy:/app/deploy
     depends_on:
       - database
     environment:
@@ -35,16 +39,27 @@ services:
       - PYTHONDONTWRITEBYTECODE=1
       - HOME=/tmp
     image: docker-registry.secure.amsterdam.nl/datapunt/iotsignals:${VERSION:-latest}
-    entrypoint: /deploy/docker-wait.sh
+    entrypoint: deploy/docker-wait.sh
     command: uwsgi
 
   dev:
     <<: *api
+    build:
+      context: .
+      target: dev
     command:
       python manage.py runserver_plus 0.0.0.0:8001 --print-sql
 
+  test:
+    <<: *api
+    build:
+      context: .
+      target: test
+
   locust:
-    build: .
+    build:
+      context: .
+      dockerfile: Dockerfile-locust
     volumes:
       - ./reports:/opt/reports
       - ./:/opt/src
@@ -55,9 +70,11 @@ services:
     command: bash -c "locust -f /opt/src/locustfile.py --host=http://api:8001 --headless --users 250 --spawn-rate 25 --run-time 30s"
 
   passage_hour_aggregation:
-    build: ./api
+    build:
+      context: .
+      target: api
     volumes:
-      - ./api/src:/app
+      - ./src:/app/src
     links:
       - database
     environment:

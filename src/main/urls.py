@@ -25,7 +25,7 @@ from rest_framework import permissions
 
 from passage import views as passage_views
 
-from iotsignals.routers import (
+from main.routers import (
     IOTSignalsRouterRoot,
     IOTSignalsRouterVersion0,
     IOTSignalsRouterVersion2,
@@ -75,10 +75,10 @@ schema_view = get_schema_view(
 
 urlpatterns = [
     # API listings
-    path('', include((root_router.urls, 'iotsignals'), namespace='vx')),
+    path('', include((root_router.urls, 'main'), namespace='vx')),
     # API Version 0
-    path('v0/', include((router_v0.urls, 'iotsignals'), namespace='v0')),
-    path('v2/', include((router_v2.urls, 'iotsignals'), namespace='v2')),
+    path('v0/', include((router_v0.urls, 'main'), namespace='v0')),
+    path('v2/', include((router_v2.urls, 'main'), namespace='v2')),
     path('status/', include("health.urls")),
 ]
 

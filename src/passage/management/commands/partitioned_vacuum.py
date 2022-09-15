@@ -4,12 +4,11 @@ from datetime import timedelta
 
 from django.core.management.base import BaseCommand
 from django.db import connection
-from django.db.models import Case, F, Max, Min, Value, When
-from django.db.models.functions import TruncDay, TruncYear
-from django.db.utils import ProgrammingError
+from django.db.models import Max, Min
+from django.db.models.functions import TruncDay
 from django.template.defaultfilters import filesizeformat
 
-from iotsignals import settings
+from main import settings
 from passage.models import Passage
 
 logger = logging.getLogger(__name__)

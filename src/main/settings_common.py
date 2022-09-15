@@ -140,7 +140,7 @@ REST_FRAMEWORK = dict(
 
 STATIC_URL = "/static/"
 
-STATIC_ROOT = os.path.abspath(os.path.join(BASE_DIR, "../../../", "static"))
+STATIC_ROOT = os.path.abspath(os.path.join(BASE_DIR, "../../", "static"))
 
 LOGGING = {
     "version": 1,

@@ -7,7 +7,7 @@ from factory.django import DjangoModelFactory
 
 from passage.management.commands.make_partitions import make_partitions
 from passage.models import Passage
-from passage.tests.factories import PassageFactory
+from tests.passage.factories import PassageFactory
 
 log = logging.getLogger(__name__)
 

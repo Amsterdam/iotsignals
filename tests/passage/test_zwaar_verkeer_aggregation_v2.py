@@ -9,7 +9,7 @@ from passage.models import (
     Camera,
     HeavyTrafficHourAggregationV2,
 )
-from passage.tests.factories import PassageFactory
+from .factories import PassageFactory
 
 
 @pytest.mark.django_db
