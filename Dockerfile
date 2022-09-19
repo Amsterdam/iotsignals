@@ -24,14 +24,19 @@ ARG AUTHORIZATION_TOKEN=dev
 RUN python src/manage.py collectstatic --no-input
 
 CMD uwsgi
+WORKDIR /app/src
 
 FROM api as dev
+WORKDIR /app
 USER root
 ADD requirements_dev.txt requirements_dev.txt
 RUN pip install -r requirements_dev.txt
 USER datapunt
+WORKDIR /app/src
 
 
 FROM dev as test
+WORKDIR /app
 COPY tests /app/tests/
 ENV PYTHONPATH=/app/src
+WORKDIR /app/src
