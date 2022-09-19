@@ -18,6 +18,7 @@ services:
     depends_on:
       - database
     environment:
+      - SECRET_KEY=123456
       - DATABASE_NAME=iotsignals
       - DATABASE_HOST=database
       - DATABASE_USER=iotsignals

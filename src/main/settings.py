@@ -182,8 +182,6 @@ USE_TZ = True
 
 DUMP_DIR = "mks-dump"
 
-TESTING = len(sys.argv) > 1 and sys.argv[1] == "test"
-
 
 REST_FRAMEWORK = dict(
     PAGE_SIZE=20,
@@ -211,9 +209,6 @@ REST_FRAMEWORK = dict(
     COERCE_DECIMAL_TO_STRING=True,
 )
 
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/1.10/howto/static-files/
-
 
 LOGGING = {
     "version": 1,
@@ -233,15 +228,14 @@ LOGGING = {
         "django.db": {"handlers": ["console"], "level": "ERROR"},
         "django": {"handlers": ["console"], "level": "ERROR"},
         # Debug all batch jobs
-        "doc": {"handlers": ["console"], "level": "INFO", "propagate": False},
-        "index": {"handlers": ["console"], "level": "DEBUG", "propagate": False},
-        "search": {"handlers": ["console"], "level": "ERROR", "propagate": False},
-        "elasticsearch": {
-            "handlers": ["console"],
-            "level": "ERROR",
-            "propagate": False,
-        },
-        "urllib3": {"handlers": ["console"], "level": "ERROR", "propagate": False},
+        "doc":
+            {"handlers": ["console"], "level": "INFO", "propagate": False},
+        "index":
+            {"handlers": ["console"], "level": "DEBUG", "propagate": False},
+        "search":
+            {"handlers": ["console"], "level": "ERROR", "propagate": False},
+        "urllib3":
+            {"handlers": ["console"], "level": "ERROR", "propagate": False},
         "factory.containers": {
             "handlers": ["console"],
             "level": "INFO",
