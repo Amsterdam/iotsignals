@@ -20,16 +20,28 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # SECURITY WARNING: keep the secret key used in production secret!
 insecure_key = "insecure"
-SECRET_KEY = os.getenv("SECRET_KEY", insecure_key)
+SECRET_KEY = os.environ["SECRET_KEY"]
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = SECRET_KEY == insecure_key
+DEBUG = os.getenv('DEBUG', False)
 
 ALLOWED_HOSTS = ['*']
 
 # Application definition
 HEALTH_MODEL = 'passage.Passage'
 
+DATAPUNT_API_URL = os.getenv("DATAPUNT_API_URL", "https://api.data.amsterdam.nl/")
+
+INTERNAL_IPS = ("127.0.0.1", "0.0.0.0")
+
+# The token that is allowed to post data to protected endpoints
+AUTHORIZATION_TOKEN = os.environ['AUTHORIZATION_TOKEN']
+
+ROOT_URLCONF = "main.urls"
+
+WSGI_APPLICATION = "main.wsgi.application"
+
+X_FRAME_OPTIONS = 'ALLOW-FROM *'
 # Application definition
 INSTALLED_APPS = [
     "django.contrib.contenttypes",
@@ -74,13 +86,9 @@ TEMPLATES = [
 
 
 
+
 # Database
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
-
-ROOT_URLCONF = "main.urls"
-
-WSGI_APPLICATION = "main.wsgi.application"
-
 DATABASES = {
     "default": {
         "ENGINE": "django.contrib.gis.db.backends.postgis",
@@ -119,27 +127,6 @@ if SENTRY_DSN:
         integrations=[DjangoIntegration()],
         ignore_errors=['ExpiredSignatureError']
     )
-
-# Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
-
-# SECURITY WARNING: keep the secret key used in production secret!
-insecure_key = "insecure"
-SECRET_KEY = os.getenv("SECRET_KEY", insecure_key)
-
-DEBUG = SECRET_KEY == insecure_key
-
-ALLOWED_HOSTS = ["*"]
-
-DATAPUNT_API_URL = os.getenv("DATAPUNT_API_URL", "https://api.data.amsterdam.nl/")
-
-INTERNAL_IPS = ("127.0.0.1", "0.0.0.0")
-
-# The token that is allowed to post data to protected endpoints
-AUTHORIZATION_TOKEN = os.environ['AUTHORIZATION_TOKEN']
-
-X_FRAME_OPTIONS = 'ALLOW-FROM *'
 
 if DEBUG:
     INSTALLED_APPS += ('debug_toolbar',)
