@@ -5,4 +5,4 @@ set -e   # stop on any error
 
 # run uwsgi
 cd /app/
-exec uwsgi
+exec uwsgi --emperor=.

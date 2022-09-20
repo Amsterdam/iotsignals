@@ -23,18 +23,6 @@ services:
       - DATABASE_HOST=database
       - DATABASE_USER=iotsignals
       - DATABASE_PASSWORD=insecure
-      - UWSGI_HTTP=0.0.0.0:8001
-      - UWSGI_MASTER=1
-      - UWSGI_STATIC_INDEX=index.html
-      - UWSGI_STATIC_MAP=/static=/static
-      - UWSGI_CALLABLE=application
-      - UWSGI_VACUUM=1
-      - UWSGI_STATIC_EXPIRES=/* 3600
-      - UWSGI_OFFLOAD_THREADS=1
-      - UWSGI_DIE_ON_TERM=1
-      - UWSGI_MODULE=iotsignals.wsgi:application
-      - UWSGI_PY_AUTORELOAD=1
-      - UWSGI_HTTP_AUTO_GZIP=1
       - AUTHORIZATION_TOKEN=insecure
       - PYTHONBREAKPOINT
       - PYTHONDONTWRITEBYTECODE=1
@@ -60,7 +48,7 @@ services:
   locust:
     build:
       context: .
-      dockerfile: Dockerfile-locust
+      dockerfile: loadtest/Dockerfile
     volumes:
       - ./reports:/opt/reports
       - ./:/opt/src
@@ -68,7 +56,7 @@ services:
       - PYTHONDONTWRITEBYTECODE=1
     links:
       - api
-    command: bash -c "locust -f /opt/src/locustfile.py --host=http://api:8001 --headless --users 250 --spawn-rate 25 --run-time 30s"
+    command: bash -c "locust -f /opt/src/loadtest/locustfile.py --host=http://api:8001 --headless --users 250 --spawn-rate 25 --run-time 30s"
 
   passage_hour_aggregation:
     build:
