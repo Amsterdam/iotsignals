@@ -82,9 +82,6 @@ TEMPLATES = [
     },
 ]
 
-
-
-
 # Database
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
 DATABASES = {
@@ -164,19 +161,6 @@ TEMPLATES = [
         },
     }
 ]
-
-# Internationalization
-# https://docs.djangoproject.com/en/1.9/topics/i18n/
-
-LANGUAGE_CODE = "en-us"
-
-TIME_ZONE = "UTC"
-
-USE_I18N = True
-
-USE_L10N = True
-
-USE_TZ = True
 
 DUMP_DIR = "mks-dump"
 
