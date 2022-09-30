@@ -94,10 +94,7 @@ class TestZwaarVerkeerHourAggregationV2:
         # check the most important (calculated) attribute: count (number of passages)
         # based on the 'data leveringsovereenkomst', the following rules apply
         # if this type should not be included, the aggregation should not exist
-        should_be_included = rijrichting_correct and (
-            (is_bedrijfsvoertuig and toegestane_maximum_massa_voertuig > 3500)
-            or toegestane_maximum_massa_voertuig > 7500
-        )
+        should_be_included = rijrichting_correct and (is_bedrijfsvoertuig or toegestane_maximum_massa_voertuig > 3500)
         if not should_be_included:
             assert HeavyTrafficHourAggregationV2.objects.count() == 0
         else:
