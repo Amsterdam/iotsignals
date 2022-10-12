@@ -11,7 +11,7 @@ COPY requirements.txt /app/
 RUN pip install -r requirements.txt
 
 COPY src /app/src/
-COPY deploy /app/deploy/
+COPY deploy /deploy/
 
 WORKDIR /app
 

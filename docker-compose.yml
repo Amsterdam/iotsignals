@@ -14,7 +14,7 @@ services:
     volumes:
       - ./src:/app/src
       - ./tests:/app/tests
-      - ./deploy:/app/deploy
+      - ./deploy:/deploy
     depends_on:
       - database
     environment:
@@ -28,7 +28,7 @@ services:
       - PYTHONDONTWRITEBYTECODE=1
       - HOME=/tmp
     image: docker-registry.secure.amsterdam.nl/datapunt/iotsignals:${VERSION:-latest}
-    entrypoint: ../deploy/docker-wait.sh
+    entrypoint: /deploy/docker-wait.sh
     command: uwsgi
 
   dev:
