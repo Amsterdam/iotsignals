@@ -109,6 +109,12 @@ class PassageHourAggregation(models.Model):
 
 
 class Camera(models.Model):
+    # VERY (VERY) IMPORTANT NOTES
+    # This camera table is NOT complete. It is a subset of all the camera's, specifically and only used as a
+    # helper table for joining in the aggregations. The info in this table is NOT kept up to date.
+    # Furthermore, the camera_naam DOES NOT neccesarily correspond to the camera_naam in the passage table.
+    # DO NOT use this table for data develiveries.
+
     id = models.AutoField(primary_key=True)
     camera_id = models.CharField(max_length=255, null=True, blank=True)
     vma_linknr = models.CharField(max_length=255, null=True, blank=True)
