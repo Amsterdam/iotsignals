@@ -29,7 +29,7 @@ services:
       - HOME=/tmp
     image: docker-registry.secure.amsterdam.nl/datapunt/iotsignals:${VERSION:-latest}
     entrypoint: /deploy/docker-wait.sh
-    command: uwsgi
+    command: /deploy/docker-run.sh
 
   dev:
     <<: *api

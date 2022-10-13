@@ -23,7 +23,7 @@ ARG SECRET_KEY=dev
 ARG AUTHORIZATION_TOKEN=dev
 RUN python src/manage.py collectstatic --no-input
 
-CMD uwsgi
+CMD ["/deploy/docker-run.sh"]
 WORKDIR /app/src
 
 FROM api as dev
