@@ -8,43 +8,47 @@ services:
       POSTGRES_USER: iotsignals
       POSTGRES_PASSWORD: insecure
   api: &api
-    build: ./api
+    build:
+      context: .
+      target: api
     volumes:
-      - ./api/src:/app
+      - ./src:/app/src
+      - ./tests:/app/tests
+      - ./deploy:/deploy
     depends_on:
       - database
     environment:
+      - SECRET_KEY=123456
       - DATABASE_NAME=iotsignals
       - DATABASE_HOST=database
       - DATABASE_USER=iotsignals
       - DATABASE_PASSWORD=insecure
-      - UWSGI_HTTP=0.0.0.0:8001
-      - UWSGI_MASTER=1
-      - UWSGI_STATIC_INDEX=index.html
-      - UWSGI_STATIC_MAP=/iotsignals/static=/static
-      - UWSGI_CALLABLE=application
-      - UWSGI_VACUUM=1
-      - UWSGI_STATIC_EXPIRES=/* 3600
-      - UWSGI_OFFLOAD_THREADS=1
-      - UWSGI_DIE_ON_TERM=1
-      - UWSGI_MODULE=iotsignals.wsgi:application
-      - UWSGI_PY_AUTORELOAD=1
-      - UWSGI_HTTP_AUTO_GZIP=1
       - AUTHORIZATION_TOKEN=insecure
       - PYTHONBREAKPOINT
       - PYTHONDONTWRITEBYTECODE=1
       - HOME=/tmp
     image: docker-registry.secure.amsterdam.nl/datapunt/iotsignals:${VERSION:-latest}
     entrypoint: /deploy/docker-wait.sh
-    command: uwsgi
+    command: /deploy/docker-run.sh
 
   dev:
     <<: *api
+    build:
+      context: .
+      target: dev
     command:
       python manage.py runserver_plus 0.0.0.0:8001 --print-sql
 
+  test:
+    <<: *api
+    build:
+      context: .
+      target: test
+
   locust:
-    build: .
+    build:
+      context: .
+      dockerfile: loadtest/Dockerfile
     volumes:
       - ./reports:/opt/reports
       - ./:/opt/src
@@ -52,12 +56,14 @@ services:
       - PYTHONDONTWRITEBYTECODE=1
     links:
       - api
-    command: bash -c "locust -f /opt/src/locustfile.py --host=http://api:8001 --headless --users 250 --spawn-rate 25 --run-time 30s"
+    command: bash -c "locust -f /opt/src/loadtest/locustfile.py --host=http://api:8001 --headless --users 250 --spawn-rate 25 --run-time 30s"
 
   passage_hour_aggregation:
-    build: ./api
+    build:
+      context: .
+      target: api
     volumes:
-      - ./api/src:/app
+      - ./src:/app/src
     links:
       - database
     environment:

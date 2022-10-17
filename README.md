@@ -1,5 +1,17 @@
 # iotsignals
 
+milue zone
+autos komen binnen
+krijgen een boete alsze diezel autos zijn.
+scannen autos met camera's
+
+data wordt doorgestuurt naar iotsignals
+data wordt opgeslagen voor data analyze
+
+per record wordt een request gestuurt.
+
+
+
 Naming conventions:
     - iotsignals: Umbrella term for this repository since the data is retrieved through IoT devices (e.g: cameras)
     - Passages: Monitoring cars. Measured with cameras that keep count of passing cars.

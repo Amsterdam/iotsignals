@@ -27,19 +27,19 @@ pipeline {
     stages {
         stage('Test') {
             steps {
-                sh "make --directory=api/ test"
+                sh "make test"
             }
         }
 
-        stage('Locust load test') {
-            steps {
-                sh "./api/deploy/docker-locust-load-test.sh"
-            }
-        }
+//         stage('Locust load test') {
+//             steps {
+//                 sh "./deploy/docker-locust-load-test.sh"
+//             }
+//         }
 
         stage('Build') {
             steps {
-                sh 'make --directory=api/ build'
+                sh 'make build'
             }
         }
 
@@ -60,7 +60,7 @@ pipeline {
                             ]
                         ])
                         retry(3) {
-                            sh 'make --directory=api/ push_semver'
+                            sh 'make push_semver'
                         }
                     }
                 }
@@ -72,7 +72,7 @@ pipeline {
                         }
                     }
                     steps {
-                        sh 'VERSION=acceptance make --directory=api/ push'
+                        sh 'VERSION=acceptance make push'
                         build job: 'Subtask_Openstack_Playbook', parameters: [
                             string(name: 'PLAYBOOK', value: PLAYBOOK),
                             string(name: 'INVENTORY', value: "acceptance"),
@@ -94,7 +94,7 @@ pipeline {
                 stage('Deploy to production') {
                     when { tag pattern: "\\d+\\.\\d+\\.\\d+\\.*", comparator: "REGEXP" }
                     steps {
-                        sh 'VERSION=production make --directory=api/ push'
+                        sh 'VERSION=production make push'
                         build job: 'Subtask_Openstack_Playbook', parameters: [
                             string(name: 'PLAYBOOK', value: PLAYBOOK),
                             string(name: 'INVENTORY', value: "production"),
@@ -118,7 +118,7 @@ pipeline {
     }
     post {
         always {
-            sh 'make --directory=api/ clean'
+            sh 'make clean'
         }
         failure {
             slackSend(channel: SLACK_CHANNEL, attachments: [SLACK_MESSAGE <<
