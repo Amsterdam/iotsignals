@@ -235,6 +235,5 @@ class Command(BaseCommand):
 
 
         while start_date < end_date:
-            #self._run_query_from_date(start_date)
-            print(start_date)
+            self._run_query_from_date(start_date)
             start_date = start_date + timedelta(days=1)
