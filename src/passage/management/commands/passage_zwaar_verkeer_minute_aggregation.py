@@ -11,8 +11,7 @@ log = logging.getLogger(__name__)
 class Command(BaseCommand):
     def add_arguments(self, parser):
         # Named (optional) argument
-        group = parser.add_mutually_exclusive_group()
-        group.add_argument(
+        parser.add_argument(
             '--from-date',
             type=datetime.date.fromisoformat,
             help='Run the aggregations from this date. Needs to be at least in the previous month',
@@ -22,11 +21,7 @@ class Command(BaseCommand):
             type=datetime.date.fromisoformat,
             help='Run the aggregations to this date, Needs to be at least in the previous month',
         )
-        group.add_argument(
-            '--last-month',
-            action='store_true',
-            help='Run the aggregations for previous month',
-        )
+
 
     def _get_delete_query(self, run_date):
         return f""" 
@@ -219,11 +214,8 @@ class Command(BaseCommand):
             log.info(f"Inserted {cursor.rowcount} records")
 
     def handle(self, *args, **options):
-        start_date = date.today().replace(day=1, month=date.today().month-1) #default run for last month, similar to last run flasg
-        end_date = date.today().replace(day=1) #default until but excluding today
-        if options['last_month']: # run the whole previous month
-            start_date = date.today().replace(day=1, month=date.today().month-1)
-            end_date = date.today().replace(day=1)
+        start_date = date.today()-timedelta(days=31) #default run for the day one month ago
+        end_date = date.today()-timedelta(days=30)#
         if options['from_date']:
             start_date = options['from_date']
             if start_date >= date.today().replace(day=1):
