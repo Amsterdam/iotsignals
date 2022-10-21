@@ -2,7 +2,7 @@ import datetime
 import logging
 from datetime import date, timedelta
 
-from django.core.management.base import BaseCommand
+from django.core.management.base import BaseCommand, CommandError
 from django.db import connection
 
 log = logging.getLogger(__name__)
@@ -14,8 +14,14 @@ class Command(BaseCommand):
         parser.add_argument(
             '--from-date',
             type=datetime.date.fromisoformat,
-            help='Run the aggregations from this date',
+            help='Run the aggregations from this date. Needs to be at least in the previous month',
         )
+        parser.add_argument(
+            '--to-date',
+            type=datetime.date.fromisoformat,
+            help='Run the aggregations to this date, Needs to be at least in the previous month',
+        )
+
 
     def _get_delete_query(self, run_date):
         return f""" 
@@ -124,10 +130,7 @@ class Command(BaseCommand):
                     p.rijrichting = h.rijrichting
         WHERE p.passage_at >= '{run_date}'
         AND p.passage_at < '{run_date + timedelta(days=1)}'
-        AND (
-		    (p.voertuig_soort = 'Bedrijfsauto' AND p.toegestane_maximum_massa_voertuig > 3500) OR 
-		    p.toegestane_maximum_massa_voertuig > 7500
-        )
+        AND (p.voertuig_soort = 'Bedrijfsauto' OR p.toegestane_maximum_massa_voertuig > 3500)
 		AND h.rijrichting_correct = True
 		GROUP BY
 			   DATE(p.passage_at),
@@ -211,12 +214,18 @@ class Command(BaseCommand):
             log.info(f"Inserted {cursor.rowcount} records")
 
     def handle(self, *args, **options):
+        start_date = date.today()-timedelta(days=31) #default run for the day one month ago
+        end_date = date.today()-timedelta(days=30)#
         if options['from_date']:
-            run_date = options['from_date']
-            while run_date < date.today():
-                self._run_query_from_date(run_date)
-                run_date = run_date + timedelta(days=1)
+            start_date = options['from_date']
+            if start_date >= date.today().replace(day=1):
+                raise CommandError("Start date cannot be this month")
+        if options['to_date']:
+            end_date = options['to_date']
+            if end_date > date.today().replace(day=1):
+                raise CommandError("End date cannot be this month (with exception of the first)")
 
-        else:
-            run_date = date.today() - timedelta(days=1)
-            self._run_query_from_date(run_date)
+
+        while start_date < end_date:
+            self._run_query_from_date(start_date)
+            start_date = start_date + timedelta(days=1)
