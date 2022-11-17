@@ -226,25 +226,6 @@ class TestPassageAPI_Versions_1_2(TestPassageAPI):
         response = self.client.delete(f'{self.url(payload_version)}{payload["id"]}/')
         assert response.status_code == 404
 
-    def test_passage_taxi_export(self, payload_version: PayloadVersion):
-
-        baker.make(
-            'passage.PassageHourAggregation',
-            count=2,
-            taxi_indicator=True,
-            _quantity=500,
-        )
-
-        # first post a record
-        api_version = to_api_version(payload_version)
-        url = reverse(f'{api_version}:passage-export-taxi')
-        response = self.client.get(url)
-        assert response.status_code == 200
-
-        date = datetime.now().strftime("%Y-%m-%d")
-        lines = [line for line in response.streaming_content]
-        assert lines == [b'datum,aantal_taxi_passages\r\n', f'{date},1000\r\n'.encode()]
-
     @override_settings(AUTHORIZATION_TOKEN='foo')
     def test_passage_export_no_auth(self, payload_version: PayloadVersion):
         api_version = to_api_version(payload_version)
