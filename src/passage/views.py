@@ -80,29 +80,6 @@ class PassageViewSet(mixins.CreateModelMixin, viewsets.GenericViewSet):
         request.data.update(tmp)
         return super().create(request, *args, **kwargs)
 
-    @action(methods=['get'], detail=False, url_path='export-taxi')
-    def export_taxi(self, request, *args, **kwargs):
-        # 1. Get the iterator of the QuerySet
-        qs = (
-            models.PassageHourAggregation.objects.annotate(datum=F('date'))
-            .values('datum')
-            .annotate(aantal_taxi_passages=Sum('count'))
-            .filter(taxi_indicator=True)
-        )
-
-        # 2. Create the instance of our CSVExport class
-        csv_export = CSVExport()
-
-        # 3. Export (download) the file
-        #  return csv_export.export(
-        #  "export",
-        #  iterator,
-        #  lambda x: [x['datum'], x['aantal_taxi_passages']],
-        #  header=['datum', 'aantal_taxi_passages'],
-        #  )
-
-        return csv_export.export("export", qs.iterator(), streaming=True)
-
     @action(
         methods=['get'],
         detail=False,
