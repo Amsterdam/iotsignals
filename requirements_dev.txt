@@ -52,7 +52,7 @@ defusedxml==0.7.1
     # via
     #   -r ./requirements.txt
     #   djangorestframework-xml
-django==4.0.7
+django==4.0.9
     # via
     #   -r ./requirements.txt
     #   django-datetime-utc
@@ -231,10 +231,6 @@ ruamel-yaml==0.17.21
     # via
     #   -r ./requirements.txt
     #   drf-yasg
-ruamel-yaml-clib==0.2.6
-    # via
-    #   -r ./requirements.txt
-    #   ruamel-yaml
 sentry-sdk==1.5.12
     # via -r ./requirements.txt
 six==1.16.0
@@ -257,7 +253,6 @@ toml==0.10.2
     # via ipdb
 tomli==2.0.1
     # via
-    #   black
     #   pep517
     #   pytest
 traitlets==5.2.0
