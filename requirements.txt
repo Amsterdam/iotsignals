@@ -4,7 +4,7 @@
 #
 #    pip-compile --output-file=requirements.txt requirements.in
 #
-asgiref==3.5.1
+asgiref==3.6.0
     # via django
 certifi==2021.10.8
     # via
@@ -20,7 +20,7 @@ coreschema==0.0.4
     #   drf-yasg
 defusedxml==0.7.1
     # via djangorestframework-xml
-django==4.0.7
+django==4.1.7
     # via
     #   -r requirements.in
     #   django-datetime-utc
@@ -89,8 +89,6 @@ requests==2.27.1
     #   coreapi
 ruamel-yaml==0.17.21
     # via drf-yasg
-ruamel-yaml-clib==0.2.6
-    # via ruamel-yaml
 sentry-sdk==1.5.12
     # via -r requirements.in
 six==1.16.0
