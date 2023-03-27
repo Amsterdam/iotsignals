@@ -1,14 +1,17 @@
-FROM amsterdam/python:3.8-buster as api
+FROM python:3.10-buster as api
 MAINTAINER datapunt@amsterdam.nl
 
 ENV PYTHONUNBUFFERED 1
 
 EXPOSE 8000
-
+RUN adduser --system datapunt
 RUN mkdir -p /static && chown datapunt /static
+RUN apt update && apt install  -y gdal-bin netcat
 
 COPY requirements.txt /app/
-RUN pip install -r requirements.txt
+RUN pip install -r /app/requirements.txt
+
+
 
 COPY src /app/src/
 COPY deploy /deploy/
