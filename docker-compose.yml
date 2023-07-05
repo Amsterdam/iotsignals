@@ -2,7 +2,7 @@ version: "3.5"
 
 services:
   database:
-    image: postgis/postgis:12-3.3
+    image: postgis/postgis:11-3.3
     environment:
       POSTGRES_DB: iotsignals
       POSTGRES_USER: iotsignals
