@@ -27,7 +27,7 @@ services:
       - PYTHONBREAKPOINT
       - PYTHONDONTWRITEBYTECODE=1
       - HOME=/tmp
-    image: iotsignals:${VERSION:-latest}
+    image: docker-registry.secure.amsterdam.nl/datapunt/iotsignals:${VERSION:-latest}
     entrypoint: /deploy/docker-wait.sh
     command: /deploy/docker-run.sh
 
