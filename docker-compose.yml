@@ -2,7 +2,7 @@ version: "3.5"
 
 services:
   database:
-    image: postgis/postgis:11-3.3
+    image: amsterdam/postgres11
     environment:
       POSTGRES_DB: iotsignals
       POSTGRES_USER: iotsignals
@@ -27,7 +27,6 @@ services:
       - PYTHONBREAKPOINT
       - PYTHONDONTWRITEBYTECODE=1
       - HOME=/tmp
-    image: docker-registry.secure.amsterdam.nl/datapunt/iotsignals:${VERSION:-latest}
     entrypoint: /deploy/docker-wait.sh
     command: /deploy/docker-run.sh
 
@@ -38,6 +37,7 @@ services:
       target: dev
     command:
       python manage.py runserver_plus 0.0.0.0:8001 --print-sql
+    image: docker-registry.secure.amsterdam.nl/datapunt/iotsignals:${VERSION:-latest}
 
   test:
     <<: *api
