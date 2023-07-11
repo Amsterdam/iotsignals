@@ -10,7 +10,7 @@ RUN mkdir -p /static && chown datapunt /static
 
 RUN apt update -y \
     && apt upgrade -y \
-    && apt install -y --no-install-recommends gdal-bin build-essential  libpcre3-dev netcat postgresql-13 zlib1g-dev wget \
+    && apt install -y --no-install-recommends gdal-bin build-essential  libpcre3-dev netcat postgresql-13 zlib1g-dev wget ca-certificates\
     && apt autoremove -y \
     && apt clean -y \
     && rm -rf /var/lib/apt/lists/*
