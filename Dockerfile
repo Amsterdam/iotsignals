@@ -1,4 +1,4 @@
-FROM python:3.11.4-slim-bullseye as api
+FROM python:3.10.12-slim-bullseye as api
 MAINTAINER datapunt@amsterdam.nl
 
 ENV PYTHONUNBUFFERED 1
@@ -10,10 +10,18 @@ RUN mkdir -p /static && chown datapunt /static
 
 RUN apt update -y \
     && apt upgrade -y \
-    && apt install -y --no-install-recommends gdal-bin build-essential  libpcre3-dev netcat postgresql-13 \
+    && apt install -y --no-install-recommends gdal-bin build-essential  libpcre3-dev netcat postgresql-13 zlib1g-dev wget \
     && apt autoremove -y \
     && apt clean -y \
     && rm -rf /var/lib/apt/lists/*
+
+#Bloody UWSGI from pip doesnt come with all the required plugins. Beter make it form scratch
+RUN wget https://projects.unbit.it/downloads/uwsgi-2.0.20.tar.gz \
+    && tar zxf uwsgi-2.0.20.tar.gz -C / \
+    && cd /uwsgi-2.0.20 \
+    && python uwsgiconfig.py --build \
+    && ln -s /uwsgi-2.0.20/uwsgi  /usr/local/bin/uwsgi
+
 
 COPY requirements.txt /app/
 WORKDIR /app
