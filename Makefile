@@ -45,6 +45,9 @@ test:                               ## Execute tests
 dev: migrate						## Run the development app (and run extra migrations first)
 	$(run) --service-ports dev
 
+api:
+	$(run) --service-ports api
+
 loadtest: migrate
 	$(manage) make_partitions $(ARGS)
 	$(run) locust $(ARGS)
