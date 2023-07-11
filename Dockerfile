@@ -16,8 +16,9 @@ RUN apt update -y \
     && rm -rf /var/lib/apt/lists/*
 
 #Bloody UWSGI from pip doesnt come with all the required plugins. Beter make it form scratch
-RUN wget https://projects.unbit.it/downloads/uwsgi-2.0.20.tar.gz \
-    && tar zxf uwsgi-2.0.20.tar.gz -C / \
+RUN wget --no-check-certificate https://projects.unbit.it/downloads/uwsgi-2.0.20.tar.gz
+RUN file uwsgi-2.0.20.tar.gz
+RUN tar zxf uwsgi-2.0.20.tar.gz -C / \
     && cd /uwsgi-2.0.20 \
     && python uwsgiconfig.py --build \
     && ln -s /uwsgi-2.0.20/uwsgi  /usr/local/bin/uwsgi
