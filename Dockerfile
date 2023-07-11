@@ -10,14 +10,15 @@ RUN mkdir -p /static && chown datapunt /static
 
 RUN apt update -y \
     && apt upgrade -y \
-    && apt install -y --no-install-recommends gdal-bin build-essential  libpcre3-dev netcat postgresql-13 zlib1g-dev wget ca-certificates\
+    && apt install -y --no-install-recommends gdal-bin build-essential  libpcre3-dev netcat postgresql-13 zlib1g-dev wget ca-certificates file\
     && apt autoremove -y \
     && apt clean -y \
     && rm -rf /var/lib/apt/lists/*
 
 #Bloody UWSGI from pip doesnt come with all the required plugins. Beter make it form scratch
-RUN wget https://projects.unbit.it/downloads/uwsgi-2.0.20.tar.gz \
-    && tar zxf uwsgi-2.0.20.tar.gz -C / \
+RUN wget --no-check-certificate https://projects.unbit.it/downloads/uwsgi-2.0.20.tar.gz
+RUN file uwsgi-2.0.20.tar.gz
+RUN tar zxf uwsgi-2.0.20.tar.gz -C / \
     && cd /uwsgi-2.0.20 \
     && python uwsgiconfig.py --build \
     && ln -s /uwsgi-2.0.20/uwsgi  /usr/local/bin/uwsgi
