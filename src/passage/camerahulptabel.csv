@@ -1,0 +1,631 @@
+id,gebiedstype,gebied,camera_id
+1,Interessant gebied,Arenagebied,ANPR-03093-A
+2,Interessant gebied,Arenagebied,ANPR-03094-A
+3,Interessant gebied,Arenagebied,ANPR-03095-A
+4,Interessant gebied,Arenagebied,ANPR-03096-A
+5,Interessant gebied,Arenagebied,ANPR-01047-A
+6,Interessant gebied,Omgeving Raamplein (zie kaart),ANPR-06012-A
+7,Interessant gebied,Omgeving Raamplein (zie kaart),ANPR-06013-A
+8,Interessant gebied,Omgeving Leidseplein,ANPR-06014-A
+9,Interessant gebied,Omgeving Leidseplein,ANPR-06015-A
+10,Interessant gebied,Stadhouderskade,ANPR-03049-A
+11,Interessant gebied,Stadhouderskade,ANPR-03051-A
+12,Interessant gebied,Stadhouderskade,ANPR-03055-A
+13,Interessant gebied,Stadhouderskade,ANPR-03057-A
+14,Interessant gebied,Stadhouderskade,ANPR-03063-A
+15,Interessant gebied,Centraal station,ANPR-06043-A
+16,Interessant gebied,Centraal station,ANPR-06044-A
+17,Interessant gebied,Centraal station,ANPR-06045-A
+18,Interessant gebied,Centraal station,ANPR-02021-A
+19,Interessant gebied,Centraal station,ANPR-01052-A
+20,Interessant gebied,Centraal station,ANPR-01053-A
+21,Interessant gebied,Centraal station,ANPR-06041-A
+22,Interessant gebied,Centraal station,ANPR-06042-A
+23,Interessant gebied,Oude Zijde A,ANPR-02011-A
+24,Interessant gebied,Oude Zijde A,ANPR-02012-A
+25,Interessant gebied,Oude Zijde A,ANPR-02013-A
+26,Interessant gebied,Oude Zijde B,ANPR-02010-A
+27,Interessant gebied,Oude Zijde C,ANPR-02005-A
+28,Interessant gebied,Oude Zijde C,ANPR-02016-A
+29,Interessant gebied,Oude Zijde C,ANPR-02017-A
+30,Interessant gebied,Oude Zijde C,ANPR-02018-A
+31,Interessant gebied,Oude Zijde C,ANPR-02019-A
+32,Interessant gebied,Oude Zijde C,ANPR-02020-A
+33,Interessant gebied,S100,ANPR-02021-A
+34,Interessant gebied,S100,ANPR-03036-A
+35,Interessant gebied,S100,ANPR-03038-A
+36,Interessant gebied,S100,ANPR-03037-A
+37,Interessant gebied,S100,ANPR-03040-A
+38,Interessant gebied,S100,ANPR-03048-A
+39,Interessant gebied,S100,ANPR-03127-A
+40,Interessant gebied,S100,ANPR-03125-A
+41,Interessant gebied,S100,ANPR-03051-A
+42,Interessant gebied,S100,ANPR-03049-A
+43,Interessant gebied,S100,ANPR-03055-A
+44,Interessant gebied,S100,ANPR-03057-A
+45,Interessant gebied,S100,ANPR-03063-A
+46,Interessant gebied,S100,ANPR-03061-A
+47,Interessant gebied,S100,ANPR-03072-A
+48,Interessant gebied,S100,ANPR-03070-A
+49,Interessant gebied,S100,ANPR-03033-A
+50,Interessant gebied,S100,ANPR-03034-A
+51,Interessant gebied,S100,ANPR-03014-A
+52,Interessant gebied,S100,ANPR-03015-A
+53,Interessant gebied,Rembrandtplein,ANPR-02001-A
+54,Interessant gebied,Muntplein,ANPR-02004-A
+55,Interessant gebied,Horecabevoorrading Noord?,ANPR-01046-A-B
+56,Interessant gebied,Museumbrug,ANPR-06017-A
+57,Interessant gebied,Rijksmuseum,ANPR-01051-A
+58,Interessant gebied,Sloterdijk,ANPR-03002-A
+59,Interessant gebied,Sloterdijk,ANPR-03001-A
+60,Interessant gebied,Sloterdijk,ANPR-03005-A
+61,Interessant gebied,Sloterdijk,ANPR-03124-A
+62,Interessant gebied,Sloterdijk,ANPR-01004
+63,Stadsbreed,Stadsbreed,ANPR-00002-V_ANPR-05032
+64,Stadsbreed,Stadsbreed,ANPR-00005-V_ANPR-05501
+65,Stadsbreed,Stadsbreed,ANPR-00006-V_ANPR-05040
+66,Stadsbreed,Stadsbreed,ANPR-00007-V_ANPR-05073
+67,Stadsbreed,Stadsbreed,ANPR-00008-V_ANPR-05082
+68,Stadsbreed,Stadsbreed,ANPR-00010-V_ANPR-06005-A
+69,Stadsbreed,Stadsbreed,ANPR-00011-V_ANPR-05092
+70,Stadsbreed,Stadsbreed,ANPR-00012-V_ANPR-05506
+71,Stadsbreed,Stadsbreed,ANPR-00014-V_ANPR-05510
+72,Stadsbreed,Stadsbreed,ANPR-00015-V_ANPR-05036
+73,Stadsbreed,Stadsbreed,ANPR-00017-V_ANPR-05037
+74,Stadsbreed,Stadsbreed,ANPR-01001-A
+75,Stadsbreed,Stadsbreed,ANPR-01004
+76,Stadsbreed,Stadsbreed,ANPR-01005-A
+77,Stadsbreed,Stadsbreed,ANPR-01006-A
+78,Stadsbreed,Stadsbreed,ANPR-01006-B
+79,Stadsbreed,Stadsbreed,ANPR-01007-A
+80,Stadsbreed,Stadsbreed,ANPR-01008-A
+81,Stadsbreed,Stadsbreed,ANPR-01009-A
+82,Stadsbreed,Stadsbreed,ANPR-01010-A
+83,Stadsbreed,Stadsbreed,ANPR-01011-A
+84,Stadsbreed,Stadsbreed,ANPR-01011-B
+85,Stadsbreed,Stadsbreed,ANPR-01012-A
+86,Stadsbreed,Stadsbreed,ANPR-01013-A
+87,Stadsbreed,Stadsbreed,ANPR-01014-A
+88,Stadsbreed,Stadsbreed,ANPR-01015-A
+89,Stadsbreed,Stadsbreed,ANPR-01016-A
+90,Stadsbreed,Stadsbreed,ANPR-01019-C
+91,Stadsbreed,Stadsbreed,ANPR-01020-A
+92,Stadsbreed,Stadsbreed,ANPR-01021-A
+93,Stadsbreed,Stadsbreed,ANPR-01022-A
+94,Stadsbreed,Stadsbreed,ANPR-01023-A
+95,Stadsbreed,Stadsbreed,ANPR-01030-A
+96,Stadsbreed,Stadsbreed,ANPR-01031-A
+97,Stadsbreed,Stadsbreed,ANPR-01032-A
+98,Stadsbreed,Stadsbreed,ANPR-01034-A
+99,Stadsbreed,Stadsbreed,ANPR-01035-A
+100,Stadsbreed,Stadsbreed,ANPR-01036-A
+101,Stadsbreed,Stadsbreed,ANPR-01037-A
+102,Stadsbreed,Stadsbreed,ANPR-01040-A
+103,Stadsbreed,Stadsbreed,ANPR-01045-A
+104,Stadsbreed,Stadsbreed,ANPR-01046-B
+105,Stadsbreed,Stadsbreed,ANPR-01047-A
+106,Stadsbreed,Stadsbreed,ANPR-01048-A
+107,Stadsbreed,Stadsbreed,ANPR-01050-A
+108,Stadsbreed,Stadsbreed,ANPR-01051-A
+109,Stadsbreed,Stadsbreed,ANPR-01052-A
+110,Stadsbreed,Stadsbreed,ANPR-01053-A
+111,Stadsbreed,Stadsbreed,ANPR-01054-A
+112,Stadsbreed,Stadsbreed,ANPR-01055-A
+113,Stadsbreed,Stadsbreed,ANPR-01056-A
+114,Stadsbreed,Stadsbreed,ANPR-01058-A
+115,Stadsbreed,Stadsbreed,ANPR-01059-A
+116,Stadsbreed,Stadsbreed,ANPR-01060-A
+117,Stadsbreed,Stadsbreed,ANPR-01061-A
+118,Stadsbreed,Stadsbreed,ANPR-01061-B
+119,Stadsbreed,Stadsbreed,ANPR-01061-C
+120,Stadsbreed,Stadsbreed,ANPR-01063-A
+121,Stadsbreed,Stadsbreed,ANPR-01065-A
+122,Stadsbreed,Stadsbreed,ANPR-01066-A
+123,Stadsbreed,Stadsbreed,ANPR-01067-A
+124,Stadsbreed,Stadsbreed,ANPR-01068-A
+125,Stadsbreed,Stadsbreed,ANPR-01069-A
+126,Stadsbreed,Stadsbreed,ANPR-01072-A
+127,Stadsbreed,Stadsbreed,ANPR-01073-A
+128,Stadsbreed,Stadsbreed,ANPR-01074-A
+129,Stadsbreed,Stadsbreed,ANPR-01075-A
+130,Stadsbreed,Stadsbreed,ANPR-01076-A
+131,Stadsbreed,Stadsbreed,ANPR-01077-A
+132,Stadsbreed,Stadsbreed,ANPR-01078-A
+133,Stadsbreed,Stadsbreed,ANPR-01079-A
+134,Stadsbreed,Stadsbreed,ANPR-01080-A
+135,Stadsbreed,Stadsbreed,ANPR-01081-A
+136,Stadsbreed,Stadsbreed,ANPR-01083-A
+137,Stadsbreed,Stadsbreed,ANPR-01084-A
+138,Stadsbreed,Stadsbreed,ANPR-01084-B
+139,Stadsbreed,Stadsbreed,ANPR-02001-A
+140,Stadsbreed,Stadsbreed,ANPR-02002-A
+141,Stadsbreed,Stadsbreed,ANPR-02003-A
+142,Stadsbreed,Stadsbreed,ANPR-02004-A
+143,Stadsbreed,Stadsbreed,ANPR-02005-A
+144,Stadsbreed,Stadsbreed,ANPR-02006-A
+145,Stadsbreed,Stadsbreed,ANPR-02008-A
+146,Stadsbreed,Stadsbreed,ANPR-02008-B
+147,Stadsbreed,Stadsbreed,ANPR-02009-A
+148,Stadsbreed,Stadsbreed,ANPR-02010-A
+149,Stadsbreed,Stadsbreed,ANPR-02011-A
+150,Stadsbreed,Stadsbreed,ANPR-02012-A
+151,Stadsbreed,Stadsbreed,ANPR-02013-A
+152,Stadsbreed,Stadsbreed,ANPR-02014-A
+153,Stadsbreed,Stadsbreed,ANPR-02016-A
+154,Stadsbreed,Stadsbreed,ANPR-02017-A
+155,Stadsbreed,Stadsbreed,ANPR-02018-A
+156,Stadsbreed,Stadsbreed,ANPR-02019-A
+157,Stadsbreed,Stadsbreed,ANPR-03005-A
+158,Stadsbreed,Stadsbreed,ANPR-03008-A
+159,Stadsbreed,Stadsbreed,ANPR-03009-A
+160,Stadsbreed,Stadsbreed,ANPR-03009-B
+161,Stadsbreed,Stadsbreed,ANPR-03010-A
+162,Stadsbreed,Stadsbreed,ANPR-03011-A
+163,Stadsbreed,Stadsbreed,ANPR-03012-A
+164,Stadsbreed,Stadsbreed,ANPR-03013-A
+165,Stadsbreed,Stadsbreed,ANPR-03014-A
+166,Stadsbreed,Stadsbreed,ANPR-03015-A
+167,Stadsbreed,Stadsbreed,ANPR-03018-A
+168,Stadsbreed,Stadsbreed,ANPR-03019-A
+169,Stadsbreed,Stadsbreed,ANPR-03020-A
+170,Stadsbreed,Stadsbreed,ANPR-03021-A
+171,Stadsbreed,Stadsbreed,ANPR-03022-A
+172,Stadsbreed,Stadsbreed,ANPR-03023-A
+173,Stadsbreed,Stadsbreed,ANPR-03024-A
+174,Stadsbreed,Stadsbreed,ANPR-03025-A
+175,Stadsbreed,Stadsbreed,ANPR-03026-A
+176,Stadsbreed,Stadsbreed,ANPR-03027-A
+177,Stadsbreed,Stadsbreed,ANPR-03028-A
+178,Stadsbreed,Stadsbreed,ANPR-03029-A
+179,Stadsbreed,Stadsbreed,ANPR-03030-A
+180,Stadsbreed,Stadsbreed,ANPR-03031-A
+181,Stadsbreed,Stadsbreed,ANPR-03034-A
+182,Stadsbreed,Stadsbreed,ANPR-03036-A
+183,Stadsbreed,Stadsbreed,ANPR-03037-A
+184,Stadsbreed,Stadsbreed,ANPR-03038-A
+185,Stadsbreed,Stadsbreed,ANPR-03039-A
+186,Stadsbreed,Stadsbreed,ANPR-03040-A
+187,Stadsbreed,Stadsbreed,ANPR-03041-A
+188,Stadsbreed,Stadsbreed,ANPR-03042-A
+189,Stadsbreed,Stadsbreed,ANPR-03044-A
+190,Stadsbreed,Stadsbreed,ANPR-03046-A
+191,Stadsbreed,Stadsbreed,ANPR-03047-A
+192,Stadsbreed,Stadsbreed,ANPR-03048-A
+193,Stadsbreed,Stadsbreed,ANPR-03049-A
+194,Stadsbreed,Stadsbreed,ANPR-03050-A
+195,Stadsbreed,Stadsbreed,ANPR-03051-A
+196,Stadsbreed,Stadsbreed,ANPR-03052-A
+197,Stadsbreed,Stadsbreed,ANPR-03053-A
+198,Stadsbreed,Stadsbreed,ANPR-03054-A
+199,Stadsbreed,Stadsbreed,ANPR-03055-A
+200,Stadsbreed,Stadsbreed,ANPR-03056-A
+201,Stadsbreed,Stadsbreed,ANPR-03057-A
+202,Stadsbreed,Stadsbreed,ANPR-03058-A
+203,Stadsbreed,Stadsbreed,ANPR-03060-A
+204,Stadsbreed,Stadsbreed,ANPR-03062-A
+205,Stadsbreed,Stadsbreed,ANPR-03063-A
+206,Stadsbreed,Stadsbreed,ANPR-03064-A
+207,Stadsbreed,Stadsbreed,ANPR-03065-A
+208,Stadsbreed,Stadsbreed,ANPR-03066-A
+209,Stadsbreed,Stadsbreed,ANPR-03069-A
+210,Stadsbreed,Stadsbreed,ANPR-03070-A
+211,Stadsbreed,Stadsbreed,ANPR-03071-A
+212,Stadsbreed,Stadsbreed,ANPR-03072-A
+213,Stadsbreed,Stadsbreed,ANPR-03073-A
+214,Stadsbreed,Stadsbreed,ANPR-03074-A
+215,Stadsbreed,Stadsbreed,ANPR-03075-A
+216,Stadsbreed,Stadsbreed,ANPR-03076-A
+217,Stadsbreed,Stadsbreed,ANPR-03077-A
+218,Stadsbreed,Stadsbreed,ANPR-03078-A
+219,Stadsbreed,Stadsbreed,ANPR-03080-A
+220,Stadsbreed,Stadsbreed,ANPR-03081-A
+221,Stadsbreed,Stadsbreed,ANPR-03082-A
+222,Stadsbreed,Stadsbreed,ANPR-03083-A
+223,Stadsbreed,Stadsbreed,ANPR-03084-A
+224,Stadsbreed,Stadsbreed,ANPR-03085-A
+225,Stadsbreed,Stadsbreed,ANPR-03086-A
+226,Stadsbreed,Stadsbreed,ANPR-03090-A
+227,Stadsbreed,Stadsbreed,ANPR-03091-A
+228,Stadsbreed,Stadsbreed,ANPR-03092-A
+229,Stadsbreed,Stadsbreed,ANPR-03098-A
+230,Stadsbreed,Stadsbreed,ANPR-03099-A
+231,Stadsbreed,Stadsbreed,ANPR-03100-A
+232,Stadsbreed,Stadsbreed,ANPR-03101-A
+233,Stadsbreed,Stadsbreed,ANPR-03102-A
+234,Stadsbreed,Stadsbreed,ANPR-03104-A
+235,Stadsbreed,Stadsbreed,ANPR-03105-A
+236,Stadsbreed,Stadsbreed,ANPR-03106-A
+237,Stadsbreed,Stadsbreed,ANPR-03107-A
+238,Stadsbreed,Stadsbreed,ANPR-03108-A
+239,Stadsbreed,Stadsbreed,ANPR-03118-A
+240,Stadsbreed,Stadsbreed,ANPR-03123-A
+241,Stadsbreed,Stadsbreed,ANPR-03125-A
+242,Stadsbreed,Stadsbreed,ANPR-03127-A
+243,Stadsbreed,Stadsbreed,ANPR-03132-A
+244,Stadsbreed,Stadsbreed,ANPR-06003-A
+245,Stadsbreed,Stadsbreed,ANPR-06004-A
+246,Stadsbreed,Stadsbreed,ANPR-06006-A
+247,Stadsbreed,Stadsbreed,ANPR-06007-A
+248,Stadsbreed,Stadsbreed,ANPR-06008-A
+249,Stadsbreed,Stadsbreed,ANPR-06009-A
+250,Stadsbreed,Stadsbreed,ANPR-06010-A
+251,Stadsbreed,Stadsbreed,ANPR-06011-A
+252,Stadsbreed,Stadsbreed,ANPR-06012-A
+253,Stadsbreed,Stadsbreed,ANPR-06013-A
+254,Stadsbreed,Stadsbreed,ANPR-06014-A
+255,Stadsbreed,Stadsbreed,ANPR-06015-A
+256,Stadsbreed,Stadsbreed,ANPR-06016-A
+257,Stadsbreed,Stadsbreed,ANPR-06017-A
+258,Stadsbreed,Stadsbreed,ANPR-06019-A
+259,Stadsbreed,Stadsbreed,ANPR-06021-A
+260,Stadsbreed,Stadsbreed,ANPR-06022-A
+261,Stadsbreed,Stadsbreed,ANPR-06022-B
+262,Stadsbreed,Stadsbreed,ANPR-06023-A
+263,Stadsbreed,Stadsbreed,ANPR-06024-A
+264,Stadsbreed,Stadsbreed,ANPR-06025-A
+265,Stadsbreed,Stadsbreed,ANPR-06026-A
+266,Stadsbreed,Stadsbreed,ANPR-06027-A
+267,Stadsbreed,Stadsbreed,ANPR-06028-A
+268,Stadsbreed,Stadsbreed,ANPR-06029-A
+269,Stadsbreed,Stadsbreed,ANPR-06030-A
+270,Stadsbreed,Stadsbreed,ANPR-06031-A
+271,Stadsbreed,Stadsbreed,ANPR-06032-A
+272,Stadsbreed,Stadsbreed,ANPR-06033-A
+273,Stadsbreed,Stadsbreed,ANPR-06034-A
+274,Stadsbreed,Stadsbreed,ANPR-06035-A
+275,Stadsbreed,Stadsbreed,ANPR-06036-A
+276,Stadsbreed,Stadsbreed,ANPR-06037-A
+277,Stadsbreed,Stadsbreed,ANPR-06038-A
+278,Stadsbreed,Stadsbreed,ANPR-06040-A
+279,Stadsbreed,Stadsbreed,ANPR-06041-A
+280,Stadsbreed,Stadsbreed,ANPR-06043-A
+281,Stadsbreed,Stadsbreed,ANPR-06044-A
+282,Stadsbreed,Stadsbreed,ANPR-06045-A
+283,Stadsbreed,Stadsbreed,ANPR-06046-A
+284,Stadsbreed,Stadsbreed,ANPR-06054-A
+285,Stadsbreed,Stadsbreed,ANPR-06055-A
+286,Stadsbreed,Stadsbreed,ANPR-06056-A
+287,Stadsbreed,Stadsbreed,ANPR-06057-A
+288,Stadsbreed,Stadsbreed,ANPR-06058-A
+289,Stadsbreed,Stadsbreed,ANPR-06059-A
+290,Stadsbreed,Stadsbreed,ANPR-09001-A
+291,Stadsbreed,Stadsbreed,ANPR-09002-A
+292,Stadsbreed,Stadsbreed,GAWK-01-1-IJdoornlaan-Beide
+293,Stadsbreed,Stadsbreed,GAWK-02-1-VerlengdeStellingweg-Noord
+294,Stadsbreed,Stadsbreed,GAWK-02-2-VerlengdeStellingweg-Zuid
+295,Stadsbreed,Stadsbreed,GAWK-03-1-IJdoornlaan-Beide
+296,Stadsbreed,Stadsbreed,GAWK-04-1-Hagedoornplein-Beide
+297,Stadsbreed,Stadsbreed,GAWK-05-1-JohanvanHasseltweg-Oost
+298,Stadsbreed,Stadsbreed,GAWK-05-2-JohanvanHasseltweg-West
+299,Stadsbreed,Stadsbreed,GAWK-07-1-NieuwePurmerweg-Beide
+300,Stadsbreed,Stadsbreed,GAWK-08-1-Werengouw-Beide
+301,Stadsbreed,Stadsbreed,GAWK-09-1-IJdoornlaan-Oost
+302,Stadsbreed,Stadsbreed,GAWK-09-2-IJdoornlaan-West
+303,Stadsbreed,Stadsbreed,GAWK-11-1-Blauwbrug-Oost
+304,Stadsbreed,Stadsbreed,GAWK-11-2-Blauwbrug-West
+305,Stadsbreed,Stadsbreed,GAWK-12-1-PrinsHendrikkade-Oost
+306,Stadsbreed,Stadsbreed,GAWK-12-2-PrinsHendrikkade-West
+307,Stadsbreed,Stadsbreed,GAWK-13-1-Weesperstraat-Zuid
+308,Stadsbreed,Stadsbreed,GAWK-13-2-Weesperstraat-Noord
+309,Stadsbreed,Stadsbreed,GAWK-14-1-Latjesbrug-Noord
+310,Stadsbreed,Stadsbreed,GAWK-14-2-Latjesbrug-Zuid
+311,Stadsbreed,Stadsbreed,GAWK-15-1-Kattenburgerplein-Beide
+312,Stadsbreed,Stadsbreed,GAWK-16-1-HoogteKadijk-Beide
+313,Stadsbreed,Stadsbreed,GAWK-17-1-Sarphatistraat-Oost
+314,Stadsbreed,Stadsbreed,GAWK-18-1-Sarphatistraat-Oost
+315,Stadsbreed,Stadsbreed,GAWK-19-1-Wibautstraat-Zuid
+316,Stadsbreed,Stadsbreed,GAWK-20-1-MrTreublaan-Oost
+317,Stadsbreed,Stadsbreed,GAWK-21-1-NieuweUtrechtseweg-Zuid
+318,Stadsbreed,Stadsbreed,GAWK-22-1-Middenweg-Zuid
+319,Stadsbreed,Stadsbreed,GAWK-23-1-Gooiseweg-Zuid
+320,Stadsbreed,Stadsbreed,GAWK-24-1-S112-Noord
+321,Stadsbreed,Stadsbreed,GAWK-24-2-S112-Zuid
+322,Stadsbreed,Stadsbreed,GAWK-29-1-Prinsengracht-Beide
+323,Stadsbreed,Stadsbreed,GAWK-30-1-Keizersgracht-Beide
+324,Stadsbreed,Stadsbreed,GAWK-31-1-Keizersgracht-Beide
+325,Stadsbreed,Stadsbreed,GAWK-32-1-Herengracht-Beide
+326,Stadsbreed,Stadsbreed,GAWK-33-1-Herengracht-Noord
+327,Stadsbreed,Stadsbreed,GAWK-34-1-Ceintuurbaan-West
+328,Stadsbreed,Stadsbreed,GAWK-34-2-Ceintuurbaan-Oost
+329,Stadsbreed,Stadsbreed,GAWK-35-1-Amsteldijk-Noord
+330,Stadsbreed,Stadsbreed,GAWK-36-1-Stadhouderskade-Oost
+331,Stadsbreed,Stadsbreed,GAWK-37-1-NieuweAmstelbrug-Beide
+332,Stadsbreed,Stadsbreed,GAWK-38-1-Hobbemakade-Beide
+333,Stadsbreed,Stadsbreed,GAWK-39-1-Stadhouderskade-Zuid
+334,Stadsbreed,Stadsbreed,GAWK-40-1-Kattenburgerstraat-Zuid
+335,Stadsdelen,Oost,ANPR-00002-V_ANPR-05032
+336,Stadsdelen,Centrum,ANPR-00005-V_ANPR-05501
+337,Stadsdelen,Oost,ANPR-00006-V_ANPR-05040
+338,Stadsdelen,Nieuw-West,ANPR-00007-V_ANPR-05073
+339,Stadsdelen,Nieuw-West,ANPR-00008-V_ANPR-05082
+340,Stadsdelen,Centrum,ANPR-00010-V_ANPR-06005-A
+341,Stadsdelen,Oost,ANPR-00011-V_ANPR-05092
+342,Stadsdelen,Noord,ANPR-00012-V_ANPR-05506
+343,Stadsdelen,Zuid,ANPR-00014-V_ANPR-05510
+344,Stadsdelen,Centrum,ANPR-00015-V_ANPR-05036
+345,Stadsdelen,Zuid,ANPR-00017-V_ANPR-05037
+346,Stadsdelen,West,ANPR-01001-A
+347,Stadsdelen,West,ANPR-01004
+348,Stadsdelen,West,ANPR-01005-A
+349,Stadsdelen,West,ANPR-01006-A
+350,Stadsdelen,West,ANPR-01006-B
+351,Stadsdelen,West,ANPR-01007-A
+352,Stadsdelen,Nieuw-West,ANPR-01008-A
+353,Stadsdelen,Nieuw-West,ANPR-01009-A
+354,Stadsdelen,Nieuw-West,ANPR-01010-A
+355,Stadsdelen,Nieuw-West,ANPR-01011-A
+356,Stadsdelen,Nieuw-West,ANPR-01011-B
+357,Stadsdelen,Nieuw-West,ANPR-01012-A
+358,Stadsdelen,Nieuw-West,ANPR-01013-A
+359,Stadsdelen,Nieuw-West,ANPR-01014-A
+360,Stadsdelen,Nieuw-West,ANPR-01015-A
+361,Stadsdelen,Nieuw-West,ANPR-01016-A
+362,Stadsdelen,Zuid,ANPR-01019-C
+363,Stadsdelen,Zuid,ANPR-01020-A
+364,Stadsdelen,Zuid,ANPR-01021-A
+365,Stadsdelen,Zuid,ANPR-01022-A
+366,Stadsdelen,Zuid,ANPR-01023-A
+367,Stadsdelen,Zuid,ANPR-01030-A
+368,Stadsdelen,Zuid,ANPR-01031-A
+369,Stadsdelen,Oost,ANPR-01032-A
+370,Stadsdelen,Oost,ANPR-01034-A
+371,Stadsdelen,Oost,ANPR-01035-A
+372,Stadsdelen,Oost,ANPR-01036-A
+373,Stadsdelen,Oost,ANPR-01037-A
+374,Stadsdelen,Oost,ANPR-01040-A
+375,Stadsdelen,Noord,ANPR-01045-A
+376,Stadsdelen,Noord,ANPR-01046-B
+377,Stadsdelen,Zuidoost,ANPR-01047-A
+378,Stadsdelen,Oost,ANPR-01048-A
+379,Stadsdelen,Zuid,ANPR-01050-A
+380,Stadsdelen,Zuid,ANPR-01051-A
+381,Stadsdelen,Centrum,ANPR-01052-A
+382,Stadsdelen,Centrum,ANPR-01053-A
+383,Stadsdelen,Westpoort,ANPR-01054-A
+384,Stadsdelen,Westpoort,ANPR-01055-A
+385,Stadsdelen,Westpoort,ANPR-01056-A
+386,Stadsdelen,West,ANPR-01058-A
+387,Stadsdelen,Zuid,ANPR-01059-A
+388,Stadsdelen,Nieuw-West,ANPR-01060-A
+389,Stadsdelen,Zuid,ANPR-01061-A
+390,Stadsdelen,Zuid,ANPR-01061-B
+391,Stadsdelen,Zuid,ANPR-01061-C
+392,Stadsdelen,Oost,ANPR-01063-A
+393,Stadsdelen,Oost,ANPR-01065-A
+394,Stadsdelen,Noord,ANPR-01066-A
+395,Stadsdelen,Noord,ANPR-01067-A
+396,Stadsdelen,Noord,ANPR-01068-A
+397,Stadsdelen,Noord,ANPR-01069-A
+398,Stadsdelen,Noord,ANPR-01072-A
+399,Stadsdelen,Noord,ANPR-01073-A
+400,Stadsdelen,Noord,ANPR-01074-A
+401,Stadsdelen,Noord,ANPR-01075-A
+402,Stadsdelen,Noord,ANPR-01076-A
+403,Stadsdelen,Noord,ANPR-01077-A
+404,Stadsdelen,Noord,ANPR-01078-A
+405,Stadsdelen,Noord,ANPR-01079-A
+406,Stadsdelen,Noord,ANPR-01080-A
+407,Stadsdelen,Noord,ANPR-01081-A
+408,Stadsdelen,Centrum,ANPR-01083-A
+409,Stadsdelen,West,ANPR-01084-A
+410,Stadsdelen,West,ANPR-01084-B
+411,Stadsdelen,Centrum,ANPR-02001-A
+412,Stadsdelen,Centrum,ANPR-02002-A
+413,Stadsdelen,Centrum,ANPR-02003-A
+414,Stadsdelen,Centrum,ANPR-02004-A
+415,Stadsdelen,Centrum,ANPR-02005-A
+416,Stadsdelen,Centrum,ANPR-02006-A
+417,Stadsdelen,Centrum,ANPR-02008-A
+418,Stadsdelen,Centrum,ANPR-02008-B
+419,Stadsdelen,Centrum,ANPR-02009-A
+420,Stadsdelen,Centrum,ANPR-02010-A
+421,Stadsdelen,Centrum,ANPR-02011-A
+422,Stadsdelen,Centrum,ANPR-02012-A
+423,Stadsdelen,Centrum,ANPR-02013-A
+424,Stadsdelen,Centrum,ANPR-02014-A
+425,Stadsdelen,Centrum,ANPR-02016-A
+426,Stadsdelen,Centrum,ANPR-02017-A
+427,Stadsdelen,Centrum,ANPR-02018-A
+428,Stadsdelen,Centrum,ANPR-02019-A
+429,Stadsdelen,Nieuw-West,ANPR-03005-A
+430,Stadsdelen,Westpoort,ANPR-03008-A
+431,Stadsdelen,Noord,ANPR-03009-A
+432,Stadsdelen,Noord,ANPR-03009-B
+433,Stadsdelen,Noord,ANPR-03010-A
+434,Stadsdelen,Nieuw-West,ANPR-03011-A
+435,Stadsdelen,West,ANPR-03012-A
+436,Stadsdelen,Zuid,ANPR-03013-A
+437,Stadsdelen,Oost,ANPR-03014-A
+438,Stadsdelen,Oost,ANPR-03015-A
+439,Stadsdelen,West,ANPR-03018-A
+440,Stadsdelen,West,ANPR-03019-A
+441,Stadsdelen,Centrum,ANPR-03020-A
+442,Stadsdelen,Noord,ANPR-03021-A
+443,Stadsdelen,Noord,ANPR-03022-A
+444,Stadsdelen,Oost,ANPR-03023-A
+445,Stadsdelen,Oost,ANPR-03024-A
+446,Stadsdelen,Oost,ANPR-03025-A
+447,Stadsdelen,Oost,ANPR-03026-A
+448,Stadsdelen,Oost,ANPR-03027-A
+449,Stadsdelen,Oost,ANPR-03028-A
+450,Stadsdelen,Oost,ANPR-03029-A
+451,Stadsdelen,Oost,ANPR-03030-A
+452,Stadsdelen,Oost,ANPR-03031-A
+453,Stadsdelen,Oost,ANPR-03034-A
+454,Stadsdelen,West,ANPR-03036-A
+455,Stadsdelen,West,ANPR-03037-A
+456,Stadsdelen,West,ANPR-03038-A
+457,Stadsdelen,West,ANPR-03039-A
+458,Stadsdelen,West,ANPR-03040-A
+459,Stadsdelen,West,ANPR-03041-A
+460,Stadsdelen,Nieuw-West,ANPR-03042-A
+461,Stadsdelen,West,ANPR-03044-A
+462,Stadsdelen,Westpoort,ANPR-03046-A
+463,Stadsdelen,West,ANPR-03047-A
+464,Stadsdelen,West,ANPR-03048-A
+465,Stadsdelen,West,ANPR-03049-A
+466,Stadsdelen,West,ANPR-03050-A
+467,Stadsdelen,West,ANPR-03051-A
+468,Stadsdelen,Nieuw-West,ANPR-03052-A
+469,Stadsdelen,Nieuw-West,ANPR-03053-A
+470,Stadsdelen,Nieuw-West,ANPR-03054-A
+471,Stadsdelen,Zuid,ANPR-03055-A
+472,Stadsdelen,Zuid,ANPR-03056-A
+473,Stadsdelen,Zuid,ANPR-03057-A
+474,Stadsdelen,Zuid,ANPR-03058-A
+475,Stadsdelen,Zuid,ANPR-03060-A
+476,Stadsdelen,Zuid,ANPR-03062-A
+477,Stadsdelen,Zuid,ANPR-03063-A
+478,Stadsdelen,Oost,ANPR-03064-A
+479,Stadsdelen,Oost,ANPR-03065-A
+480,Stadsdelen,Oost,ANPR-03066-A
+481,Stadsdelen,Oost,ANPR-03069-A
+482,Stadsdelen,Oost,ANPR-03070-A
+483,Stadsdelen,Oost,ANPR-03071-A
+484,Stadsdelen,Oost,ANPR-03072-A
+485,Stadsdelen,Oost,ANPR-03073-A
+486,Stadsdelen,Oost,ANPR-03074-A
+487,Stadsdelen,Oost,ANPR-03075-A
+488,Stadsdelen,Oost,ANPR-03076-A
+489,Stadsdelen,West,ANPR-03077-A
+490,Stadsdelen,West,ANPR-03078-A
+491,Stadsdelen,West,ANPR-03080-A
+492,Stadsdelen,West,ANPR-03081-A
+493,Stadsdelen,Zuid,ANPR-03082-A
+494,Stadsdelen,Zuid,ANPR-03083-A
+495,Stadsdelen,Zuid,ANPR-03084-A
+496,Stadsdelen,Noord,ANPR-03085-A
+497,Stadsdelen,Noord,ANPR-03086-A
+498,Stadsdelen,Zuidoost,ANPR-03090-A
+499,Stadsdelen,Zuidoost,ANPR-03091-A
+500,Stadsdelen,Zuidoost,ANPR-03092-A
+501,Stadsdelen,Zuidoost,ANPR-03098-A
+502,Stadsdelen,Zuidoost,ANPR-03099-A
+503,Stadsdelen,Zuidoost,ANPR-03100-A
+504,Stadsdelen,Zuid,ANPR-03101-A
+505,Stadsdelen,Zuid,ANPR-03102-A
+506,Stadsdelen,Zuid,ANPR-03104-A
+507,Stadsdelen,Zuid,ANPR-03105-A
+508,Stadsdelen,Zuid,ANPR-03106-A
+509,Stadsdelen,Zuidoost,ANPR-03107-A
+510,Stadsdelen,Zuidoost,ANPR-03108-A
+511,Stadsdelen,Zuidoost,ANPR-03118-A
+512,Stadsdelen,West,ANPR-03123-A
+513,Stadsdelen,West,ANPR-03125-A
+514,Stadsdelen,West,ANPR-03127-A
+515,Stadsdelen,Oost,ANPR-03132-A
+516,Stadsdelen,Centrum,ANPR-06003-A
+517,Stadsdelen,West,ANPR-06004-A
+518,Stadsdelen,West,ANPR-06006-A
+519,Stadsdelen,Centrum,ANPR-06007-A
+520,Stadsdelen,Centrum,ANPR-06008-A
+521,Stadsdelen,Centrum,ANPR-06009-A
+522,Stadsdelen,West,ANPR-06010-A
+523,Stadsdelen,Centrum,ANPR-06011-A
+524,Stadsdelen,West,ANPR-06012-A
+525,Stadsdelen,Centrum,ANPR-06013-A
+526,Stadsdelen,West,ANPR-06014-A
+527,Stadsdelen,Centrum,ANPR-06015-A
+528,Stadsdelen,Zuid,ANPR-06016-A
+529,Stadsdelen,Centrum,ANPR-06017-A
+530,Stadsdelen,Centrum,ANPR-06019-A
+531,Stadsdelen,Zuid,ANPR-06021-A
+532,Stadsdelen,Centrum,ANPR-06022-A
+533,Stadsdelen,Centrum,ANPR-06022-B
+534,Stadsdelen,Zuid,ANPR-06023-A
+535,Stadsdelen,Centrum,ANPR-06024-A
+536,Stadsdelen,Centrum,ANPR-06025-A
+537,Stadsdelen,Centrum,ANPR-06026-A
+538,Stadsdelen,Oost,ANPR-06027-A
+539,Stadsdelen,Centrum,ANPR-06028-A
+540,Stadsdelen,Centrum,ANPR-06029-A
+541,Stadsdelen,Centrum,ANPR-06030-A
+542,Stadsdelen,Oost,ANPR-06031-A
+543,Stadsdelen,Centrum,ANPR-06032-A
+544,Stadsdelen,Oost,ANPR-06033-A
+545,Stadsdelen,Oost,ANPR-06034-A
+546,Stadsdelen,Oost,ANPR-06035-A
+547,Stadsdelen,Oost,ANPR-06036-A
+548,Stadsdelen,Oost,ANPR-06037-A
+549,Stadsdelen,Oost,ANPR-06038-A
+550,Stadsdelen,Centrum,ANPR-06040-A
+551,Stadsdelen,Centrum,ANPR-06041-A
+552,Stadsdelen,Centrum,ANPR-06043-A
+553,Stadsdelen,Centrum,ANPR-06044-A
+554,Stadsdelen,Centrum,ANPR-06045-A
+555,Stadsdelen,Centrum,ANPR-06046-A
+556,Stadsdelen,West,ANPR-06054-A
+557,Stadsdelen,West,ANPR-06055-A
+558,Stadsdelen,West,ANPR-06056-A
+559,Stadsdelen,Centrum,ANPR-06057-A
+560,Stadsdelen,Centrum,ANPR-06058-A
+561,Stadsdelen,Noord,ANPR-06059-A
+562,Stadsdelen,Westpoort,ANPR-09001-A
+563,Stadsdelen,Nieuw-West,ANPR-09002-A
+564,Stadsdelen,Noord,GAWK-01-1-IJdoornlaan-Beide
+565,Stadsdelen,Noord,GAWK-02-1-VerlengdeStellingweg-Noord
+566,Stadsdelen,Noord,GAWK-02-2-VerlengdeStellingweg-Zuid
+567,Stadsdelen,Noord,GAWK-03-1-IJdoornlaan-Beide
+568,Stadsdelen,Noord,GAWK-04-1-Hagedoornplein-Beide
+569,Stadsdelen,Noord,GAWK-05-1-JohanvanHasseltweg-Oost
+570,Stadsdelen,Noord,GAWK-05-2-JohanvanHasseltweg-West
+571,Stadsdelen,Noord,GAWK-07-1-NieuwePurmerweg-Beide
+572,Stadsdelen,Noord,GAWK-08-1-Werengouw-Beide
+573,Stadsdelen,Noord,GAWK-09-1-IJdoornlaan-Oost
+574,Stadsdelen,Noord,GAWK-09-2-IJdoornlaan-West
+575,Stadsdelen,Centrum,GAWK-11-1-Blauwbrug-Oost
+576,Stadsdelen,Centrum,GAWK-11-2-Blauwbrug-West
+577,Stadsdelen,Centrum,GAWK-12-1-PrinsHendrikkade-Oost
+578,Stadsdelen,Centrum,GAWK-12-2-PrinsHendrikkade-West
+579,Stadsdelen,Centrum,GAWK-13-1-Weesperstraat-Zuid
+580,Stadsdelen,Centrum,GAWK-13-2-Weesperstraat-Noord
+581,Stadsdelen,Centrum,GAWK-14-1-Latjesbrug-Noord
+582,Stadsdelen,Centrum,GAWK-14-2-Latjesbrug-Zuid
+583,Stadsdelen,Centrum,GAWK-15-1-Kattenburgerplein-Beide
+584,Stadsdelen,Centrum,GAWK-16-1-HoogteKadijk-Beide
+585,Stadsdelen,Centrum,GAWK-17-1-Sarphatistraat-Oost
+586,Stadsdelen,Centrum,GAWK-18-1-Sarphatistraat-Oost
+587,Stadsdelen,Oost,GAWK-19-1-Wibautstraat-Zuid
+588,Stadsdelen,Oost,GAWK-20-1-MrTreublaan-Oost
+589,Stadsdelen,Oost,GAWK-21-1-NieuweUtrechtseweg-Zuid
+590,Stadsdelen,Oost,GAWK-22-1-Middenweg-Zuid
+591,Stadsdelen,Oost,GAWK-23-1-Gooiseweg-Zuid
+592,Stadsdelen,Oost,GAWK-24-1-S112-Noord
+593,Stadsdelen,Oost,GAWK-24-2-S112-Zuid
+594,Stadsdelen,Centrum,GAWK-29-1-Prinsengracht-Beide
+595,Stadsdelen,Centrum,GAWK-30-1-Keizersgracht-Beide
+596,Stadsdelen,Centrum,GAWK-31-1-Keizersgracht-Beide
+597,Stadsdelen,Centrum,GAWK-32-1-Herengracht-Beide
+598,Stadsdelen,Centrum,GAWK-33-1-Herengracht-Noord
+599,Stadsdelen,Zuid,GAWK-34-1-Ceintuurbaan-West
+600,Stadsdelen,Zuid,GAWK-34-2-Ceintuurbaan-Oost
+601,Stadsdelen,Zuid,GAWK-35-1-Amsteldijk-Noord
+602,Stadsdelen,Zuid,GAWK-36-1-Stadhouderskade-Oost
+603,Stadsdelen,Oost,GAWK-37-1-NieuweAmstelbrug-Beide
+604,Stadsdelen,Zuid,GAWK-38-1-Hobbemakade-Beide
+605,Stadsdelen,Zuid,GAWK-39-1-Stadhouderskade-Zuid
+606,Stadsdelen,Centrum,GAWK-40-1-Kattenburgerstraat-Zuid
+607,Stadsdelen,Zuidoost,ANPR-03093-A
+608,Stadsbreed,Stadsbreed,ANPR-03093-A
+609,Stadsdelen,Zuidoost,ANPR-03095-A
+610,Stadsbreed,Stadsbreed,ANPR-03095-A
+611,Stadsdelen,Zuidoost,ANPR-03094-A
+612,Stadsbreed,Stadsbreed,ANPR-03094-A
+613,Stadsdelen,Centrum,ANPR-03061-A
+614,Stadsbreed,Stadsbreed,ANPR-03061-A
+615,Stadsdelen,Centrum,ANPR-06042-A
+616,Stadsbreed,Stadsbreed,ANPR-06042-A
+617,Stadsdelen,Centrum,ANPR-02020-A
+618,Stadsbreed,Stadsbreed,ANPR-02020-A
+619,Stadsdelen,Centrum,ANPR-02021-A
+620,Stadsbreed,Stadsbreed,ANPR-02021-A
+621,Stadsdelen,Oost,ANPR-03033-A
+622,Stadsbreed,Stadsbreed,ANPR-03033-A
+623,Stadsdelen,Nieuw-West,ANPR-03002-A
+624,Stadsdelen,Nieuw-West,ANPR-03001-A
+625,Stadsbreed,Stadsbreed,ANPR-03002-A
+626,Stadsbreed,Stadsbreed,ANPR-03001-A
+627,Stadsdelen,Nieuw-West,ANPR-03124-A
+628,Stadsbreed,Stadsbreed,ANPR-03124-A
+629,Stadsdelen,West,ANPR-01004
+630,Stadsbreed,Stadsbreed,ANPR-01004
