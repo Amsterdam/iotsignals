@@ -20,102 +20,43 @@ class Command(BaseCommand):
     def _get_delete_query(self, run_date):
         return f""" 
         DELETE FROM passage_taxihouraggregation
-        WHERE passage_at_year = {run_date.year}
-        AND passage_at_month = {run_date.month}
-        AND passage_at_day = {run_date.day}
-        ;
+        WHERE passage_at_date = '{run_date}';
         """
 
     def _get_aggregation_query(self, run_date):
         return f"""
-            INSERT INTO passage_taxihouraggregation (
-                passage_at_timestamp,
+        INSERT INTO passage_taxihouraggregation (
                 passage_at_date,
-                passage_at_year,
-                passage_at_month,
-                passage_at_day,
-                passage_at_week,
-                passage_at_day_of_week,
-                passage_at_hour,
-                camera_id,
-                camera_naam,
-                vma_linknr,
-                order_kaart,
-                order_naam,
-                cordon,
-                richting,
-                location,
-                geom,
-                azimuth,
-                kenteken_land,
-                taxi_indicator,
-                europese_voertuigcategorie,
-                intensiteit
+                hh, 
+                gebiedstype, 
+                gebied, 
+                electric,
+                unieke_passages, 
+                check_on_camera_count           
             )
-            
-            -- query voor IGOR en Druktebeeld
-            SELECT
-                date_trunc('hour', p.passage_at) AS timestamp,
-                date(p.passage_at) AS date,
-                extract(YEAR FROM p.passage_at)::int AS year,
-                extract(MONTH FROM p.passage_at)::int AS month,
-                extract(DAY FROM p.passage_at)::int AS day,
-                extract(WEEK FROM p.passage_at)::int AS week,
-                extract(DOW FROM p.passage_at)::int AS dow, -- aangepast d.d. 10-3-'20
-                extract(HOUR FROM p.passage_at)::int AS hour,
-                --  blok camera informatie
-                h.camera_id,    	-- toegevoegd d.d. 10-3-'20
-                h.camera_naam,		-- toegevoegd d.d. 10-3-'20
-                h.vma_linknr, 		-- toegevoegd d.d. 10-3-'20
-                h.order_kaart,
-                h.order_naam,
-                h.cordon,
-                h.richting,
-                h.location,
-                h.geom,
-                h.azimuth,
-                --  blok voertuig informatie
-                p.kenteken_land,
-                p.taxi_indicator,
-                p.europese_voertuigcategorie,
-                --  blok intensiteit informatie
-                count(*) as intensiteit
-        
-                from passage_passage AS p
-                left join	passage_camera AS h
-                on			p.camera_naam = h.camera_naam AND
-                            p.camera_kijkrichting = h.camera_kijkrichting AND
-                            p.rijrichting = h.rijrichting
-                WHERE passage_at >= '{run_date}'
-                AND passage_at < '{run_date + timedelta(days=1)}'
---                 AND h.cordon  in ('S100','A10') -- deze where clausule weggehaald d.d. 10-3-'22
-        
-        
-                group by
-                
-                date_trunc('hour', p.passage_at),
-                date(p.passage_at),
-                extract(YEAR FROM p.passage_at),
-                extract(MONTH FROM p.passage_at),
-                extract(DAY FROM p.passage_at),
-                extract(WEEK FROM p.passage_at),
-                extract(DOW FROM p.passage_at), -- aangepast d.d. 10-3-'20
-                extract(HOUR FROM p.passage_at),
-                --  blok camera informatie
-                h.camera_id,    	-- toegevoegd d.d. 10-3-'20
-                h.camera_naam,		-- toegevoegd d.d. 10-3-'20
-                h.vma_linknr, 		-- toegevoegd d.d. 10-3-'20
-                h.order_kaart,
-                h.order_naam,
-                h.cordon,
-                h.richting,
-                h.geom,
-                h.location,
-                h.azimuth,
-                --  blok voertuig informatie 
-                p.kenteken_land,
-                p.taxi_indicator,
-                p.europese_voertuigcategorie;
+        select 
+            p.passage_at::date as passage_date, 
+            extract(hour from p.passage_at) as hh,
+            gebiedstype,
+            gebied,
+            electric, 
+            count(distinct kenteken_hash) as unieke_passages, 
+            count(distinct camera_naam) as check_on_camera_count
+        from 
+            passage_hulptabelcameragebiedentaxidashboard h
+        left join 
+            public.passage_passage p
+            on p.camera_naam LIKE '%' || h.camera_id || '%'
+        where
+            p.taxi_indicator = true
+            and electric is not null
+            and h.camera_id != ''
+            and passage_at >= '{run_date}'
+            and passage_at < '{run_date + timedelta(days=1)}'
+        group by 
+            passage_date, hh, electric, gebiedstype , gebied
+        order by 
+            gebiedstype , gebied, passage_date, hh, electric ;
         """
 
     def _run_query_from_date(self, run_date):
