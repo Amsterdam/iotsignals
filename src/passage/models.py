@@ -227,7 +227,7 @@ class HeavyTrafficMinuteAggregation(HeavyTrafficAggregationBase):
 
 class TaxiHourAggregation(models.Model):
 	id = models.AutoField(primary_key=True)
-	passage_at_timestamp = DateTimeUTCField(db_index=True,null=False)
+	passage_at_date = models.DateField(db_index=True,null=True)
 	hh = models.IntegerField(null=False)
 
 	gebiedstype  = models.CharField(max_length=255, null=False)
