@@ -10,7 +10,7 @@ from factory import fuzzy
 from factory.django import DjangoModelFactory
 
 # iotsignals
-from passage.models import Passage
+from passage.models import Passage, HulptabelCameragebiedenTaxidashboard
 
 
 AMSTERDAM_LATITUDE = 52.03560, 52.48769
@@ -97,6 +97,15 @@ class PassageFactory(DjangoModelFactory):
     taxi_indicator = factory.Faker('boolean', chance_of_getting_true=50)
     maximale_constructie_snelheid_bromsnorfiets = fuzzy.FuzzyInteger(0, 500)
     brandstoffen = factory.LazyFunction(get_brandstoffen_v1)
+
+class HulptabelCameragebiedenTaxidashboardFactory(DjangoModelFactory):
+    class Meta:
+        model = HulptabelCameragebiedenTaxidashboard
+
+    id = factory.Faker('uuid4')
+    gebiedstype = factory.Faker('name')
+    gebied = factory.Faker('name')
+    camera_id = factory.Faker('name')
 
 
 class PayloadVersion1(factory.DictFactory):
