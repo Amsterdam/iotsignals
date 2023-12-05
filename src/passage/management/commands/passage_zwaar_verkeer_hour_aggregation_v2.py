@@ -47,6 +47,7 @@ class Command(BaseCommand):
 			cordon_order_kaart,
             cordon_order_naam,
 			richting,
+			kenteken_land,
 			massa_ledig_voertuig,
 			toegestane_maximum_massa_voertuig,
 			voertuig_soort, 
@@ -54,16 +55,24 @@ class Command(BaseCommand):
             europese_voertuigcategorie,
 			europese_voertuigcategorie_toevoeging,
             brandstoffen,
+            diesel,
+			gasoline,
+			electric,
             lengte,
+            breedte,
+			aantal_staanplaatsen,
+			aantal_zitplaatsen,
+			merk,
+			handelsbenaming,
             count
         )
-        SELECT DATE(p.passage_at),
-               EXTRACT(YEAR FROM p.passage_at) :: int  AS YEAR,
-               EXTRACT(MONTH FROM p.passage_at) :: int AS MONTH,
-               EXTRACT(DAY FROM p.passage_at) :: int   AS DAY,
-               EXTRACT(week FROM p.passage_at) :: int  AS week,
-               EXTRACT(dow FROM p.passage_at) :: int   AS dow,
-               EXTRACT(HOUR FROM p.passage_at) :: int  AS HOUR,
+        SELECT DATE(p.passage_at at time zone 'utc' at time zone 'Europe/Amsterdam'),
+               EXTRACT(YEAR FROM p.passage_at at time zone 'utc' at time zone 'Europe/Amsterdam') :: int  AS YEAR,
+               EXTRACT(MONTH FROM p.passage_at at time zone 'utc' at time zone 'Europe/Amsterdam') :: int AS MONTH,
+               EXTRACT(DAY FROM p.passage_at at time zone 'utc' at time zone 'Europe/Amsterdam') :: int   AS DAY,
+               EXTRACT(week FROM p.passage_at at time zone 'utc' at time zone 'Europe/Amsterdam') :: int  AS week,
+               EXTRACT(dow FROM p.passage_at at time zone 'utc' at time zone 'Europe/Amsterdam') :: int   AS dow,
+               EXTRACT(HOUR FROM p.passage_at at time zone 'utc' at time zone 'Europe/Amsterdam') :: int  AS HOUR,
                p.camera_id,
                p.camera_naam,
 			   p.camera_locatie,
@@ -75,6 +84,7 @@ class Command(BaseCommand):
 				h.order_kaart as cordon_order_kaart,
 				h.order_naam as cordon_order_naam,
 				h.richting,
+				kenteken_land,
 			   CASE
 				WHEN massa_ledig_voertuig <= 3500 THEN 'klasse01_0-3500'
 				WHEN massa_ledig_voertuig <= 7500 THEN 'klasse02_3501-7500'
@@ -86,8 +96,7 @@ class Command(BaseCommand):
                 WHEN massa_ledig_voertuig >  45000 THEN 'klasse08_45001'
 				ELSE 'onbekend'
 				END
-			   AS
-			   massa_ledig_voertuig,
+			   AS massa_ledig_voertuig,
                CASE
                  WHEN toegestane_maximum_massa_voertuig <= 3500 THEN 'klasse01_0-3500'
                  WHEN toegestane_maximum_massa_voertuig <= 7500 THEN 'klasse02_3501-7500'
@@ -100,36 +109,60 @@ class Command(BaseCommand):
                  WHEN toegestane_maximum_massa_voertuig <= 70000 THEN 'klasse09_60001-70000'
                  WHEN toegestane_maximum_massa_voertuig >  70000 THEN 'klasse10_70001'
                  ELSE 'onbekend'
-               END                                   AS
-               toegestane_maximum_massa_voertuig,
+               END                                   
+               AS toegestane_maximum_massa_voertuig,
 				voertuig_soort, 
 				inrichting,
 				europese_voertuigcategorie,
 				europese_voertuigcategorie_toevoeging,
                 brandstoffen,
+                diesel,
+				gasoline,
+				electric,
                CASE 
                 WHEN lengte <= 1000 THEN '01 0t/m1000'
                 WHEN lengte >  1000 THEN '02 >1000'
                 ELSE '03 onbekend' 
                END as lengte,
-				COUNT(*)
+               CASE
+			    when breedte < 140 THEN '01 0-140'
+			    WHEN breedte > 140 THEN '02 >140'
+			    ELSE '03 onbekend'
+			   END as breedte,
+			   CASE
+				WHEN voertuig_soort = 'Bus' THEN aantal_staanplaatsen
+				ELSE NULL
+			   END as aantal_staanplaatsen,
+			   CASE
+				WHEN voertuig_soort= 'Bus' THEN aantal_zitplaatsen
+				ELSE NULL
+			   END as aantal_zitplaatsen,
+			   CASE
+				WHEN voertuig_soort = 'Bus' THEN merk
+				ELSE NULL
+				END as merk,
+			   CASE
+				WHEN voertuig_soort = 'Bus' THEN handelsbenaming
+				ELSE NULL
+			   END as handelsbenaming,
+			   COUNT(*)
         FROM passage_passage as p
 		left join	passage_camera AS h
-        on			p.camera_naam = h.camera_naam AND
-                    p.camera_kijkrichting = h.camera_kijkrichting AND
-                    p.rijrichting = h.rijrichting
-        WHERE p.passage_at >= '{run_date}'
-        AND p.passage_at < '{run_date + timedelta(days=1)}'
+        on			p.camera_naam = h.camera_naam 
+                    AND p.camera_kijkrichting = h.camera_kijkrichting 
+                    AND p.rijrichting = h.rijrichting
+        WHERE p.passage_at at time zone 'utc' at time zone 'Europe/Amsterdam' >= '{run_date}'
+        AND p.passage_at at time zone 'utc' at time zone 'Europe/Amsterdam' < '{run_date + timedelta(days=1)}'
         AND (p.voertuig_soort = 'Bedrijfsauto' OR p.toegestane_maximum_massa_voertuig > 3500)
 		AND h.rijrichting_correct = True
 		GROUP BY
-			   DATE(p.passage_at),
-			   EXTRACT(YEAR FROM p.passage_at) :: int,
-               EXTRACT(MONTH FROM p.passage_at) :: int,
-               EXTRACT(DAY FROM p.passage_at) :: int,
-               EXTRACT(week FROM p.passage_at) :: int,
-               EXTRACT(dow FROM p.passage_at) :: int,
-               EXTRACT(HOUR FROM p.passage_at) :: int,
+			   DATE(p.passage_at at time zone 'utc' at time zone 'Europe/Amsterdam'),
+			   EXTRACT(YEAR FROM p.passage_at at time zone 'utc' at time zone 'Europe/Amsterdam') :: int,
+               EXTRACT(MONTH FROM p.passage_at at time zone 'utc' at time zone 'Europe/Amsterdam') :: int,
+               EXTRACT(DAY FROM p.passage_at at time zone 'utc' at time zone 'Europe/Amsterdam') :: int,
+               EXTRACT(week FROM p.passage_at at time zone 'utc' at time zone 'Europe/Amsterdam') :: int,
+               EXTRACT(dow FROM p.passage_at at time zone 'utc' at time zone 'Europe/Amsterdam') :: int,
+               EXTRACT(HOUR FROM p.passage_at at time zone 'utc' at time zone 'Europe/Amsterdam') :: int,
                p.camera_id,
                p.camera_naam,
 			   p.camera_locatie,
@@ -141,6 +174,7 @@ class Command(BaseCommand):
 				h.order_kaart,
 				h.order_naam,
 				h.richting,
+				kenteken_land,
 			   CASE
 				WHEN massa_ledig_voertuig <= 3500 THEN 'klasse01_0-3500'
 				WHEN massa_ledig_voertuig <= 7500 THEN 'klasse02_3501-7500'
@@ -170,15 +204,44 @@ class Command(BaseCommand):
 				europese_voertuigcategorie,
 				europese_voertuigcategorie_toevoeging,
                 brandstoffen,
+                diesel,
+				gasoline,
+				electric,
                CASE 
                 WHEN lengte <= 1000 THEN '01 0t/m1000'
                 WHEN lengte >  1000 THEN '02 >1000'
                 ELSE '03 onbekend' 
-               END
+               END,
+               CASE
+			   when breedte < 140 THEN '01 0-140'
+			   WHEN breedte > 140 THEN '02 >140'
+			   ELSE '03 onbekend'
+				END,
+			   CASE
+			   when voertuig_soort = 'Bedrijfsauto' AND breedte < 140 THEN '01 0t/m140'
+			   WHEN voertuig_soort = 'Bedrijfsauto' AND breedte > 140 THEN '02 >140'
+			   ELSE NULL
+				END,
+			   CASE
+				WHEN voertuig_soort = 'Bus' THEN aantal_staanplaatsen
+				ELSE NULL
+				END,
+				CASE
+				WHEN voertuig_soort= 'Bus' THEN aantal_zitplaatsen
+				ELSE NULL
+				END,
+			   CASE
+				WHEN voertuig_soort = 'Bus' THEN merk
+				ELSE NULL
+				END,
+				CASE
+				WHEN voertuig_soort = 'Bus' THEN handelsbenaming
+				ELSE NULL
+				END               
         ORDER  BY p.camera_id,
 				  p.rijrichting,
-                  DATE(passage_at),
-                  EXTRACT(HOUR FROM passage_at) :: int;
+                  DATE(p.passage_at at time zone 'utc' at time zone 'Europe/Amsterdam'),
+                  EXTRACT(HOUR FROM p.passage_at at time zone 'utc' at time zone 'Europe/Amsterdam') :: int;
         """
 
     def _run_query_from_date(self, run_date):

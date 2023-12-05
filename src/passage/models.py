@@ -213,6 +213,17 @@ class HeavyTrafficAggregationBase(models.Model):
 
 
 class HeavyTrafficHourAggregationV2(HeavyTrafficAggregationBase):
+	# added for Touringcar dashboard
+	aantal_zitplaatsen = models.SmallIntegerField(null=True, blank=True)
+	aantal_staanplaatsen = models.SmallIntegerField(null=True, blank=True)
+	merk = models.CharField(max_length=255, null=True, blank=True)
+	handelsbenaming = models.CharField(max_length=255, null=True, blank=True)
+	kenteken_land = models.CharField(max_length=2, null=True, blank=True)
+	diesel = models.SmallIntegerField(null=True, blank=True)
+	gasoline = models.SmallIntegerField(null=True, blank=True)
+	electric = models.SmallIntegerField(null=True, blank=True)
+	breedte = models.CharField(max_length=64, null=True, blank=True)
+
 	class Meta:
 		db_table = 'passage_heavytraffichouraggregation_v2'
 
@@ -220,6 +231,17 @@ class HeavyTrafficHourAggregationV2(HeavyTrafficAggregationBase):
 class HeavyTrafficMinuteAggregation(HeavyTrafficAggregationBase):
 	passage_at_minute = models.SmallIntegerField()
 	kenteken_hash = models.CharField(max_length=255, null=True, blank=True)
+
+	#added for Touringcar dashboard
+	aantal_zitplaatsen = models.SmallIntegerField(null=True, blank=True)
+	aantal_staanplaatsen = models.SmallIntegerField(null=True, blank=True)
+	merk = models.CharField(max_length=255, null=True, blank=True)
+	handelsbenaming  = models.CharField(max_length=255, null=True, blank=True)
+	kenteken_land  = models.CharField(max_length=2, null=True, blank=True)
+	diesel = models.SmallIntegerField(null=True, blank=True)
+	gasoline = models.SmallIntegerField(null=True, blank=True)
+	electric = models.SmallIntegerField(null=True, blank=True)
+	breedte = models.CharField(max_length=64, null=True, blank=True)
 
 	class Meta:
 		db_table = 'passage_heavytrafficminuteaggregation'

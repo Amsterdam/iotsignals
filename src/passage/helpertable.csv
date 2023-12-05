@@ -25,10 +25,10 @@ vma_linknr,camera_id,camera_naam,camera_kijkrichting,rijrichting,longitude,latit
 ,e9098fe2-7963-47a6-9ab9-6174b787990e,ANPR-03066-A - Rijstrook 1 - Rhijnspoorplein,337.5,-1,4.908558,52.360462,POINT(4.908558 52.360462),,,,,,
 ,e9098fe2-7963-47a6-9ab9-6174b787990e,ANPR-03066-A - Rijstrook 1 - Rhijnspoorplein,337.5,1,4.908558,52.360462,POINT(4.908558 52.360462),,,,,,
 22744,a4bff9c9-5c67-4917-9847-2d4c83ef650c,ANPR-06001-A - Rijstrook -1 - Houtmankade,22.5,1,4.885722,52.390134,POINT(4.885722 52.390134),,1,Houtmankade,S100,uit,nee
-,,ANPR-03013-A - Rijstrook 1 - Europaboulevard,315,-1,4.891527,52.337525,POINT(4.891527 52.337525),,,,nee,,
+,,ANPR-03013-A - Rijstrook 1 - Europaboulevard,315,-1,4.891527,52.337525,POINT(4.891527 52.337525),,,,,,
 ,,ANPR-03106-A - Rijstrook 2 - Europaboulevard,225,-1,4.891585,52.337325,POINT(4.891585 52.337325),,,,,,
 ,,ANPR-03116-A - Rijstrook 2 - Ringweg Noord,112.5,-1,4.91637,52.416945,POINT(4.91637 52.416945),,,,,,
-,,ANPR-03034-A - Rijstrook 1 - Piet Heinkade,315,-1,4.933177,52.373196,POINT(4.933177 52.373196),,,,nee,,
+,,ANPR-03034-A - Rijstrook 1 - Piet Heinkade,315,-1,4.933177,52.373196,POINT(4.933177 52.373196),,5,Piet Heinkade oost,op S100,rechtsom,nee
 ,,ANPR-00003-V_ANPR-05046 - Rijstrook 3 - Frederik Hendrikstraat,180,1,4.872371,52.374512,POINT(4.872371 52.374512),,,,,,
 ,,ANPR-00003-V_ANPR-05047 - Rijstrook 2 - Molenslootbrug,247.5,1,4.85636,52.37117,POINT(4.85636 52.37117),,,,,,
 ,,ANPR-00003-V_ANPR-05047 - Rijstrook 3 - Molenslootbrug,247.5,1,4.85636,52.37117,POINT(4.85636 52.37117),,,,,,
@@ -214,131 +214,131 @@ vma_linknr,camera_id,camera_naam,camera_kijkrichting,rijrichting,longitude,latit
 ,,ANPR-02030-B - Rijstrook 1 - Tijdelijke hulpbrug Berlagebrug,270,1,4.912758,52.347616,POINT(4.912758 52.347616),,,,,,
 ,,ANPR-02031-A - Rijstrook -1 - Kloveniersburgwal,202.5,-1,4.898496,52.370468,POINT(4.898496 52.370468),,,,,,
 ,,ANPR-02031-A - Rijstrook -1 - Kloveniersburgwal,202.5,1,4.898496,52.370468,POINT(4.898496 52.370468),,,,,,
-,,ANPR-03001-A - Rijstrook 1 - Basisweg,270,-1,4.842521,52.391871,POINT(4.842521 52.391871),,,,nee,,
-86936,786f2d98-96e4-4ccf-b70a-4ba06081158d,ANPR-03001-A - Rijstrook 1 - Basisweg,270,1,4.842521,52.391871,POINT(4.842521 52.391871),,,,nee,,
-,,ANPR-03001-A - Rijstrook 2  - Basisweg,270,-1,4.842521,52.391871,POINT(4.842521 52.391871),,,,nee,,
-,85867b1b-a83b-4646-ac2c-b263e910082a,ANPR-03001-A - Rijstrook 2  - Basisweg,270,1,4.842521,52.391871,POINT(4.842521 52.391871),,,,nee,,
-,,ANPR-03001-A - Rijstrook 3 - Basisweg,270,-1,4.842521,52.391871,POINT(4.842521 52.391871),,,,nee,,
-86936,b08275b4-8f37-414e-973a-a570b477b85a,ANPR-03001-A - Rijstrook 3 - Basisweg,270,1,4.842521,52.391871,POINT(4.842521 52.391871),,,,nee,,
-,,ANPR-03002-A - Rijstrook 1 - Basisweg,67.5,-1,4.819395,52.391316,POINT(4.819395 52.391316),,,,nee,,
-466362,b7370dcd-2477-4d66-b817-f48adeace9e2,ANPR-03002-A - Rijstrook 1 - Basisweg,67.5,1,4.819395,52.391316,POINT(4.819395 52.391316),,,,nee,,
-,,ANPR-03002-A - Rijstrook 2 - Basisweg,67.5,-1,4.819395,52.391316,POINT(4.819395 52.391316),,,,nee,,
-466362,3725acbc-2e08-4120-903b-c56804b7dcdf,ANPR-03002-A - Rijstrook 2 - Basisweg,67.5,1,4.819395,52.391316,POINT(4.819395 52.391316),,,,nee,,
-,,ANPR-03004-A - Rijstrook 1 - Europaboulevard,180,-1,4.889712,52.334282,POINT(4.889712 52.334282),,,,nee,,
-253389,6a98a238-3988-435f-8c9b-95a46e19ee61,ANPR-03004-A - Rijstrook 1 - Europaboulevard,180,1,4.889712,52.334282,POINT(4.889712 52.334282),,,,nee,,
-,,ANPR-03004-A - Rijstrook 2 - Europaboulevard,180,-1,4.889712,52.334282,POINT(4.889712 52.334282),,,,nee,,
-253389,a7a20921-8bec-4521-9ac6-35f992e74c12,ANPR-03004-A - Rijstrook 2 - Europaboulevard,180,1,4.889712,52.334282,POINT(4.889712 52.334282),,,,nee,,
-,,ANPR-03004-B - Rijstrook 3 - Europaboulevard,180,-1,4.889712,52.334282,POINT(4.889712 52.334282),,,,nee,,
-253389,b257cffe-a44d-4a15-bf8e-5bbe4b51aaef,ANPR-03004-B - Rijstrook 3 - Europaboulevard,180,1,4.889712,52.334282,POINT(4.889712 52.334282),,,,nee,,
-,,ANPR-03004-B - Rijstrook 4 - Europaboulevard,180,-1,4.889712,52.334282,POINT(4.889712 52.334282),,,,nee,,
-253389,c4bdea3b-5c43-4039-a775-388976c4d2e9,ANPR-03004-B - Rijstrook 4 - Europaboulevard,180,1,4.889712,52.334282,POINT(4.889712 52.334282),,,,nee,,
+,,ANPR-03001-A - Rijstrook 1 - Basisweg,270,-1,4.842521,52.391871,POINT(4.842521 52.391871),,,,,,
+86936,786f2d98-96e4-4ccf-b70a-4ba06081158d,ANPR-03001-A - Rijstrook 1 - Basisweg,270,1,4.842521,52.391871,POINT(4.842521 52.391871),,,,,,
+,,ANPR-03001-A - Rijstrook 2  - Basisweg,270,-1,4.842521,52.391871,POINT(4.842521 52.391871),,,,,,
+,85867b1b-a83b-4646-ac2c-b263e910082a,ANPR-03001-A - Rijstrook 2  - Basisweg,270,1,4.842521,52.391871,POINT(4.842521 52.391871),,,,,,
+,,ANPR-03001-A - Rijstrook 3 - Basisweg,270,-1,4.842521,52.391871,POINT(4.842521 52.391871),,,,,,
+86936,b08275b4-8f37-414e-973a-a570b477b85a,ANPR-03001-A - Rijstrook 3 - Basisweg,270,1,4.842521,52.391871,POINT(4.842521 52.391871),,,,,,
+,,ANPR-03002-A - Rijstrook 1 - Basisweg,67.5,-1,4.819395,52.391316,POINT(4.819395 52.391316),,,,,,
+466362,b7370dcd-2477-4d66-b817-f48adeace9e2,ANPR-03002-A - Rijstrook 1 - Basisweg,67.5,1,4.819395,52.391316,POINT(4.819395 52.391316),,,,,,
+,,ANPR-03002-A - Rijstrook 2 - Basisweg,67.5,-1,4.819395,52.391316,POINT(4.819395 52.391316),,,,,,
+466362,3725acbc-2e08-4120-903b-c56804b7dcdf,ANPR-03002-A - Rijstrook 2 - Basisweg,67.5,1,4.819395,52.391316,POINT(4.819395 52.391316),,,,,,
+,,ANPR-03004-A - Rijstrook 1 - Europaboulevard,180,-1,4.889712,52.334282,POINT(4.889712 52.334282),,,,,,
+253389,6a98a238-3988-435f-8c9b-95a46e19ee61,ANPR-03004-A - Rijstrook 1 - Europaboulevard,180,1,4.889712,52.334282,POINT(4.889712 52.334282),,,,,,
+,,ANPR-03004-A - Rijstrook 2 - Europaboulevard,180,-1,4.889712,52.334282,POINT(4.889712 52.334282),,,,,,
+253389,a7a20921-8bec-4521-9ac6-35f992e74c12,ANPR-03004-A - Rijstrook 2 - Europaboulevard,180,1,4.889712,52.334282,POINT(4.889712 52.334282),,,,,,
+,,ANPR-03004-B - Rijstrook 3 - Europaboulevard,180,-1,4.889712,52.334282,POINT(4.889712 52.334282),,,,,,
+253389,b257cffe-a44d-4a15-bf8e-5bbe4b51aaef,ANPR-03004-B - Rijstrook 3 - Europaboulevard,180,1,4.889712,52.334282,POINT(4.889712 52.334282),,,,,,
+,,ANPR-03004-B - Rijstrook 4 - Europaboulevard,180,-1,4.889712,52.334282,POINT(4.889712 52.334282),,,,,,
+253389,c4bdea3b-5c43-4039-a775-388976c4d2e9,ANPR-03004-B - Rijstrook 4 - Europaboulevard,180,1,4.889712,52.334282,POINT(4.889712 52.334282),,,,,,
 ,,ANPR-03005-A - Rijstrook 1 - Haarlemmerweg,90,-1,4.820147,52.384321,POINT(4.820147 52.384321),,,,,,
 ,,ANPR-03005-A - Rijstrook 1 - Haarlemmerweg,90,1,4.820147,52.384321,POINT(4.820147 52.384321),,,,,,
 ,,ANPR-03005-A - Rijstrook 2 - Haarlemmerweg,90,-1,4.820147,52.384321,POINT(4.820147 52.384321),,,,,,
 ,,ANPR-03005-A - Rijstrook 2 - Haarlemmerweg,90,1,4.820147,52.384321,POINT(4.820147 52.384321),,,,,,
-,,ANPR-03008-A - Rijstrook 1 - Nieuwe Hemweg,315,-1,4.863736,52.394571,POINT(4.863736 52.394571),,,,nee,,
-201383,4b330059-3bb2-42f7-9948-dca2e8ce7012,ANPR-03008-A - Rijstrook 1 - Nieuwe Hemweg,315,1,4.863736,52.394571,POINT(4.863736 52.394571),,,,nee,,
-,,ANPR-03008-A - Rijstrook 2 - Nieuwe Hemweg,315,-1,4.863736,52.394571,POINT(4.863736 52.394571),,,,nee,,
-201383,ce1222e1-e0a8-46c3-ab33-38fe38fe6f75,ANPR-03008-A - Rijstrook 2 - Nieuwe Hemweg,315,1,4.863736,52.394571,POINT(4.863736 52.394571),,,,nee,,
-,,ANPR-03011-A - Rijstrook 1 - Einsteinweg,180,-1,4.843544,52.391376,POINT(4.843544 52.391376),,,,nee,,
-210277,c1adfc57-58ec-4599-aba8-c98af11ed7b5,ANPR-03011-A - Rijstrook 1 - Einsteinweg,180,1,4.843544,52.391376,POINT(4.843544 52.391376),,,,nee,,
-,,ANPR-03011-A - Rijstrook 2 - Einsteinweg,180,-1,4.843544,52.391376,POINT(4.843544 52.391376),,,,nee,,
-210277,fdabc3b3-edc3-4f43-b2d6-966e98b09b0e,ANPR-03011-A - Rijstrook 2 - Einsteinweg,180,1,4.843544,52.391376,POINT(4.843544 52.391376),,,,nee,,
-,,ANPR-03012-A - Rijstrook 1 - Einsteinweg,0,-1,4.844903,52.392311,POINT(4.844903 52.392311),,,,nee,,
-305536,ffbe310b-d672-444f-845d-0b8f47a64204,ANPR-03012-A - Rijstrook 1 - Einsteinweg,0,1,4.844903,52.392311,POINT(4.844903 52.392311),,,,nee,,
-,,ANPR-03012-A - Rijstrook 2 - Einsteinweg,0,-1,4.844903,52.392311,POINT(4.844903 52.392311),,,,nee,,
-305536,f0a8254b-195b-4c6e-a987-b7c5d4e84599,ANPR-03012-A - Rijstrook 2 - Einsteinweg,0,1,4.844903,52.392311,POINT(4.844903 52.392311),,,,nee,,
-208859,60d6d259-4f66-4dbd-85fc-ada0800b059d,ANPR-03013-A - Rijstrook 1 - Europaboulevard,315,1,4.891527,52.337525,POINT(4.891527 52.337525),,,,nee,,
-,,ANPR-03013-A - Rijstrook 2 - Europaboulevard,315,-1,4.891527,52.337525,POINT(4.891527 52.337525),,,,nee,,
-208859,d7256a47-4f9f-44f6-a2b2-1694b7295887,ANPR-03013-A - Rijstrook 2 - Europaboulevard,315,1,4.891527,52.337525,POINT(4.891527 52.337525),,,,nee,,
-,,ANPR-03014-A - Rijstrook 1 - Piet Heinkade,112.5,-1,4.922012,52.376173,POINT(4.922012 52.376173),,,,nee,,
-29327,5468fbf9-94f6-42af-a55f-04bf757c7aae,ANPR-03014-A - Rijstrook 1 - Piet Heinkade,112.5,1,4.922012,52.376173,POINT(4.922012 52.376173),,,,nee,,
-,,ANPR-03015-A - Rijstrook 1 - Piet Heinkade,270,-1,4.921444,52.376389,POINT(4.921444 52.376389),,,,,,
-,f61bcf22-8e24-4c7d-99e0-51ded21039b6,ANPR-03015-A - Rijstrook 1 - Piet Heinkade,270,1,4.921444,52.376389,POINT(4.921444 52.376389),,,,,,
-,,ANPR-03016-A - Rijstrook 2 - Seineweg,180,-1,4.818401,52.391165,POINT(4.818401 52.391165),,,,nee,,
-210239,e8b9fabf-c525-40c9-881e-577fb554aed4,ANPR-03016-A - Rijstrook 2 - Seineweg,180,1,4.818401,52.391165,POINT(4.818401 52.391165),,,,nee,,
-,,ANPR-03016-A - Rijstrook 3 - Seineweg,180,-1,4.818401,52.391165,POINT(4.818401 52.391165),,,,nee,,
-,,ANPR-03016-A - Rijstrook 3 - Seineweg,180,1,4.818401,52.391165,POINT(4.818401 52.391165),,,,nee,,
-,,ANPR-03017-A - Rijstrook 1 - Nieuwe Leeuwarderweg,22.5,-1,4.940616,52.40873,POINT(4.940616 52.40873),,,,nee,,
-210473,81dbddaf-16b5-466a-8a36-961f4e2a7a92,ANPR-03017-A - Rijstrook 1 - Nieuwe Leeuwarderweg,22.5,1,4.940616,52.40873,POINT(4.940616 52.40873),,,,nee,,
-,,ANPR-03017-A - Rijstrook 2 - Nieuwe Leeuwarderweg,22.5,-1,4.940616,52.40873,POINT(4.940616 52.40873),,,,nee,,
-210473,f94e2914-ba8b-41c7-a79e-78a311f2b81a,ANPR-03017-A - Rijstrook 2 - Nieuwe Leeuwarderweg,22.5,1,4.940616,52.40873,POINT(4.940616 52.40873),,,,nee,,
-,,ANPR-03017-A - Rijstrook 3 - Nieuwe Leeuwarderweg,22.5,-1,4.940616,52.40873,POINT(4.940616 52.40873),,,,nee,,
-210473,51d432d2-553a-4da5-9dfd-5716bf287de2,ANPR-03017-A - Rijstrook 3 - Nieuwe Leeuwarderweg,22.5,1,4.940616,52.40873,POINT(4.940616 52.40873),,,,nee,,
-,,ANPR-03019-A - Rijstrook 1 - Transformatorweg,270,-1,4.862703,52.392696,POINT(4.862703 52.392696),,,,nee,,
-253668,564d29d1-9ed2-4b5d-b0c9-742ed3f5c67e,ANPR-03019-A - Rijstrook 1 - Transformatorweg,270,1,4.862703,52.392696,POINT(4.862703 52.392696),,,,nee,,
-,,ANPR-03019-A - Rijstrook 2 - Transformatorweg,270,-1,4.862703,52.392696,POINT(4.862703 52.392696),,,,nee,,
-253668,f3beaedd-374b-4f7a-a002-9d84a5751d62,ANPR-03019-A - Rijstrook 2 - Transformatorweg,270,1,4.862703,52.392696,POINT(4.862703 52.392696),,,,nee,,
-215082,4dc0157c-4082-4eb0-a35f-54697b4792f9,ANPR-03020-A - Rijstrook -1 - Valkenburgerstraat,225,-1,4.905951,52.369244,POINT(4.905951 52.369244),,,,nee,,
-215082,4dc0157c-4082-4eb0-a35f-54697b4792f9,ANPR-03020-A - Rijstrook -1 - Valkenburgerstraat,225,1,4.905951,52.369244,POINT(4.905951 52.369244),,,,nee,,
-215082,706d2081-b2f1-4cff-b0d3-49d3b9f1af33,ANPR-03020-A - Rijstrook 1 - Valkenburgerstraat,225,-1,4.905951,52.369244,POINT(4.905951 52.369244),,,,nee,,
-215082,706d2081-b2f1-4cff-b0d3-49d3b9f1af33,ANPR-03020-A - Rijstrook 1 - Valkenburgerstraat,225,1,4.905951,52.369244,POINT(4.905951 52.369244),,,,nee,,
-,,ANPR-03021-A - Rijstrook 1 - Ringweg Noord,135,-1,4.938878,52.406453,POINT(4.938878 52.406453),,,,nee,,
-31787,2688a3c0-0a89-478f-8a57-9288b8b1ba66,ANPR-03021-A - Rijstrook 1 - Ringweg Noord,135,1,4.938878,52.406453,POINT(4.938878 52.406453),,,,nee,,
-,,ANPR-03021-A - Rijstrook 2 - Ringweg Noord,135,-1,4.938878,52.406453,POINT(4.938878 52.406453),,,,nee,,
-31787,594d4595-e993-46b7-9889-a6ff49c8a590,ANPR-03021-A - Rijstrook 2 - Ringweg Noord,135,1,4.938878,52.406453,POINT(4.938878 52.406453),,,,nee,,
-,,ANPR-03022-A - Rijstrook 1 - Ringweg Noord,315,-1,4.939161,52.407659,POINT(4.939161 52.407659),,,,nee,,
-210460,b5ad3909-650b-4798-aa6b-a403ce6aeef5,ANPR-03022-A - Rijstrook 1 - Ringweg Noord,315,1,4.939161,52.407659,POINT(4.939161 52.407659),,,,nee,,
-210770,eed3a17e-9d1d-4fd6-9511-0cd871040d38,ANPR-03023-A - Rijstrook -1 - Zuiderzeeweg,0,-1,4.96227,52.370245,POINT(4.96227 52.370245),,,,nee,,
-,,ANPR-03023-A - Rijstrook -1 - Zuiderzeeweg,0,1,4.96227,52.370245,POINT(4.96227 52.370245),,,,nee,,
-,,ANPR-03024-A - Rijstrook 1 - Zuiderzeeweg,0,-1,4.962438,52.372305,POINT(4.962438 52.372305),,,,nee,,
-305957,6a5af951-7e9c-4b9f-ab62-6cb2cb5628d6,ANPR-03024-A - Rijstrook 1 - Zuiderzeeweg,0,1,4.962438,52.372305,POINT(4.962438 52.372305),,,,nee,,
-,,ANPR-03025-A - Rijstrook 1 - Gooiseweg,45,-1,4.919688,52.34831,POINT(4.919688 52.34831),,,,nee,,
-253972,d5ee8f91-3039-438c-834d-b46c03166361,ANPR-03025-A - Rijstrook 1 - Gooiseweg,45,1,4.919688,52.34831,POINT(4.919688 52.34831),,,,nee,,
-,,ANPR-03025-A - Rijstrook 2 - Gooiseweg,45,-1,4.919688,52.34831,POINT(4.919688 52.34831),,,,nee,,
-253972,01b554b8-9527-4c52-b371-90dd9b4099b4,ANPR-03025-A - Rijstrook 2 - Gooiseweg,45,1,4.919688,52.34831,POINT(4.919688 52.34831),,,,nee,,
-,,ANPR-03026-A - Rijstrook 2 - Julianaplein,157.5,-1,4.918932,52.347421,POINT(4.918932 52.347421),,,,nee,,
-308233,4a86a28d-8965-4341-910d-c977f1dcea15,ANPR-03026-A - Rijstrook 2 - Julianaplein,157.5,1,4.918932,52.347421,POINT(4.918932 52.347421),,,,nee,,
-210396,c8b9dfad-f643-4246-a037-541cf72cd3c3,ANPR-03027-A - Rijstrook 2 - Mr. Treublaan,225,1,4.917525,52.348205,POINT(4.917525 52.348205),,,,nee,,
-,,ANPR-03027-A - Rijstrook 3 - Mr. Treublaan,225,-1,4.917525,52.348205,POINT(4.917525 52.348205),,,,nee,,
-210396,8e8acfc1-afe2-4d54-8fde-a6665ddc082b,ANPR-03027-A - Rijstrook 3 - Mr. Treublaan,225,1,4.917525,52.348205,POINT(4.917525 52.348205),,,,nee,,
-,,ANPR-03028-A - Rijstrook 1 - Wibautstraat,315,-1,4.918454,52.348732,POINT(4.918454 52.348732),,,,nee,,
-210383,a55e6417-004d-4258-a80b-b8d32a197dea,ANPR-03028-A - Rijstrook 1 - Wibautstraat,315,1,4.918454,52.348732,POINT(4.918454 52.348732),,,,nee,,
-,,ANPR-03028-A - Rijstrook 2 - Wibautstraat,315,-1,4.918454,52.348732,POINT(4.918454 52.348732),,,,nee,,
-210383,29b3d158-67f9-4947-9516-32bc8c457fc5,ANPR-03028-A - Rijstrook 2 - Wibautstraat,315,1,4.918454,52.348732,POINT(4.918454 52.348732),,,,nee,,
-,45b09c90-3534-4ab6-a926-bae4579daa00,ANPR-03029-A - Rijstrook 1 - Waterkeringpad,45,-1,4.94902,52.365267,POINT(4.94902 52.365267),,,,nee,,
-210770,45b09c90-3534-4ab6-a926-bae4579daa00,ANPR-03029-A - Rijstrook 1 - Waterkeringpad,45,1,4.94902,52.365267,POINT(4.94902 52.365267),,,,nee,,
-,9bdaf0f5-de61-4322-a4bf-aea375ed4806,ANPR-03029-A - Rijstrook 2 - Waterkeringpad,45,-1,4.94902,52.365267,POINT(4.94902 52.365267),,,,nee,,
-210770,9bdaf0f5-de61-4322-a4bf-aea375ed4806,ANPR-03029-A - Rijstrook 2 - Waterkeringpad,45,1,4.94902,52.365267,POINT(4.94902 52.365267),,,,nee,,
-,,ANPR-03030-A - Rijstrook 1 - IJburglaan,135,-1,4.999697,52.352705,POINT(4.999697 52.352705),,,,nee,,
-207116,8d1d0085-932b-462b-ab34-3fded9803951,ANPR-03030-A - Rijstrook 1 - IJburglaan,135,1,4.999697,52.352705,POINT(4.999697 52.352705),,,,nee,,
-,,ANPR-03031-A - Rijstrook 1 - IJburglaan,315,-1,4.999623,52.353067,POINT(4.999623 52.353067),,,,nee,,
-210703,07b9f1cc-2cff-4b23-a1ee-49f582c74c72,ANPR-03031-A - Rijstrook 1 - IJburglaan,315,1,4.999623,52.353067,POINT(4.999623 52.353067),,,,nee,,
-208961,7ef4f10e-8c2a-4f13-85b7-8de7be71205c,ANPR-03032-A - Rijstrook -1 - Piet Heintunnel,270,-1,4.934362,52.372491,POINT(4.934362 52.372491),,,,nee,,
-,,ANPR-03032-A - Rijstrook -1 - Piet Heintunnel,270,1,4.934362,52.372491,POINT(4.934362 52.372491),,,,nee,,
-208961,3663852b-8bd2-421b-941c-c7708b2a725f,ANPR-03032-A - Rijstrook -2 - Piet Heintunnel,270,-1,4.934362,52.372491,POINT(4.934362 52.372491),,,,nee,,
-,,ANPR-03032-A - Rijstrook -2 - Piet Heintunnel,270,1,4.934362,52.372491,POINT(4.934362 52.372491),,,,nee,,
-,,ANPR-03033-A - Rijstrook 1 - Panamalaan,180,-1,4.933591,52.372362,POINT(4.933591 52.372362),,,,nee,,
-208953,1a93f804-eb19-42ed-b4ff-c6e58fe3aa05,ANPR-03033-A - Rijstrook 1 - Panamalaan,180,1,4.933591,52.372362,POINT(4.933591 52.372362),,,,nee,,
-,,ANPR-03033-A - Rijstrook 2 - Panamalaan,180,-1,4.933591,52.372362,POINT(4.933591 52.372362),,,,nee,,
-208953,1df9d86e-37d4-40d8-8b8a-2b74c0ad4eca,ANPR-03033-A - Rijstrook 2 - Panamalaan,180,1,4.933591,52.372362,POINT(4.933591 52.372362),,,,nee,,
-308348,57ddb381-8881-4392-adcd-08235e9f3cf1,ANPR-03034-A - Rijstrook 1 - Piet Heinkade,315,1,4.933177,52.373196,POINT(4.933177 52.373196),,,,nee,,
-,,ANPR-03036-A - Rijstrook 1 - Westerdoksdijk,180,-1,4.891378,52.389361,POINT(4.891378 52.389361),,,,nee,,
-24307,f97f1505-a2f6-4683-9068-5a5a950cccbc,ANPR-03036-A - Rijstrook 1 - Westerdoksdijk,180,1,4.891378,52.389361,POINT(4.891378 52.389361),,,,nee,,
-,,ANPR-03037-A - Rijstrook 1 - Houtmankade,180,-1,4.884792,52.390197,POINT(4.884792 52.390197),,,,nee,,
-117131,e73d42fa-dba5-48b8-b4b4-c271f26f53fb,ANPR-03037-A - Rijstrook 1 - Houtmankade,180,1,4.884792,52.390197,POINT(4.884792 52.390197),,,,nee,,
-,,ANPR-03038-A - Rijstrook 1 - Barentszplein,292.5,-1,4.891235,52.389613,POINT(4.891235 52.389613),,,,nee,,
-24304,a0a8c3b6-bfbd-40ab-9f2e-1e54584edbf0,ANPR-03038-A - Rijstrook 1 - Barentszplein,292.5,1,4.891235,52.389613,POINT(4.891235 52.389613),,,,nee,,
-,15b3cf0f-be7c-4818-a4b4-10aa215d1d38,ANPR-03039-A - Rijstrook 1 - Haarlemmerweg,292.5,-1,4.881016,52.385217,POINT(4.881016 52.385217),,,,nee,,
-253914,15b3cf0f-be7c-4818-a4b4-10aa215d1d38,ANPR-03039-A - Rijstrook 1 - Haarlemmerweg,292.5,1,4.881016,52.385217,POINT(4.881016 52.385217),,,,nee,,
-,,ANPR-03040-A - Rijstrook 2 - Houtmankade,0,-1,4.88157,52.385144,POINT(4.88157 52.385144),,,,nee,,
-253915,5c083afe-678c-4726-a36a-e5397dfc3462,ANPR-03040-A - Rijstrook 2 - Houtmankade,0,1,4.88157,52.385144,POINT(4.88157 52.385144),,,,nee,,
+,,ANPR-03008-A - Rijstrook 1 - Nieuwe Hemweg,315,-1,4.863736,52.394571,POINT(4.863736 52.394571),,,,,,
+201383,4b330059-3bb2-42f7-9948-dca2e8ce7012,ANPR-03008-A - Rijstrook 1 - Nieuwe Hemweg,315,1,4.863736,52.394571,POINT(4.863736 52.394571),,,,,,
+,,ANPR-03008-A - Rijstrook 2 - Nieuwe Hemweg,315,-1,4.863736,52.394571,POINT(4.863736 52.394571),,,,,,
+201383,ce1222e1-e0a8-46c3-ab33-38fe38fe6f75,ANPR-03008-A - Rijstrook 2 - Nieuwe Hemweg,315,1,4.863736,52.394571,POINT(4.863736 52.394571),,,,,,
+,,ANPR-03011-A - Rijstrook 1 - Einsteinweg,180,-1,4.843544,52.391376,POINT(4.843544 52.391376),,,,,,
+210277,c1adfc57-58ec-4599-aba8-c98af11ed7b5,ANPR-03011-A - Rijstrook 1 - Einsteinweg,180,1,4.843544,52.391376,POINT(4.843544 52.391376),,,,,,
+,,ANPR-03011-A - Rijstrook 2 - Einsteinweg,180,-1,4.843544,52.391376,POINT(4.843544 52.391376),,,,,,
+210277,fdabc3b3-edc3-4f43-b2d6-966e98b09b0e,ANPR-03011-A - Rijstrook 2 - Einsteinweg,180,1,4.843544,52.391376,POINT(4.843544 52.391376),,,,,,
+,,ANPR-03012-A - Rijstrook 1 - Einsteinweg,0,-1,4.844903,52.392311,POINT(4.844903 52.392311),,,,,,
+305536,ffbe310b-d672-444f-845d-0b8f47a64204,ANPR-03012-A - Rijstrook 1 - Einsteinweg,0,1,4.844903,52.392311,POINT(4.844903 52.392311),,,,,,
+,,ANPR-03012-A - Rijstrook 2 - Einsteinweg,0,-1,4.844903,52.392311,POINT(4.844903 52.392311),,,,,,
+305536,f0a8254b-195b-4c6e-a987-b7c5d4e84599,ANPR-03012-A - Rijstrook 2 - Einsteinweg,0,1,4.844903,52.392311,POINT(4.844903 52.392311),,,,,,
+208859,60d6d259-4f66-4dbd-85fc-ada0800b059d,ANPR-03013-A - Rijstrook 1 - Europaboulevard,315,1,4.891527,52.337525,POINT(4.891527 52.337525),,,,,,
+,,ANPR-03013-A - Rijstrook 2 - Europaboulevard,315,-1,4.891527,52.337525,POINT(4.891527 52.337525),,,,,,
+208859,d7256a47-4f9f-44f6-a2b2-1694b7295887,ANPR-03013-A - Rijstrook 2 - Europaboulevard,315,1,4.891527,52.337525,POINT(4.891527 52.337525),,,,,,
+,,ANPR-03014-A - Rijstrook 1 - Piet Heinkade,112.5,-1,4.922012,52.376173,POINT(4.922012 52.376173),,4,Piet Heinkade midden,op S100,linksom,nee
+29327,5468fbf9-94f6-42af-a55f-04bf757c7aae,ANPR-03014-A - Rijstrook 1 - Piet Heinkade,112.5,1,4.922012,52.376173,POINT(4.922012 52.376173),,4,Piet Heinkade midden,op S100,rechtsom,ja
+,,ANPR-03015-A - Rijstrook 1 - Piet Heinkade,270,-1,4.921444,52.376389,POINT(4.921444 52.376389),,3,Piet Heinkade west,op S100,rechtsom,nee
+,f61bcf22-8e24-4c7d-99e0-51ded21039b6,ANPR-03015-A - Rijstrook 1 - Piet Heinkade,270,1,4.921444,52.376389,POINT(4.921444 52.376389),,3,Piet Heinkade west,op S100,linksom,ja
+,,ANPR-03016-A - Rijstrook 2 - Seineweg,180,-1,4.818401,52.391165,POINT(4.818401 52.391165),,,,,,
+210239,e8b9fabf-c525-40c9-881e-577fb554aed4,ANPR-03016-A - Rijstrook 2 - Seineweg,180,1,4.818401,52.391165,POINT(4.818401 52.391165),,,,,,
+,,ANPR-03016-A - Rijstrook 3 - Seineweg,180,-1,4.818401,52.391165,POINT(4.818401 52.391165),,,,,,
+,,ANPR-03016-A - Rijstrook 3 - Seineweg,180,1,4.818401,52.391165,POINT(4.818401 52.391165),,,,,,
+,,ANPR-03017-A - Rijstrook 1 - Nieuwe Leeuwarderweg,22.5,-1,4.940616,52.40873,POINT(4.940616 52.40873),,,,,,
+210473,81dbddaf-16b5-466a-8a36-961f4e2a7a92,ANPR-03017-A - Rijstrook 1 - Nieuwe Leeuwarderweg,22.5,1,4.940616,52.40873,POINT(4.940616 52.40873),,,,,,
+,,ANPR-03017-A - Rijstrook 2 - Nieuwe Leeuwarderweg,22.5,-1,4.940616,52.40873,POINT(4.940616 52.40873),,,,,,
+210473,f94e2914-ba8b-41c7-a79e-78a311f2b81a,ANPR-03017-A - Rijstrook 2 - Nieuwe Leeuwarderweg,22.5,1,4.940616,52.40873,POINT(4.940616 52.40873),,,,,,
+,,ANPR-03017-A - Rijstrook 3 - Nieuwe Leeuwarderweg,22.5,-1,4.940616,52.40873,POINT(4.940616 52.40873),,,,,,
+210473,51d432d2-553a-4da5-9dfd-5716bf287de2,ANPR-03017-A - Rijstrook 3 - Nieuwe Leeuwarderweg,22.5,1,4.940616,52.40873,POINT(4.940616 52.40873),,,,,,
+,,ANPR-03019-A - Rijstrook 1 - Transformatorweg,270,-1,4.862703,52.392696,POINT(4.862703 52.392696),,,,,,
+253668,564d29d1-9ed2-4b5d-b0c9-742ed3f5c67e,ANPR-03019-A - Rijstrook 1 - Transformatorweg,270,1,4.862703,52.392696,POINT(4.862703 52.392696),,,,,,
+,,ANPR-03019-A - Rijstrook 2 - Transformatorweg,270,-1,4.862703,52.392696,POINT(4.862703 52.392696),,,,,,
+253668,f3beaedd-374b-4f7a-a002-9d84a5751d62,ANPR-03019-A - Rijstrook 2 - Transformatorweg,270,1,4.862703,52.392696,POINT(4.862703 52.392696),,,,,,
+215082,4dc0157c-4082-4eb0-a35f-54697b4792f9,ANPR-03020-A - Rijstrook -1 - Valkenburgerstraat,225,-1,4.905951,52.369244,POINT(4.905951 52.369244),,,,,,
+215082,4dc0157c-4082-4eb0-a35f-54697b4792f9,ANPR-03020-A - Rijstrook -1 - Valkenburgerstraat,225,1,4.905951,52.369244,POINT(4.905951 52.369244),,,,,,
+215082,706d2081-b2f1-4cff-b0d3-49d3b9f1af33,ANPR-03020-A - Rijstrook 1 - Valkenburgerstraat,225,-1,4.905951,52.369244,POINT(4.905951 52.369244),,,,,,
+215082,706d2081-b2f1-4cff-b0d3-49d3b9f1af33,ANPR-03020-A - Rijstrook 1 - Valkenburgerstraat,225,1,4.905951,52.369244,POINT(4.905951 52.369244),,,,,,
+,,ANPR-03021-A - Rijstrook 1 - Ringweg Noord,135,-1,4.938878,52.406453,POINT(4.938878 52.406453),,,,,,
+31787,2688a3c0-0a89-478f-8a57-9288b8b1ba66,ANPR-03021-A - Rijstrook 1 - Ringweg Noord,135,1,4.938878,52.406453,POINT(4.938878 52.406453),,,,,,
+,,ANPR-03021-A - Rijstrook 2 - Ringweg Noord,135,-1,4.938878,52.406453,POINT(4.938878 52.406453),,,,,,
+31787,594d4595-e993-46b7-9889-a6ff49c8a590,ANPR-03021-A - Rijstrook 2 - Ringweg Noord,135,1,4.938878,52.406453,POINT(4.938878 52.406453),,,,,,
+,,ANPR-03022-A - Rijstrook 1 - Ringweg Noord,315,-1,4.939161,52.407659,POINT(4.939161 52.407659),,,,,,
+210460,b5ad3909-650b-4798-aa6b-a403ce6aeef5,ANPR-03022-A - Rijstrook 1 - Ringweg Noord,315,1,4.939161,52.407659,POINT(4.939161 52.407659),,,,,,
+210770,eed3a17e-9d1d-4fd6-9511-0cd871040d38,ANPR-03023-A - Rijstrook -1 - Zuiderzeeweg,0,-1,4.96227,52.370245,POINT(4.96227 52.370245),,,,,,
+,,ANPR-03023-A - Rijstrook -1 - Zuiderzeeweg,0,1,4.96227,52.370245,POINT(4.96227 52.370245),,,,,,
+,,ANPR-03024-A - Rijstrook 1 - Zuiderzeeweg,0,-1,4.962438,52.372305,POINT(4.962438 52.372305),,,,,,
+305957,6a5af951-7e9c-4b9f-ab62-6cb2cb5628d6,ANPR-03024-A - Rijstrook 1 - Zuiderzeeweg,0,1,4.962438,52.372305,POINT(4.962438 52.372305),,,,,,
+,,ANPR-03025-A - Rijstrook 1 - Gooiseweg,45,-1,4.919688,52.34831,POINT(4.919688 52.34831),,,,,,
+253972,d5ee8f91-3039-438c-834d-b46c03166361,ANPR-03025-A - Rijstrook 1 - Gooiseweg,45,1,4.919688,52.34831,POINT(4.919688 52.34831),,,,,,
+,,ANPR-03025-A - Rijstrook 2 - Gooiseweg,45,-1,4.919688,52.34831,POINT(4.919688 52.34831),,,,,,
+253972,01b554b8-9527-4c52-b371-90dd9b4099b4,ANPR-03025-A - Rijstrook 2 - Gooiseweg,45,1,4.919688,52.34831,POINT(4.919688 52.34831),,,,,,
+,,ANPR-03026-A - Rijstrook 2 - Julianaplein,157.5,-1,4.918932,52.347421,POINT(4.918932 52.347421),,,,,,
+308233,4a86a28d-8965-4341-910d-c977f1dcea15,ANPR-03026-A - Rijstrook 2 - Julianaplein,157.5,1,4.918932,52.347421,POINT(4.918932 52.347421),,,,,,
+210396,c8b9dfad-f643-4246-a037-541cf72cd3c3,ANPR-03027-A - Rijstrook 2 - Mr. Treublaan,225,1,4.917525,52.348205,POINT(4.917525 52.348205),,,,,,
+,,ANPR-03027-A - Rijstrook 3 - Mr. Treublaan,225,-1,4.917525,52.348205,POINT(4.917525 52.348205),,,,,,
+210396,8e8acfc1-afe2-4d54-8fde-a6665ddc082b,ANPR-03027-A - Rijstrook 3 - Mr. Treublaan,225,1,4.917525,52.348205,POINT(4.917525 52.348205),,,,,,
+,,ANPR-03028-A - Rijstrook 1 - Wibautstraat,315,-1,4.918454,52.348732,POINT(4.918454 52.348732),,,,,,
+210383,a55e6417-004d-4258-a80b-b8d32a197dea,ANPR-03028-A - Rijstrook 1 - Wibautstraat,315,1,4.918454,52.348732,POINT(4.918454 52.348732),,,,,,
+,,ANPR-03028-A - Rijstrook 2 - Wibautstraat,315,-1,4.918454,52.348732,POINT(4.918454 52.348732),,,,,,
+210383,29b3d158-67f9-4947-9516-32bc8c457fc5,ANPR-03028-A - Rijstrook 2 - Wibautstraat,315,1,4.918454,52.348732,POINT(4.918454 52.348732),,,,,,
+,45b09c90-3534-4ab6-a926-bae4579daa00,ANPR-03029-A - Rijstrook 1 - Waterkeringpad,45,-1,4.94902,52.365267,POINT(4.94902 52.365267),,,,,,
+210770,45b09c90-3534-4ab6-a926-bae4579daa00,ANPR-03029-A - Rijstrook 1 - Waterkeringpad,45,1,4.94902,52.365267,POINT(4.94902 52.365267),,,,,,
+,9bdaf0f5-de61-4322-a4bf-aea375ed4806,ANPR-03029-A - Rijstrook 2 - Waterkeringpad,45,-1,4.94902,52.365267,POINT(4.94902 52.365267),,,,,,
+210770,9bdaf0f5-de61-4322-a4bf-aea375ed4806,ANPR-03029-A - Rijstrook 2 - Waterkeringpad,45,1,4.94902,52.365267,POINT(4.94902 52.365267),,,,,,
+,,ANPR-03030-A - Rijstrook 1 - IJburglaan,135,-1,4.999697,52.352705,POINT(4.999697 52.352705),,,,,,
+207116,8d1d0085-932b-462b-ab34-3fded9803951,ANPR-03030-A - Rijstrook 1 - IJburglaan,135,1,4.999697,52.352705,POINT(4.999697 52.352705),,,,,,
+,,ANPR-03031-A - Rijstrook 1 - IJburglaan,315,-1,4.999623,52.353067,POINT(4.999623 52.353067),,,,,,
+210703,07b9f1cc-2cff-4b23-a1ee-49f582c74c72,ANPR-03031-A - Rijstrook 1 - IJburglaan,315,1,4.999623,52.353067,POINT(4.999623 52.353067),,,,,,
+208961,7ef4f10e-8c2a-4f13-85b7-8de7be71205c,ANPR-03032-A - Rijstrook -1 - Piet Heintunnel,270,-1,4.934362,52.372491,POINT(4.934362 52.372491),,,,,,
+,,ANPR-03032-A - Rijstrook -1 - Piet Heintunnel,270,1,4.934362,52.372491,POINT(4.934362 52.372491),,,,,,
+208961,3663852b-8bd2-421b-941c-c7708b2a725f,ANPR-03032-A - Rijstrook -2 - Piet Heintunnel,270,-1,4.934362,52.372491,POINT(4.934362 52.372491),,,,,,
+,,ANPR-03032-A - Rijstrook -2 - Piet Heintunnel,270,1,4.934362,52.372491,POINT(4.934362 52.372491),,,,,,
+,,ANPR-03033-A - Rijstrook 1 - Panamalaan,180,-1,4.933591,52.372362,POINT(4.933591 52.372362),,6,Panamalaan,op S100,linksom,nee
+208953,1a93f804-eb19-42ed-b4ff-c6e58fe3aa05,ANPR-03033-A - Rijstrook 1 - Panamalaan,180,1,4.933591,52.372362,POINT(4.933591 52.372362),,6,Panamalaan,op S100,rechtsom,ja
+,,ANPR-03033-A - Rijstrook 2 - Panamalaan,180,-1,4.933591,52.372362,POINT(4.933591 52.372362),,6,Panamalaan,op S100,linksom,nee
+208953,1df9d86e-37d4-40d8-8b8a-2b74c0ad4eca,ANPR-03033-A - Rijstrook 2 - Panamalaan,180,1,4.933591,52.372362,POINT(4.933591 52.372362),,6,Panamalaan,op S100,rechtsom,ja
+308348,57ddb381-8881-4392-adcd-08235e9f3cf1,ANPR-03034-A - Rijstrook 1 - Piet Heinkade,315,1,4.933177,52.373196,POINT(4.933177 52.373196),,5,Piet Heinkade oost,op S100,linksom,ja
+,,ANPR-03036-A - Rijstrook 1 - Westerdoksdijk,180,-1,4.891378,52.389361,POINT(4.891378 52.389361),,2,Westerdoksdijk,op S100,linksom,nee
+24307,f97f1505-a2f6-4683-9068-5a5a950cccbc,ANPR-03036-A - Rijstrook 1 - Westerdoksdijk,180,1,4.891378,52.389361,POINT(4.891378 52.389361),,2,Westerdoksdijk,op S100,rechtsom,ja
+,,ANPR-03037-A - Rijstrook 1 - Houtmankade,180,-1,4.884792,52.390197,POINT(4.884792 52.390197),,19,Houtmankade,op S100,rechtsom,nee
+117131,e73d42fa-dba5-48b8-b4b4-c271f26f53fb,ANPR-03037-A - Rijstrook 1 - Houtmankade,180,1,4.884792,52.390197,POINT(4.884792 52.390197),,19,Houtmankade,op S100,linksom,ja
+,,ANPR-03038-A - Rijstrook 1 - Barentszplein,292.5,-1,4.891235,52.389613,POINT(4.891235 52.389613),,1,Van Diemenstraat,op S100,rechtsom,nee
+24304,a0a8c3b6-bfbd-40ab-9f2e-1e54584edbf0,ANPR-03038-A - Rijstrook 1 - Barentszplein,292.5,1,4.891235,52.389613,POINT(4.891235 52.389613),,1,Van Diemenstraat,op S100,linksom,ja
+,15b3cf0f-be7c-4818-a4b4-10aa215d1d38,ANPR-03039-A - Rijstrook 1 - Haarlemmerweg,292.5,-1,4.881016,52.385217,POINT(4.881016 52.385217),,,,,,
+253914,15b3cf0f-be7c-4818-a4b4-10aa215d1d38,ANPR-03039-A - Rijstrook 1 - Haarlemmerweg,292.5,1,4.881016,52.385217,POINT(4.881016 52.385217),,,,,,
+,,ANPR-03040-A - Rijstrook 2 - Houtmankade,0,-1,4.88157,52.385144,POINT(4.88157 52.385144),,18,Nassauplein noord,op S100,linksom,nee
+253915,5c083afe-678c-4726-a36a-e5397dfc3462,ANPR-03040-A - Rijstrook 2 - Houtmankade,0,1,4.88157,52.385144,POINT(4.88157 52.385144),,18,Nassauplein noord,op S100,rechtsom,ja
 ,,ANPR-03041-A - Rijstrook 2 - Amstelveenseweg,225,-1,4.855014,52.357584,POINT(4.855014 52.357584),,,,,,
 ,,ANPR-03041-A - Rijstrook 2 - Amstelveenseweg,225,1,4.855014,52.357584,POINT(4.855014 52.357584),,,,,,
 ,,ANPR-03041-A - Rijstrook 3 - Amstelveenseweg,225,-1,4.855014,52.357584,POINT(4.855014 52.357584),,,,,,
 ,,ANPR-03041-A - Rijstrook 3 - Amstelveenseweg,225,1,4.855014,52.357584,POINT(4.855014 52.357584),,,,,,
-,,ANPR-03042-A - Rijstrook 1 - Jan van Galenstraat,180,-1,4.841638,52.371995,POINT(4.841638 52.371995),,,,nee,,
-,631f3a1a-8c58-4af0-8ec3-3b6ff68bed8d,ANPR-03042-A - Rijstrook 1 - Jan van Galenstraat,180,1,4.841638,52.371995,POINT(4.841638 52.371995),,,,nee,,
-,,ANPR-03042-A - Rijstrook 2 - Jan van Galenstraat,180,-1,4.841638,52.371995,POINT(4.841638 52.371995),,,,nee,,
-,2be7e7e7-2732-4ca0-88bf-b661ca02bdb7,ANPR-03042-A - Rijstrook 2 - Jan van Galenstraat,180,1,4.841638,52.371995,POINT(4.841638 52.371995),,,,nee,,
-,,ANPR-03043-A - Rijstrook 1 - Jan van Galenstraat,0,-1,4.842662,52.372475,POINT(4.842662 52.372475),,,,nee,,
-,b26c62bc-9378-4f3c-aa01-c0e4797ca748,ANPR-03043-A - Rijstrook 1 - Jan van Galenstraat,0,1,4.842662,52.372475,POINT(4.842662 52.372475),,,,nee,,
-,,ANPR-03043-A - Rijstrook 2 - Jan van Galenstraat,0,-1,4.842662,52.372475,POINT(4.842662 52.372475),,,,nee,,
-,188d11eb-761c-4b7e-b868-8d55de0a8f33,ANPR-03043-A - Rijstrook 2 - Jan van Galenstraat,0,1,4.842662,52.372475,POINT(4.842662 52.372475),,,,nee,,
-,,ANPR-03044-A - Rijstrook 1 - Jan van Galenstraat,270,-1,4.841403,52.372488,POINT(4.841403 52.372488),,,,nee,,
-200165,51866d5f-ad42-4c4a-8dc4-8895b04a6c57,ANPR-03044-A - Rijstrook 1 - Jan van Galenstraat,270,1,4.841403,52.372488,POINT(4.841403 52.372488),,,,nee,,
-,,ANPR-03044-A - Rijstrook 2 - Jan van Galenstraat,270,-1,4.841403,52.372488,POINT(4.841403 52.372488),,,,nee,,
-200165,1cd507bc-925a-4a14-b4b5-a638f717df1f,ANPR-03044-A - Rijstrook 2 - Jan van Galenstraat,270,1,4.841403,52.372488,POINT(4.841403 52.372488),,,,nee,,
+,,ANPR-03042-A - Rijstrook 1 - Jan van Galenstraat,180,-1,4.841638,52.371995,POINT(4.841638 52.371995),,,,,,
+,631f3a1a-8c58-4af0-8ec3-3b6ff68bed8d,ANPR-03042-A - Rijstrook 1 - Jan van Galenstraat,180,1,4.841638,52.371995,POINT(4.841638 52.371995),,,,,,
+,,ANPR-03042-A - Rijstrook 2 - Jan van Galenstraat,180,-1,4.841638,52.371995,POINT(4.841638 52.371995),,,,,,
+,2be7e7e7-2732-4ca0-88bf-b661ca02bdb7,ANPR-03042-A - Rijstrook 2 - Jan van Galenstraat,180,1,4.841638,52.371995,POINT(4.841638 52.371995),,,,,,
+,,ANPR-03043-A - Rijstrook 1 - Jan van Galenstraat,0,-1,4.842662,52.372475,POINT(4.842662 52.372475),,,,,,
+,b26c62bc-9378-4f3c-aa01-c0e4797ca748,ANPR-03043-A - Rijstrook 1 - Jan van Galenstraat,0,1,4.842662,52.372475,POINT(4.842662 52.372475),,,,,,
+,,ANPR-03043-A - Rijstrook 2 - Jan van Galenstraat,0,-1,4.842662,52.372475,POINT(4.842662 52.372475),,,,,,
+,188d11eb-761c-4b7e-b868-8d55de0a8f33,ANPR-03043-A - Rijstrook 2 - Jan van Galenstraat,0,1,4.842662,52.372475,POINT(4.842662 52.372475),,,,,,
+,,ANPR-03044-A - Rijstrook 1 - Jan van Galenstraat,270,-1,4.841403,52.372488,POINT(4.841403 52.372488),,,,,,
+200165,51866d5f-ad42-4c4a-8dc4-8895b04a6c57,ANPR-03044-A - Rijstrook 1 - Jan van Galenstraat,270,1,4.841403,52.372488,POINT(4.841403 52.372488),,,,,,
+,,ANPR-03044-A - Rijstrook 2 - Jan van Galenstraat,270,-1,4.841403,52.372488,POINT(4.841403 52.372488),,,,,,
+200165,1cd507bc-925a-4a14-b4b5-a638f717df1f,ANPR-03044-A - Rijstrook 2 - Jan van Galenstraat,270,1,4.841403,52.372488,POINT(4.841403 52.372488),,,,,,
 ,ffd9c217-15a1-4b64-a11c-3815b457a741,ANPR-03045-A - Rijstrook 1 - Fortdiemerdamweg,45,-1,5.014247,52.340441,POINT(5.014247 52.340441),,,,,,
 ,ffd9c217-15a1-4b64-a11c-3815b457a741,ANPR-03045-A - Rijstrook 1 - Fortdiemerdamweg,45,1,5.014247,52.340441,POINT(5.014247 52.340441),,,,,,
 ,d90a856e-ae66-4af8-a288-96f0b3910eb8,ANPR-03045-A - Rijstrook 2 - Fortdiemerdamweg,45,-1,5.014247,52.340441,POINT(5.014247 52.340441),,,,,,
@@ -355,24 +355,24 @@ vma_linknr,camera_id,camera_naam,camera_kijkrichting,rijrichting,longitude,latit
 24303,d39ffba4-8fb9-46b9-a33e-e1e29fca142c,ANPR-06054-A - Rijstrook -1 - Barentszplein,247.5,1,4.891214,52.38938,POINT(4.891214 52.38938),,3,Barentszplein,S100,in,nee
 24303,d39ffba4-8fb9-46b9-a33e-e1e29fca142c,ANPR-06054-A - Rijstrook -1 - Barentszplein,247.5,-1,4.891214,52.38938,POINT(4.891214 52.38938),,3,Barentszplein,S100,uit,ja
 467367,710d3918-aa4b-48f0-916c-2cf385b9b1f4,ANPR-06055-A - Rijstrook 1 - Barentszplein,67.5,1,4.890108,52.389208,POINT(4.890108 52.389208),,3,Barentszplein,S100,uit,nee
-,c2f2e5fb-fd50-4360-8a5e-9eb23d828e4a,ANPR-03048-A - Rijstrook 1 - Nassauplein,180,-1,4.881415,52.384892,POINT(4.881415 52.384892),,,,,,
-,c2f2e5fb-fd50-4360-8a5e-9eb23d828e4a,ANPR-03048-A - Rijstrook 1 - Nassauplein,180,1,4.881415,52.384892,POINT(4.881415 52.384892),,,,,,
-,58484dce-b732-42f4-bc98-17e76ad09d8b,ANPR-03048-A - Rijstrook 2 - Nassauplein,180,-1,4.881415,52.384892,POINT(4.881415 52.384892),,,,,,
-,58484dce-b732-42f4-bc98-17e76ad09d8b,ANPR-03048-A - Rijstrook 2 - Nassauplein,180,1,4.881415,52.384892,POINT(4.881415 52.384892),,,,,,
-,be40ebc2-a073-4729-a69b-7a33b1322629,ANPR-03049-A - Rijstrook 2 - Stadhouderskade,135,-1,4.87889,52.363599,POINT(4.87889 52.363599),,,,nee,,
-,be40ebc2-a073-4729-a69b-7a33b1322629,ANPR-03049-A - Rijstrook 2 - Stadhouderskade,135,1,4.87889,52.363599,POINT(4.87889 52.363599),,,,nee,,
-,3b41dff8-e24b-438d-8310-95f3cfda7e4e,ANPR-03049-A - Rijstrook 3 - Stadhouderskade,135,-1,4.87889,52.363599,POINT(4.87889 52.363599),,,,nee,,
-,3b41dff8-e24b-438d-8310-95f3cfda7e4e,ANPR-03049-A - Rijstrook 3 - Stadhouderskade,135,1,4.87889,52.363599,POINT(4.87889 52.363599),,,,nee,,
-,f98cbc08-4733-4d9f-89e2-14c55dd80bfe,ANPR-03049-A - Rijstrook 4 - Stadhouderskade,135,-1,4.87889,52.363599,POINT(4.87889 52.363599),,,,nee,,
-,f98cbc08-4733-4d9f-89e2-14c55dd80bfe,ANPR-03049-A - Rijstrook 4 - Stadhouderskade,135,1,4.87889,52.363599,POINT(4.87889 52.363599),,,,nee,,
+,c2f2e5fb-fd50-4360-8a5e-9eb23d828e4a,ANPR-03048-A - Rijstrook 1 - Nassauplein,180,-1,4.881415,52.384892,POINT(4.881415 52.384892),,17,Nassauplein zuid,op S100,rechtsom,nee
+,c2f2e5fb-fd50-4360-8a5e-9eb23d828e4a,ANPR-03048-A - Rijstrook 1 - Nassauplein,180,1,4.881415,52.384892,POINT(4.881415 52.384892),,17,Nassauplein zuid,op S100,linksom,ja
+,58484dce-b732-42f4-bc98-17e76ad09d8b,ANPR-03048-A - Rijstrook 2 - Nassauplein,180,-1,4.881415,52.384892,POINT(4.881415 52.384892),,17,Nassauplein zuid,op S100,rechtsom,nee
+,58484dce-b732-42f4-bc98-17e76ad09d8b,ANPR-03048-A - Rijstrook 2 - Nassauplein,180,1,4.881415,52.384892,POINT(4.881415 52.384892),,17,Nassauplein zuid,op S100,linksom,ja
+,be40ebc2-a073-4729-a69b-7a33b1322629,ANPR-03049-A - Rijstrook 2 - Stadhouderskade,135,-1,4.87889,52.363599,POINT(4.87889 52.363599),,13,Stadhouderskade west,op S100,rechtsom,nee
+,be40ebc2-a073-4729-a69b-7a33b1322629,ANPR-03049-A - Rijstrook 2 - Stadhouderskade,135,1,4.87889,52.363599,POINT(4.87889 52.363599),,13,Stadhouderskade west,op S100,linksom,ja
+,3b41dff8-e24b-438d-8310-95f3cfda7e4e,ANPR-03049-A - Rijstrook 3 - Stadhouderskade,135,-1,4.87889,52.363599,POINT(4.87889 52.363599),,13,Stadhouderskade west,op S100,rechtsom,nee
+,3b41dff8-e24b-438d-8310-95f3cfda7e4e,ANPR-03049-A - Rijstrook 3 - Stadhouderskade,135,1,4.87889,52.363599,POINT(4.87889 52.363599),,13,Stadhouderskade west,op S100,linksom,ja
+,f98cbc08-4733-4d9f-89e2-14c55dd80bfe,ANPR-03049-A - Rijstrook 4 - Stadhouderskade,135,-1,4.87889,52.363599,POINT(4.87889 52.363599),,13,Stadhouderskade west,op S100,rechtsom,nee
+,f98cbc08-4733-4d9f-89e2-14c55dd80bfe,ANPR-03049-A - Rijstrook 4 - Stadhouderskade,135,1,4.87889,52.363599,POINT(4.87889 52.363599),,13,Stadhouderskade west,op S100,linksom,ja
 ,09254849-fa66-4165-87c9-452a35e1986e,ANPR-03050-A - Rijstrook 1 - Overtoom,247.5,-1,4.87871,52.363732,POINT(4.87871 52.363732),,,,,,
 ,09254849-fa66-4165-87c9-452a35e1986e,ANPR-03050-A - Rijstrook 1 - Overtoom,247.5,1,4.87871,52.363732,POINT(4.87871 52.363732),,,,,,
 ,a4c3395b-5544-4e7b-b7f6-f763374b57c3,ANPR-03050-A - Rijstrook 2 - Overtoom,247.5,-1,4.87871,52.363732,POINT(4.87871 52.363732),,,,,,
 ,a4c3395b-5544-4e7b-b7f6-f763374b57c3,ANPR-03050-A - Rijstrook 2 - Overtoom,247.5,1,4.87871,52.363732,POINT(4.87871 52.363732),,,,,,
-,16a7a7ac-983c-447e-b2b5-8e691954e07c,ANPR-03051-A - Rijstrook 1 - Nassaukade,337.5,-1,4.878835,52.364005,POINT(4.878835 52.364005),,,,nee,,
-,16a7a7ac-983c-447e-b2b5-8e691954e07c,ANPR-03051-A - Rijstrook 1 - Nassaukade,337.5,1,4.878835,52.364005,POINT(4.878835 52.364005),,,,nee,,
-,879f7633-2672-47b1-8243-692310420b81,ANPR-03051-A - Rijstrook 2 - Nassaukade,337.5,-1,4.878835,52.364005,POINT(4.878835 52.364005),,,,nee,,
-,879f7633-2672-47b1-8243-692310420b81,ANPR-03051-A - Rijstrook 2 - Nassaukade,337.5,1,4.878835,52.364005,POINT(4.878835 52.364005),,,,nee,,
+,16a7a7ac-983c-447e-b2b5-8e691954e07c,ANPR-03051-A - Rijstrook 1 - Nassaukade,337.5,-1,4.878835,52.364005,POINT(4.878835 52.364005),,14,Nassaukade zuid,op S100,linksom,nee
+,16a7a7ac-983c-447e-b2b5-8e691954e07c,ANPR-03051-A - Rijstrook 1 - Nassaukade,337.5,1,4.878835,52.364005,POINT(4.878835 52.364005),,14,Nassaukade zuid,op S100,rechtsom,ja
+,879f7633-2672-47b1-8243-692310420b81,ANPR-03051-A - Rijstrook 2 - Nassaukade,337.5,-1,4.878835,52.364005,POINT(4.878835 52.364005),,14,Nassaukade zuid,op S100,linksom,nee
+,879f7633-2672-47b1-8243-692310420b81,ANPR-03051-A - Rijstrook 2 - Nassaukade,337.5,1,4.878835,52.364005,POINT(4.878835 52.364005),,14,Nassaukade zuid,op S100,rechtsom,ja
 ,7753b88f-6b6f-49b9-91a9-fe3aae59f43d,ANPR-03052-A - Rijstrook 1 - Cornelis Lelylaan,180,-1,4.841862,52.357535,POINT(4.841862 52.357535),,,,,,
 ,7753b88f-6b6f-49b9-91a9-fe3aae59f43d,ANPR-03052-A - Rijstrook 1 - Cornelis Lelylaan,180,1,4.841862,52.357535,POINT(4.841862 52.357535),,,,,,
 ,bc4c6ac1-4c2a-44d4-8fd0-3b24fd12ee12,ANPR-03052-A - Rijstrook 2 - Cornelis Lelylaan,180,-1,4.841862,52.357535,POINT(4.841862 52.357535),,,,,,
@@ -387,22 +387,22 @@ vma_linknr,camera_id,camera_naam,camera_kijkrichting,rijrichting,longitude,latit
 ,7774fbf7-1f1a-4ec7-869c-e83edf843e15,ANPR-03054-A - Rijstrook 1 - Cornelis Lelylaan,0,1,4.842954,52.358285,POINT(4.842954 52.358285),,,,,,
 ,54770808-4a8e-450a-9342-a8a29bf2d914,ANPR-03054-A - Rijstrook 2 - Cornelis Lelylaan,0,-1,4.842954,52.358285,POINT(4.842954 52.358285),,,,,,
 ,54770808-4a8e-450a-9342-a8a29bf2d914,ANPR-03054-A - Rijstrook 2 - Cornelis Lelylaan,0,1,4.842954,52.358285,POINT(4.842954 52.358285),,,,,,
-,e0caff7f-1ef5-4d8a-88ee-c5344fc53256,ANPR-03055-A - Rijstrook 1 - Stadhouderskade,135,-1,4.886943,52.359966,POINT(4.886943 52.359966),,,,nee,,
-,e0caff7f-1ef5-4d8a-88ee-c5344fc53256,ANPR-03055-A - Rijstrook 1 - Stadhouderskade,135,1,4.886943,52.359966,POINT(4.886943 52.359966),,,,nee,,
-,21d41e97-66c4-4846-8a92-95c4057e7382,ANPR-03055-A - Rijstrook 2 - Stadhouderskade,135,-1,4.886943,52.359966,POINT(4.886943 52.359966),,,,nee,,
-,21d41e97-66c4-4846-8a92-95c4057e7382,ANPR-03055-A - Rijstrook 2 - Stadhouderskade,135,1,4.886943,52.359966,POINT(4.886943 52.359966),,,,nee,,
-,1a1da890-23a4-4d38-a62b-d3ff450f9f06,ANPR-03055-A - Rijstrook 3 - Stadhouderskade,135,-1,4.886943,52.359966,POINT(4.886943 52.359966),,,,nee,,
-,1a1da890-23a4-4d38-a62b-d3ff450f9f06,ANPR-03055-A - Rijstrook 3 - Stadhouderskade,135,1,4.886943,52.359966,POINT(4.886943 52.359966),,,,nee,,
-,fcdc4c1b-6c0a-4892-b7fc-ea6d9de8b2bc,ANPR-03056-A - Rijstrook 1 - Hobbemakade,202.5,-1,4.886567,52.360053,POINT(4.886567 52.360053),,,,nee,,
-,fcdc4c1b-6c0a-4892-b7fc-ea6d9de8b2bc,ANPR-03056-A - Rijstrook 1 - Hobbemakade,202.5,1,4.886567,52.360053,POINT(4.886567 52.360053),,,,nee,,
-,9e0311a7-6334-4362-ac4b-eb26ace0088c,ANPR-03056-A - Rijstrook 2 - Hobbemakade,202.5,-1,4.886567,52.360053,POINT(4.886567 52.360053),,,,nee,,
-,9e0311a7-6334-4362-ac4b-eb26ace0088c,ANPR-03056-A - Rijstrook 2 - Hobbemakade,202.5,1,4.886567,52.360053,POINT(4.886567 52.360053),,,,nee,,
-,0f7c435a-b82b-4ba4-a6a4-16d8bf59b4a3,ANPR-03057-A - Rijstrook 1 - Stadhouderskade,315,-1,4.886736,52.360208,POINT(4.886736 52.360208),,,,,,
-,0f7c435a-b82b-4ba4-a6a4-16d8bf59b4a3,ANPR-03057-A - Rijstrook 1 - Stadhouderskade,315,1,4.886736,52.360208,POINT(4.886736 52.360208),,,,,,
-,27736494-2a21-405d-979f-6d1f6073cf98,ANPR-03057-A - Rijstrook 2 - Stadhouderskade,315,-1,4.886736,52.360208,POINT(4.886736 52.360208),,,,,,
-,27736494-2a21-405d-979f-6d1f6073cf98,ANPR-03057-A - Rijstrook 2 - Stadhouderskade,315,1,4.886736,52.360208,POINT(4.886736 52.360208),,,,,,
-,f4a2ba9d-cf57-44d4-9682-0b08f4d0d72a,ANPR-03057-A - Rijstrook 3 - Stadhouderskade,315,-1,4.886736,52.360208,POINT(4.886736 52.360208),,,,,,
-,f4a2ba9d-cf57-44d4-9682-0b08f4d0d72a,ANPR-03057-A - Rijstrook 3 - Stadhouderskade,315,1,4.886736,52.360208,POINT(4.886736 52.360208),,,,,,
+,e0caff7f-1ef5-4d8a-88ee-c5344fc53256,ANPR-03055-A - Rijstrook 1 - Stadhouderskade,135,-1,4.886943,52.359966,POINT(4.886943 52.359966),,11,Stadhouderskade bij Ruysdaelkade,op S100,rechtsom,nee
+,e0caff7f-1ef5-4d8a-88ee-c5344fc53256,ANPR-03055-A - Rijstrook 1 - Stadhouderskade,135,1,4.886943,52.359966,POINT(4.886943 52.359966),,11,Stadhouderskade bij Ruysdaelkade,op S100,linksom,ja
+,21d41e97-66c4-4846-8a92-95c4057e7382,ANPR-03055-A - Rijstrook 2 - Stadhouderskade,135,-1,4.886943,52.359966,POINT(4.886943 52.359966),,11,Stadhouderskade bij Ruysdaelkade,op S100,rechtsom,nee
+,21d41e97-66c4-4846-8a92-95c4057e7382,ANPR-03055-A - Rijstrook 2 - Stadhouderskade,135,1,4.886943,52.359966,POINT(4.886943 52.359966),,11,Stadhouderskade bij Ruysdaelkade,op S100,linksom,ja
+,1a1da890-23a4-4d38-a62b-d3ff450f9f06,ANPR-03055-A - Rijstrook 3 - Stadhouderskade,135,-1,4.886943,52.359966,POINT(4.886943 52.359966),,11,Stadhouderskade bij Ruysdaelkade,op S100,rechtsom,nee
+,1a1da890-23a4-4d38-a62b-d3ff450f9f06,ANPR-03055-A - Rijstrook 3 - Stadhouderskade,135,1,4.886943,52.359966,POINT(4.886943 52.359966),,11,Stadhouderskade bij Ruysdaelkade,op S100,linksom,ja
+,fcdc4c1b-6c0a-4892-b7fc-ea6d9de8b2bc,ANPR-03056-A - Rijstrook 1 - Hobbemakade,202.5,-1,4.886567,52.360053,POINT(4.886567 52.360053),,,,,,
+,fcdc4c1b-6c0a-4892-b7fc-ea6d9de8b2bc,ANPR-03056-A - Rijstrook 1 - Hobbemakade,202.5,1,4.886567,52.360053,POINT(4.886567 52.360053),,,,,,
+,9e0311a7-6334-4362-ac4b-eb26ace0088c,ANPR-03056-A - Rijstrook 2 - Hobbemakade,202.5,-1,4.886567,52.360053,POINT(4.886567 52.360053),,,,,,
+,9e0311a7-6334-4362-ac4b-eb26ace0088c,ANPR-03056-A - Rijstrook 2 - Hobbemakade,202.5,1,4.886567,52.360053,POINT(4.886567 52.360053),,,,,,
+,0f7c435a-b82b-4ba4-a6a4-16d8bf59b4a3,ANPR-03057-A - Rijstrook 1 - Stadhouderskade,315,-1,4.886736,52.360208,POINT(4.886736 52.360208),,12,Stadhouderskade bij Rijksmuseum,op S100,linksom,nee
+,0f7c435a-b82b-4ba4-a6a4-16d8bf59b4a3,ANPR-03057-A - Rijstrook 1 - Stadhouderskade,315,1,4.886736,52.360208,POINT(4.886736 52.360208),,12,Stadhouderskade bij Rijksmuseum,op S100,rechtsom,ja
+,27736494-2a21-405d-979f-6d1f6073cf98,ANPR-03057-A - Rijstrook 2 - Stadhouderskade,315,-1,4.886736,52.360208,POINT(4.886736 52.360208),,12,Stadhouderskade bij Rijksmuseum,op S100,linksom,nee
+,27736494-2a21-405d-979f-6d1f6073cf98,ANPR-03057-A - Rijstrook 2 - Stadhouderskade,315,1,4.886736,52.360208,POINT(4.886736 52.360208),,12,Stadhouderskade bij Rijksmuseum,op S100,rechtsom,ja
+,f4a2ba9d-cf57-44d4-9682-0b08f4d0d72a,ANPR-03057-A - Rijstrook 3 - Stadhouderskade,315,-1,4.886736,52.360208,POINT(4.886736 52.360208),,12,Stadhouderskade bij Rijksmuseum,op S100,linksom,nee
+,f4a2ba9d-cf57-44d4-9682-0b08f4d0d72a,ANPR-03057-A - Rijstrook 3 - Stadhouderskade,315,1,4.886736,52.360208,POINT(4.886736 52.360208),,12,Stadhouderskade bij Rijksmuseum,op S100,rechtsom,ja
 ,f51ac422-945f-4a88-bbf0-c35fa1eed918,ANPR-03058-A - Rijstrook 1 - Amstelveenseweg,90,-1,4.858604,52.337049,POINT(4.858604 52.337049),,,,,,
 ,f51ac422-945f-4a88-bbf0-c35fa1eed918,ANPR-03058-A - Rijstrook 1 - Amstelveenseweg,90,1,4.858604,52.337049,POINT(4.858604 52.337049),,,,,,
 ,f0774d96-9dd4-4716-9960-840027aa9eba,ANPR-03058-A - Rijstrook 2 - Amstelveenseweg,90,-1,4.858604,52.337049,POINT(4.858604 52.337049),,,,,,
@@ -427,18 +427,18 @@ vma_linknr,camera_id,camera_naam,camera_kijkrichting,rijrichting,longitude,latit
 ,1ce4f43e-887c-4a56-bf45-0fd3214a2cb2,ANPR-03060-A - Rijstrook 1 - Amstelveenseweg,67.5,1,4.858066,52.339013,POINT(4.858066 52.339013),,,,,,
 ,c18c6db3-5f9e-43eb-b6bc-603194e2b744,ANPR-03060-A - Rijstrook 2 - Amstelveenseweg,67.5,-1,4.858066,52.339013,POINT(4.858066 52.339013),,,,,,
 ,c18c6db3-5f9e-43eb-b6bc-603194e2b744,ANPR-03060-A - Rijstrook 2 - Amstelveenseweg,67.5,1,4.858066,52.339013,POINT(4.858066 52.339013),,,,,,
-,3b08e25f-0810-4189-bd43-7dce2913a8a9,ANPR-03061-A - Rijstrook 1 - Mauritskade,45,-1,4.910543,52.360256,POINT(4.910543 52.360256),,,,,,
-,3b08e25f-0810-4189-bd43-7dce2913a8a9,ANPR-03061-A - Rijstrook 1 - Mauritskade,45,1,4.910543,52.360256,POINT(4.910543 52.360256),,,,,,
-,84bc8cdb-05c6-4495-9472-d04a17ff92bb,ANPR-03061-A - Rijstrook 2 - Mauritskade,45,-1,4.910543,52.360256,POINT(4.910543 52.360256),,,,,,
-,84bc8cdb-05c6-4495-9472-d04a17ff92bb,ANPR-03061-A - Rijstrook 2 - Mauritskade,45,1,4.910543,52.360256,POINT(4.910543 52.360256),,,,,,
-,ec764fc8-e1bb-461f-be73-ae1aa912b9b2,ANPR-03062-A - Rijstrook 1 - Amsteldijk,157.5,-1,4.904106,52.357865,POINT(4.904106 52.357865),,,,nee,,
-,ec764fc8-e1bb-461f-be73-ae1aa912b9b2,ANPR-03062-A - Rijstrook 1 - Amsteldijk,157.5,1,4.904106,52.357865,POINT(4.904106 52.357865),,,,nee,,
-,5425f9a5-423e-4462-b089-25a5458780f4,ANPR-03062-A - Rijstrook 2 - Amsteldijk,157.5,-1,4.904106,52.357865,POINT(4.904106 52.357865),,,,nee,,
-,5425f9a5-423e-4462-b089-25a5458780f4,ANPR-03062-A - Rijstrook 2 - Amsteldijk,157.5,1,4.904106,52.357865,POINT(4.904106 52.357865),,,,nee,,
-,67688948-e530-40cd-afae-e5f001e44198,ANPR-03063-A - Rijstrook 1 - Stadhouderskade,247.5,-1,4.903389,52.358745,POINT(4.903389 52.358745),,,,nee,,
-,67688948-e530-40cd-afae-e5f001e44198,ANPR-03063-A - Rijstrook 1 - Stadhouderskade,247.5,1,4.903389,52.358745,POINT(4.903389 52.358745),,,,nee,,
-,2a3bd691-394c-4240-9048-0cdbacb6e191,ANPR-03063-A - Rijstrook 2 - Stadhouderskade,247.5,-1,4.903389,52.358745,POINT(4.903389 52.358745),,,,nee,,
-,2a3bd691-394c-4240-9048-0cdbacb6e191,ANPR-03063-A - Rijstrook 2 - Stadhouderskade,247.5,1,4.903389,52.358745,POINT(4.903389 52.358745),,,,nee,,
+,3b08e25f-0810-4189-bd43-7dce2913a8a9,ANPR-03061-A - Rijstrook 1 - Mauritskade,45,-1,4.910543,52.360256,POINT(4.910543 52.360256),,9,Mauritskade west,op S100,rechtsom,nee
+,3b08e25f-0810-4189-bd43-7dce2913a8a9,ANPR-03061-A - Rijstrook 1 - Mauritskade,45,1,4.910543,52.360256,POINT(4.910543 52.360256),,9,Mauritskade west,op S100,linksom,ja
+,84bc8cdb-05c6-4495-9472-d04a17ff92bb,ANPR-03061-A - Rijstrook 2 - Mauritskade,45,-1,4.910543,52.360256,POINT(4.910543 52.360256),,9,Mauritskade west,op S100,rechtsom,nee
+,84bc8cdb-05c6-4495-9472-d04a17ff92bb,ANPR-03061-A - Rijstrook 2 - Mauritskade,45,1,4.910543,52.360256,POINT(4.910543 52.360256),,9,Mauritskade west,op S100,linksom,ja
+,ec764fc8-e1bb-461f-be73-ae1aa912b9b2,ANPR-03062-A - Rijstrook 1 - Amsteldijk,157.5,-1,4.904106,52.357865,POINT(4.904106 52.357865),,,,,,
+,ec764fc8-e1bb-461f-be73-ae1aa912b9b2,ANPR-03062-A - Rijstrook 1 - Amsteldijk,157.5,1,4.904106,52.357865,POINT(4.904106 52.357865),,,,,,
+,5425f9a5-423e-4462-b089-25a5458780f4,ANPR-03062-A - Rijstrook 2 - Amsteldijk,157.5,-1,4.904106,52.357865,POINT(4.904106 52.357865),,,,,,
+,5425f9a5-423e-4462-b089-25a5458780f4,ANPR-03062-A - Rijstrook 2 - Amsteldijk,157.5,1,4.904106,52.357865,POINT(4.904106 52.357865),,,,,,
+,67688948-e530-40cd-afae-e5f001e44198,ANPR-03063-A - Rijstrook 1 - Stadhouderskade,247.5,-1,4.903389,52.358745,POINT(4.903389 52.358745),,10,Stadhouderskade oost,op S100,linksom,nee
+,67688948-e530-40cd-afae-e5f001e44198,ANPR-03063-A - Rijstrook 1 - Stadhouderskade,247.5,1,4.903389,52.358745,POINT(4.903389 52.358745),,10,Stadhouderskade oost,op S100,rechtsom,ja
+,2a3bd691-394c-4240-9048-0cdbacb6e191,ANPR-03063-A - Rijstrook 2 - Stadhouderskade,247.5,-1,4.903389,52.358745,POINT(4.903389 52.358745),,10,Stadhouderskade oost,op S100,linksom,nee
+,2a3bd691-394c-4240-9048-0cdbacb6e191,ANPR-03063-A - Rijstrook 2 - Stadhouderskade,247.5,1,4.903389,52.358745,POINT(4.903389 52.358745),,10,Stadhouderskade oost,op S100,rechtsom,ja
 ,1289042e-7c57-4ad1-8248-3d41d5b1a15e,ANPR-03064-A - Rijstrook 1 - Nieuwe Utrechtseweg,180,-1,4.912118,52.334781,POINT(4.912118 52.334781),,,,,,
 ,1289042e-7c57-4ad1-8248-3d41d5b1a15e,ANPR-03064-A - Rijstrook 1 - Nieuwe Utrechtseweg,180,1,4.912118,52.334781,POINT(4.912118 52.334781),,,,,,
 ,b6b0e8d0-8e1c-44df-9ed3-6d15b0dcc8bd,ANPR-03064-A - Rijstrook 2 - Nieuwe Utrechtseweg,180,-1,4.912118,52.334781,POINT(4.912118 52.334781),,,,,,
@@ -460,20 +460,20 @@ vma_linknr,camera_id,camera_naam,camera_kijkrichting,rijrichting,longitude,latit
 ,65b0769d-1b3e-4a1f-8fa4-b1d26b30e9d7,ANPR-03069-A - Rijstrook 1 - Gooiseweg,202.5,1,4.939228,52.33788,POINT(4.939228 52.33788),,,,,,
 ,9d645c0c-e23a-4c32-8564-df483cb5eb4f,ANPR-03069-A - Rijstrook 2 - Gooiseweg,202.5,-1,4.939228,52.33788,POINT(4.939228 52.33788),,,,,,
 ,9d645c0c-e23a-4c32-8564-df483cb5eb4f,ANPR-03069-A - Rijstrook 2 - Gooiseweg,202.5,1,4.939228,52.33788,POINT(4.939228 52.33788),,,,,,
-,851e067b-a16a-4c42-a555-faeae5afd748,ANPR-03070-A - Rijstrook 1 - Mauritskade,45,-1,4.923335,52.363868,POINT(4.923335 52.363868),,,,,,
-,851e067b-a16a-4c42-a555-faeae5afd748,ANPR-03070-A - Rijstrook 1 - Mauritskade,45,1,4.923335,52.363868,POINT(4.923335 52.363868),,,,,,
-,45b4e92d-9d42-4f40-a985-3790ee1b6021,ANPR-03070-A - Rijstrook 2 - Mauritskade,45,-1,4.923335,52.363868,POINT(4.923335 52.363868),,,,,,
-,45b4e92d-9d42-4f40-a985-3790ee1b6021,ANPR-03070-A - Rijstrook 2 - Mauritskade,45,1,4.923335,52.363868,POINT(4.923335 52.363868),,,,,,
-,1380bc62-ae6b-4fa2-8554-fbfa65b5f8de,ANPR-03070-A - Rijstrook 3 - Mauritskade,45,-1,4.923335,52.363868,POINT(4.923335 52.363868),,,,,,
-,1380bc62-ae6b-4fa2-8554-fbfa65b5f8de,ANPR-03070-A - Rijstrook 3 - Mauritskade,45,1,4.923335,52.363868,POINT(4.923335 52.363868),,,,,,
+,851e067b-a16a-4c42-a555-faeae5afd748,ANPR-03070-A - Rijstrook 1 - Mauritskade,45,-1,4.923335,52.363868,POINT(4.923335 52.363868),,7,Mauritskade oost,op S100,rechtsom,nee
+,851e067b-a16a-4c42-a555-faeae5afd748,ANPR-03070-A - Rijstrook 1 - Mauritskade,45,1,4.923335,52.363868,POINT(4.923335 52.363868),,7,Mauritskade oost,op S100,linksom,ja
+,45b4e92d-9d42-4f40-a985-3790ee1b6021,ANPR-03070-A - Rijstrook 2 - Mauritskade,45,-1,4.923335,52.363868,POINT(4.923335 52.363868),,7,Mauritskade oost,op S100,rechtsom,nee
+,45b4e92d-9d42-4f40-a985-3790ee1b6021,ANPR-03070-A - Rijstrook 2 - Mauritskade,45,1,4.923335,52.363868,POINT(4.923335 52.363868),,7,Mauritskade oost,op S100,linksom,ja
+,1380bc62-ae6b-4fa2-8554-fbfa65b5f8de,ANPR-03070-A - Rijstrook 3 - Mauritskade,45,-1,4.923335,52.363868,POINT(4.923335 52.363868),,7,Mauritskade oost,op S100,rechtsom,nee
+,1380bc62-ae6b-4fa2-8554-fbfa65b5f8de,ANPR-03070-A - Rijstrook 3 - Mauritskade,45,1,4.923335,52.363868,POINT(4.923335 52.363868),,7,Mauritskade oost,op S100,linksom,ja
 ,f50bd2eb-2cda-441d-b15d-336c1b28da1d,ANPR-03071-A - Rijstrook 2 - Linnaeusstraat,157.5,-1,4.923474,52.362811,POINT(4.923474 52.362811),,,,,,
 ,f50bd2eb-2cda-441d-b15d-336c1b28da1d,ANPR-03071-A - Rijstrook 2 - Linnaeusstraat,157.5,1,4.923474,52.362811,POINT(4.923474 52.362811),,,,,,
 ,23773e4e-1607-4d22-b873-0b908030e5e7,ANPR-03071-A - Rijstrook 3 - Linnaeusstraat,157.5,-1,4.923474,52.362811,POINT(4.923474 52.362811),,,,,,
 ,23773e4e-1607-4d22-b873-0b908030e5e7,ANPR-03071-A - Rijstrook 3 - Linnaeusstraat,157.5,1,4.923474,52.362811,POINT(4.923474 52.362811),,,,,,
-,33deae84-60cf-41a0-b902-64817265757f,ANPR-03072-A - Rijstrook 2 - Mauritskade,247.5,-1,4.922036,52.36328,POINT(4.922036 52.36328),,,,,,
-,33deae84-60cf-41a0-b902-64817265757f,ANPR-03072-A - Rijstrook 2 - Mauritskade,247.5,1,4.922036,52.36328,POINT(4.922036 52.36328),,,,,,
-,81473430-e06b-48c6-9089-2588f87e11ad,ANPR-03072-A - Rijstrook 3 - Mauritskade,247.5,-1,4.922036,52.36328,POINT(4.922036 52.36328),,,,,,
-,81473430-e06b-48c6-9089-2588f87e11ad,ANPR-03072-A - Rijstrook 3 - Mauritskade,247.5,1,4.922036,52.36328,POINT(4.922036 52.36328),,,,,,
+,33deae84-60cf-41a0-b902-64817265757f,ANPR-03072-A - Rijstrook 2 - Mauritskade,247.5,-1,4.922036,52.36328,POINT(4.922036 52.36328),,8,Mauritskade bij Tropenmuseum,op S100,linksom,nee
+,33deae84-60cf-41a0-b902-64817265757f,ANPR-03072-A - Rijstrook 2 - Mauritskade,247.5,1,4.922036,52.36328,POINT(4.922036 52.36328),,8,Mauritskade bij Tropenmuseum,op S100,rechtsom,ja
+,81473430-e06b-48c6-9089-2588f87e11ad,ANPR-03072-A - Rijstrook 3 - Mauritskade,247.5,-1,4.922036,52.36328,POINT(4.922036 52.36328),,8,Mauritskade bij Tropenmuseum,op S100,linksom,nee
+,81473430-e06b-48c6-9089-2588f87e11ad,ANPR-03072-A - Rijstrook 3 - Mauritskade,247.5,1,4.922036,52.36328,POINT(4.922036 52.36328),,8,Mauritskade bij Tropenmuseum,op S100,rechtsom,ja
 ,3803aa9e-dbde-4409-90ac-89b87be9dce4,ANPR-03073-A - Rijstrook 1 - IJburglaan,135,-1,4.97517,52.365963,POINT(4.97517 52.365963),,,,,,
 ,3803aa9e-dbde-4409-90ac-89b87be9dce4,ANPR-03073-A - Rijstrook 1 - IJburglaan,135,1,4.97517,52.365963,POINT(4.97517 52.365963),,,,,,
 ,b59ab241-df5d-4c1d-9b29-68ef963532a3,ANPR-03074-A - Rijstrook 1 - IJburglaan,225,-1,4.97034,52.367967,POINT(4.97034 52.367967),,,,,,
@@ -1005,7 +1005,6 @@ vma_linknr,camera_id,camera_naam,camera_kijkrichting,rijrichting,longitude,latit
 ,be7fec82-d379-4068-80ed-a81e8c9af7d2,ANPR-03089-A - Rijstrook 1 - Gooiseweg,337.5,1,4.955782,52.325448,POINT(4.955782 52.325448),,,,,,
 ,3f96dbd5-78af-4234-98bc-f8fc15320eb0,ANPR-03089-A - Rijstrook 2 - Gooiseweg,337.5,-1,4.955782,52.325448,POINT(4.955782 52.325448),,,,,,
 ,3f96dbd5-78af-4234-98bc-f8fc15320eb0,ANPR-03089-A - Rijstrook 2 - Gooiseweg,337.5,1,4.955782,52.325448,POINT(4.955782 52.325448),,,,,,
-,0cf1ba20-92b3-40a6-a215-bbe234b5b0af,ANPR-03089-A - Rijstrook 3 - Gooiseweg,337.5,-1,0,0,POINT(0 0),,,,,,
 ,0cf1ba20-92b3-40a6-a215-bbe234b5b0af,ANPR-03089-A - Rijstrook 3 - Gooiseweg,337.5,-1,4.955782,52.325448,POINT(4.955782 52.325448),,,,,,
 ,0cf1ba20-92b3-40a6-a215-bbe234b5b0af,ANPR-03089-A - Rijstrook 3 - Gooiseweg,337.5,1,4.955782,52.325448,POINT(4.955782 52.325448),,,,,,
 ,e554ac45-ec5c-4fdf-9455-69956abfa7f5,ANPR-03090-A - Rijstrook 1 - Daalwijkdreef,67.5,-1,4.958935,52.324385,POINT(4.958935 52.324385),,,,,,
@@ -1052,10 +1051,10 @@ vma_linknr,camera_id,camera_naam,camera_kijkrichting,rijrichting,longitude,latit
 ,e99c64d7-1c56-4caf-a407-ae3afd9aa366,ANPR-03099-A - Rijstrook 1 - Muntbergweg,67.5,1,4.946728,52.300792,POINT(4.946728 52.300792),,,,,,
 ,e4e19334-64ad-4a59-8991-a9e0ad45486e,ANPR-03099-A - Rijstrook 2 - Muntbergweg,67.5,-1,4.946728,52.300792,POINT(4.946728 52.300792),,,,,,
 ,e4e19334-64ad-4a59-8991-a9e0ad45486e,ANPR-03099-A - Rijstrook 2 - Muntbergweg,67.5,1,4.946728,52.300792,POINT(4.946728 52.300792),,,,,,
-,d6f52b5e-7dfa-4058-b15b-8213c8f0c5b0,ANPR-03100-A - Rijstrook 1 - Muntbergweg,67.5,-1,4.949367,52.298883,POINT(4.949367 52.298883),,,,nee,,
-,d6f52b5e-7dfa-4058-b15b-8213c8f0c5b0,ANPR-03100-A - Rijstrook 1 - Muntbergweg,67.5,1,4.949367,52.298883,POINT(4.949367 52.298883),,,,nee,,
-,845d904c-7829-499b-89c1-5990770676b7,ANPR-03100-A - Rijstrook 2 - Muntbergweg,67.5,-1,4.949367,52.298883,POINT(4.949367 52.298883),,,,nee,,
-,845d904c-7829-499b-89c1-5990770676b7,ANPR-03100-A - Rijstrook 2 - Muntbergweg,67.5,1,4.949367,52.298883,POINT(4.949367 52.298883),,,,nee,,
+,d6f52b5e-7dfa-4058-b15b-8213c8f0c5b0,ANPR-03100-A - Rijstrook 1 - Muntbergweg,67.5,-1,4.949367,52.298883,POINT(4.949367 52.298883),,,,,,
+,d6f52b5e-7dfa-4058-b15b-8213c8f0c5b0,ANPR-03100-A - Rijstrook 1 - Muntbergweg,67.5,1,4.949367,52.298883,POINT(4.949367 52.298883),,,,,,
+,845d904c-7829-499b-89c1-5990770676b7,ANPR-03100-A - Rijstrook 2 - Muntbergweg,67.5,-1,4.949367,52.298883,POINT(4.949367 52.298883),,,,,,
+,845d904c-7829-499b-89c1-5990770676b7,ANPR-03100-A - Rijstrook 2 - Muntbergweg,67.5,1,4.949367,52.298883,POINT(4.949367 52.298883),,,,,,
 ,4a119a02-d45f-4098-92e6-b0e227c8f377,ANPR-03101-A - Rijstrook 1 - De Boelelaan,270,-1,4.878176,52.335134,POINT(4.878176 52.335134),,,,,,
 ,4a119a02-d45f-4098-92e6-b0e227c8f377,ANPR-03101-A - Rijstrook 1 - De Boelelaan,270,1,4.878176,52.335134,POINT(4.878176 52.335134),,,,,,
 ,73b23649-b357-470f-9d81-ca500708dbaa,ANPR-03101-A - Rijstrook 2 - De Boelelaan,270,-1,4.878176,52.335134,POINT(4.878176 52.335134),,,,,,
@@ -1128,39 +1127,39 @@ vma_linknr,camera_id,camera_naam,camera_kijkrichting,rijrichting,longitude,latit
 ,db425627-8430-446f-98b0-61dabf84a36f,ANPR-03123-A - Rijstrook 1 - Haarlemmerweg,180,1,4.843968,52.38446,POINT(4.843968 52.38446),,,,,,
 ,323aa654-ae6e-488d-9053-a3c57fabbf18,ANPR-03123-A - Rijstrook 2 - Haarlemmerweg,180,-1,4.843968,52.38446,POINT(4.843968 52.38446),,,,,,
 ,323aa654-ae6e-488d-9053-a3c57fabbf18,ANPR-03123-A - Rijstrook 2 - Haarlemmerweg,180,1,4.843968,52.38446,POINT(4.843968 52.38446),,,,,,
-,26e70aed-db79-4b72-a0f4-42b977680ff4,ANPR-03125-A - Rijstrook 1 - Nassaukade,180,-1,4.874927,52.373991,POINT(4.874927 52.373991),,,,nee,,
-,26e70aed-db79-4b72-a0f4-42b977680ff4,ANPR-03125-A - Rijstrook 1 - Nassaukade,180,1,4.874927,52.373991,POINT(4.874927 52.373991),,,,nee,,
-,6c1bed10-b99b-43f2-aa9a-7c356a3c411d,ANPR-03125-A - Rijstrook 2 - Nassaukade,180,-1,4.874927,52.373991,POINT(4.874927 52.373991),,,,nee,,
-,6c1bed10-b99b-43f2-aa9a-7c356a3c411d,ANPR-03125-A - Rijstrook 2 - Nassaukade,180,1,4.874927,52.373991,POINT(4.874927 52.373991),,,,nee,,
+,26e70aed-db79-4b72-a0f4-42b977680ff4,ANPR-03125-A - Rijstrook 1 - Nassaukade,180,-1,4.874927,52.373991,POINT(4.874927 52.373991),,15,Nassaukade bij Hugo de Grootkade,op S100,rechtsom,nee
+,26e70aed-db79-4b72-a0f4-42b977680ff4,ANPR-03125-A - Rijstrook 1 - Nassaukade,180,1,4.874927,52.373991,POINT(4.874927 52.373991),,15,Nassaukade bij Hugo de Grootkade,op S100,linksom,ja
+,6c1bed10-b99b-43f2-aa9a-7c356a3c411d,ANPR-03125-A - Rijstrook 2 - Nassaukade,180,-1,4.874927,52.373991,POINT(4.874927 52.373991),,15,Nassaukade bij Hugo de Grootkade,op S100,rechtsom,nee
+,6c1bed10-b99b-43f2-aa9a-7c356a3c411d,ANPR-03125-A - Rijstrook 2 - Nassaukade,180,1,4.874927,52.373991,POINT(4.874927 52.373991),,15,Nassaukade bij Hugo de Grootkade,op S100,linksom,ja
 ,,ANPR-03134-A - Rijstrook 1 - Beursplein,135,1,4.894677,52.37411,POINT(4.894677 52.37411),,,,,,
-,917a56f8-130c-43b4-91bc-a7310b0441e6,ANPR-03126-A - Rijstrook 1 - Tweede Hugo de Grootstraat,270,-1,4.874694,52.374265,POINT(4.874694 52.374265),,,,nee,,
-,917a56f8-130c-43b4-91bc-a7310b0441e6,ANPR-03126-A - Rijstrook 1 - Tweede Hugo de Grootstraat,270,1,4.874694,52.374265,POINT(4.874694 52.374265),,,,nee,,
-,c0de8a8a-f84a-48fc-9f8e-2ee4594a6a68,ANPR-03126-A - Rijstrook 2 - Tweede Hugo de Grootstraat,270,-1,4.874694,52.374265,POINT(4.874694 52.374265),,,,nee,,
-,c0de8a8a-f84a-48fc-9f8e-2ee4594a6a68,ANPR-03126-A - Rijstrook 2 - Tweede Hugo de Grootstraat,270,1,4.874694,52.374265,POINT(4.874694 52.374265),,,,nee,,
-,c0ee4621-3423-41ac-8061-e17d33904287,ANPR-03127-A - Rijstrook 1 - Nassaukade,0,-1,4.875201,52.374288,POINT(4.875201 52.374288),,,,nee,,
-,c0ee4621-3423-41ac-8061-e17d33904287,ANPR-03127-A - Rijstrook 1 - Nassaukade,0,1,4.875201,52.374288,POINT(4.875201 52.374288),,,,nee,,
-,a1244387-5c40-4d6e-8789-4bb995142806,ANPR-03127-A - Rijstrook 2 - Nassaukade,0,-1,4.875201,52.374288,POINT(4.875201 52.374288),,,,nee,,
-,a1244387-5c40-4d6e-8789-4bb995142806,ANPR-03127-A - Rijstrook 2 - Nassaukade,0,1,4.875201,52.374288,POINT(4.875201 52.374288),,,,nee,,
-,bd325f34-e801-413d-abc6-0d8ba9ccc1f9,ANPR-03128-A - Rijstrook 1 - Gaasperdammerweg,67.5,-1,4.97159,52.307597,POINT(4.97159 52.307597),,,,nee,,
-,bd325f34-e801-413d-abc6-0d8ba9ccc1f9,ANPR-03128-A - Rijstrook 1 - Gaasperdammerweg,67.5,1,4.97159,52.307597,POINT(4.97159 52.307597),,,,nee,,
-,171e99b5-1ee7-440d-af84-a4fc66f30d23,ANPR-03128-A - Rijstrook 2 - Gaasperdammerweg,67.5,-1,4.97159,52.307597,POINT(4.97159 52.307597),,,,nee,,
-,171e99b5-1ee7-440d-af84-a4fc66f30d23,ANPR-03128-A - Rijstrook 2 - Gaasperdammerweg,67.5,1,4.97159,52.307597,POINT(4.97159 52.307597),,,,nee,,
-,12a9411e-89a0-4a14-b341-05024fc97ee5,ANPR-03129-A - Rijstrook 1 - Gooiseweg,135,-1,4.97152,52.307272,POINT(4.97152 52.307272),,,,nee,,
-,12a9411e-89a0-4a14-b341-05024fc97ee5,ANPR-03129-A - Rijstrook 1 - Gooiseweg,135,1,4.97152,52.307272,POINT(4.97152 52.307272),,,,nee,,
-,7b3a785c-0f18-4d52-b39d-f11dcc0fa153,ANPR-03129-A - Rijstrook 2 - Gooiseweg,135,-1,4.97152,52.307272,POINT(4.97152 52.307272),,,,nee,,
-,7b3a785c-0f18-4d52-b39d-f11dcc0fa153,ANPR-03129-A - Rijstrook 2 - Gooiseweg,135,1,4.97152,52.307272,POINT(4.97152 52.307272),,,,nee,,
-,5a524294-52ba-4185-9206-edfc8b44f433,ANPR-03129-A - Rijstrook 3 - Gooiseweg,135,-1,4.97152,52.307272,POINT(4.97152 52.307272),,,,nee,,
-,5a524294-52ba-4185-9206-edfc8b44f433,ANPR-03129-A - Rijstrook 3 - Gooiseweg,135,1,4.97152,52.307272,POINT(4.97152 52.307272),,,,nee,,
-,2ac26b55-0d22-4fbc-9979-f48709e458ca,ANPR-03130-A - Rijstrook 1 - Gaasperdammerweg,247.5,-1,4.970257,52.30838,POINT(4.970257 52.30838),,,,nee,,
-,2ac26b55-0d22-4fbc-9979-f48709e458ca,ANPR-03130-A - Rijstrook 1 - Gaasperdammerweg,247.5,1,4.970257,52.30838,POINT(4.970257 52.30838),,,,nee,,
-,a9fbf361-ca44-4707-a69e-3fe57ffc27a0,ANPR-03130-A - Rijstrook 2 - Gaasperdammerweg,247.5,-1,4.970257,52.30838,POINT(4.970257 52.30838),,,,nee,,
-,a9fbf361-ca44-4707-a69e-3fe57ffc27a0,ANPR-03130-A - Rijstrook 2 - Gaasperdammerweg,247.5,1,4.970257,52.30838,POINT(4.970257 52.30838),,,,nee,,
-,8810309e-8c64-4005-95f9-de6c9288dab4,ANPR-03131-A - Rijstrook 1 - Gooiseweg,337.5,-1,4.970333,52.30881,POINT(4.970333 52.30881),,,,nee,,
-,8810309e-8c64-4005-95f9-de6c9288dab4,ANPR-03131-A - Rijstrook 1 - Gooiseweg,337.5,1,4.970333,52.30881,POINT(4.970333 52.30881),,,,nee,,
-,6cf45fde-8030-42e6-a454-cb7abfe04898,ANPR-03131-A - Rijstrook 2 - Gooiseweg,337.5,-1,4.970333,52.30881,POINT(4.970333 52.30881),,,,nee,,
-,6cf45fde-8030-42e6-a454-cb7abfe04898,ANPR-03131-A - Rijstrook 2 - Gooiseweg,337.5,1,4.970333,52.30881,POINT(4.970333 52.30881),,,,nee,,
-,7e168bf6-7b00-4dd2-86e3-ddcad30f863d,ANPR-03131-A - Rijstrook 3 - Gooiseweg,337.5,-1,4.970333,52.30881,POINT(4.970333 52.30881),,,,nee,,
-,7e168bf6-7b00-4dd2-86e3-ddcad30f863d,ANPR-03131-A - Rijstrook 3 - Gooiseweg,337.5,1,4.970333,52.30881,POINT(4.970333 52.30881),,,,nee,,
+,917a56f8-130c-43b4-91bc-a7310b0441e6,ANPR-03126-A - Rijstrook 1 - Tweede Hugo de Grootstraat,270,-1,4.874694,52.374265,POINT(4.874694 52.374265),,,,,,
+,917a56f8-130c-43b4-91bc-a7310b0441e6,ANPR-03126-A - Rijstrook 1 - Tweede Hugo de Grootstraat,270,1,4.874694,52.374265,POINT(4.874694 52.374265),,,,,,
+,c0de8a8a-f84a-48fc-9f8e-2ee4594a6a68,ANPR-03126-A - Rijstrook 2 - Tweede Hugo de Grootstraat,270,-1,4.874694,52.374265,POINT(4.874694 52.374265),,,,,,
+,c0de8a8a-f84a-48fc-9f8e-2ee4594a6a68,ANPR-03126-A - Rijstrook 2 - Tweede Hugo de Grootstraat,270,1,4.874694,52.374265,POINT(4.874694 52.374265),,,,,,
+,c0ee4621-3423-41ac-8061-e17d33904287,ANPR-03127-A - Rijstrook 1 - Nassaukade,0,-1,4.875201,52.374288,POINT(4.875201 52.374288),,16,Nassaukade noord,op S100,linksom,nee
+,c0ee4621-3423-41ac-8061-e17d33904287,ANPR-03127-A - Rijstrook 1 - Nassaukade,0,1,4.875201,52.374288,POINT(4.875201 52.374288),,16,Nassaukade noord,op S100,rechtsom,ja
+,a1244387-5c40-4d6e-8789-4bb995142806,ANPR-03127-A - Rijstrook 2 - Nassaukade,0,-1,4.875201,52.374288,POINT(4.875201 52.374288),,16,Nassaukade noord,op S100,linksom,nee
+,a1244387-5c40-4d6e-8789-4bb995142806,ANPR-03127-A - Rijstrook 2 - Nassaukade,0,1,4.875201,52.374288,POINT(4.875201 52.374288),,16,Nassaukade noord,op S100,rechtsom,ja
+,bd325f34-e801-413d-abc6-0d8ba9ccc1f9,ANPR-03128-A - Rijstrook 1 - Gaasperdammerweg,67.5,-1,4.97159,52.307597,POINT(4.97159 52.307597),,,,,,
+,bd325f34-e801-413d-abc6-0d8ba9ccc1f9,ANPR-03128-A - Rijstrook 1 - Gaasperdammerweg,67.5,1,4.97159,52.307597,POINT(4.97159 52.307597),,,,,,
+,171e99b5-1ee7-440d-af84-a4fc66f30d23,ANPR-03128-A - Rijstrook 2 - Gaasperdammerweg,67.5,-1,4.97159,52.307597,POINT(4.97159 52.307597),,,,,,
+,171e99b5-1ee7-440d-af84-a4fc66f30d23,ANPR-03128-A - Rijstrook 2 - Gaasperdammerweg,67.5,1,4.97159,52.307597,POINT(4.97159 52.307597),,,,,,
+,12a9411e-89a0-4a14-b341-05024fc97ee5,ANPR-03129-A - Rijstrook 1 - Gooiseweg,135,-1,4.97152,52.307272,POINT(4.97152 52.307272),,,,,,
+,12a9411e-89a0-4a14-b341-05024fc97ee5,ANPR-03129-A - Rijstrook 1 - Gooiseweg,135,1,4.97152,52.307272,POINT(4.97152 52.307272),,,,,,
+,7b3a785c-0f18-4d52-b39d-f11dcc0fa153,ANPR-03129-A - Rijstrook 2 - Gooiseweg,135,-1,4.97152,52.307272,POINT(4.97152 52.307272),,,,,,
+,7b3a785c-0f18-4d52-b39d-f11dcc0fa153,ANPR-03129-A - Rijstrook 2 - Gooiseweg,135,1,4.97152,52.307272,POINT(4.97152 52.307272),,,,,,
+,5a524294-52ba-4185-9206-edfc8b44f433,ANPR-03129-A - Rijstrook 3 - Gooiseweg,135,-1,4.97152,52.307272,POINT(4.97152 52.307272),,,,,,
+,5a524294-52ba-4185-9206-edfc8b44f433,ANPR-03129-A - Rijstrook 3 - Gooiseweg,135,1,4.97152,52.307272,POINT(4.97152 52.307272),,,,,,
+,2ac26b55-0d22-4fbc-9979-f48709e458ca,ANPR-03130-A - Rijstrook 1 - Gaasperdammerweg,247.5,-1,4.970257,52.30838,POINT(4.970257 52.30838),,,,,,
+,2ac26b55-0d22-4fbc-9979-f48709e458ca,ANPR-03130-A - Rijstrook 1 - Gaasperdammerweg,247.5,1,4.970257,52.30838,POINT(4.970257 52.30838),,,,,,
+,a9fbf361-ca44-4707-a69e-3fe57ffc27a0,ANPR-03130-A - Rijstrook 2 - Gaasperdammerweg,247.5,-1,4.970257,52.30838,POINT(4.970257 52.30838),,,,,,
+,a9fbf361-ca44-4707-a69e-3fe57ffc27a0,ANPR-03130-A - Rijstrook 2 - Gaasperdammerweg,247.5,1,4.970257,52.30838,POINT(4.970257 52.30838),,,,,,
+,8810309e-8c64-4005-95f9-de6c9288dab4,ANPR-03131-A - Rijstrook 1 - Gooiseweg,337.5,-1,4.970333,52.30881,POINT(4.970333 52.30881),,,,,,
+,8810309e-8c64-4005-95f9-de6c9288dab4,ANPR-03131-A - Rijstrook 1 - Gooiseweg,337.5,1,4.970333,52.30881,POINT(4.970333 52.30881),,,,,,
+,6cf45fde-8030-42e6-a454-cb7abfe04898,ANPR-03131-A - Rijstrook 2 - Gooiseweg,337.5,-1,4.970333,52.30881,POINT(4.970333 52.30881),,,,,,
+,6cf45fde-8030-42e6-a454-cb7abfe04898,ANPR-03131-A - Rijstrook 2 - Gooiseweg,337.5,1,4.970333,52.30881,POINT(4.970333 52.30881),,,,,,
+,7e168bf6-7b00-4dd2-86e3-ddcad30f863d,ANPR-03131-A - Rijstrook 3 - Gooiseweg,337.5,-1,4.970333,52.30881,POINT(4.970333 52.30881),,,,,,
+,7e168bf6-7b00-4dd2-86e3-ddcad30f863d,ANPR-03131-A - Rijstrook 3 - Gooiseweg,337.5,1,4.970333,52.30881,POINT(4.970333 52.30881),,,,,,
 ,6a2b0837-9a5b-4003-8b10-6d92be96f810,ANPR-03132-A - Rijstrook 1 - Zeeburgerdijk,337.5,-1,4.948453,52.365469,POINT(4.948453 52.365469),,,,,,
 ,6a2b0837-9a5b-4003-8b10-6d92be96f810,ANPR-03132-A - Rijstrook 1 - Zeeburgerdijk,337.5,1,4.948453,52.365469,POINT(4.948453 52.365469),,,,,,
 ,b731b7eb-b78d-472f-8ef3-7de994c4e196,ANPR-03132-A - Rijstrook 2 - Zeeburgerdijk,337.5,-1,4.948453,52.365469,POINT(4.948453 52.365469),,,,,,
@@ -1249,14 +1248,14 @@ vma_linknr,camera_id,camera_naam,camera_kijkrichting,rijrichting,longitude,latit
 218824,948935cb-273c-4fb0-8318-a6860e00608f,ANPR-06030-A - Rijstrook -1 - Alexanderplein,157.5,-1,4.919917,52.3635,POINT(4.919917 52.3635),,18,Alexanderplein,S100,in,ja
 218824,99e4e050-de36-4b6a-bc0f-c123d26c8499,ANPR-06030-A - Rijstrook -2 - Alexanderplein,157.5,1,4.919917,52.3635,POINT(4.919917 52.3635),,18,Alexanderplein,S100,uit,nee
 218824,99e4e050-de36-4b6a-bc0f-c123d26c8499,ANPR-06030-A - Rijstrook -2 - Alexanderplein,157.5,-1,4.919917,52.3635,POINT(4.919917 52.3635),,18,Alexanderplein,S100,in,ja
-204119,36d2c16f-80b3-4c5d-905a-f00023df9fbf,ANPR-06027-A - Rijstrook -1 - Korte 's-Gravesandestraat,337.5,1,4.915027,52.361583,POINT(4.915027 52.361583),,19,Korte 's-Gravesandestraat,S100,in,nee
-204119,36d2c16f-80b3-4c5d-905a-f00023df9fbf,ANPR-06027-A - Rijstrook -1 - Korte 's-Gravesandestraat,337.5,-1,4.915027,52.361583,POINT(4.915027 52.361583),,19,Korte 's-Gravesandestraat,S100,uit,ja
-204119,48b2c504-7f59-4454-b5fc-75ab8277423b,ANPR-06028-A - Rijstrook -1 - Korte 's-Gravesandestraat,157.5,1,4.915055,52.361972,POINT(4.915055 52.361972),,19,Korte 's-Gravesandestraat,S100,uit,nee
-204119,48b2c504-7f59-4454-b5fc-75ab8277423b,ANPR-06028-A - Rijstrook -1 - Korte 's-Gravesandestraat,157.5,-1,4.915055,52.361972,POINT(4.915055 52.361972),,19,Korte 's-Gravesandestraat,S100,in,ja
-204119,1ebb0367-e4b6-4721-b75c-e42aed520f1f,ANPR-06028-A - Rijstrook -2 - Korte 's-Gravesandestraat,157.5,1,4.915055,52.361972,POINT(4.915055 52.361972),,19,Korte 's-Gravesandestraat,S100,uit,nee
-204119,1ebb0367-e4b6-4721-b75c-e42aed520f1f,ANPR-06028-A - Rijstrook -2 - Korte 's-Gravesandestraat,157.5,-1,4.915055,52.361972,POINT(4.915055 52.361972),,19,Korte 's-Gravesandestraat,S100,in,ja
-204119,66772724-420d-4522-a29e-58918ea1f418,ANPR-06028-A - Rijstrook -3 - Korte 's-Gravesandestraat,157.5,1,4.915055,52.361972,POINT(4.915055 52.361972),,19,Korte 's-Gravesandestraat,S100,uit,nee
-204119,66772724-420d-4522-a29e-58918ea1f418,ANPR-06028-A - Rijstrook -3 - Korte 's-Gravesandestraat,157.5,-1,4.915055,52.361972,POINT(4.915055 52.361972),,19,Korte 's-Gravesandestraat,S100,in,ja
+204119,36d2c16f-80b3-4c5d-905a-f00023df9fbf,'ANPR-06027-A - Rijstrook -1 - Korte ''s-Gravesandestraat',337.5,1,4.915027,52.361583,POINT(4.915027 52.361583),,19,'Korte ''s-Gravesandestraat',S100,in,nee
+204119,36d2c16f-80b3-4c5d-905a-f00023df9fbf,'ANPR-06027-A - Rijstrook -1 - Korte ''s-Gravesandestraat',337.5,-1,4.915027,52.361583,POINT(4.915027 52.361583),,19,'Korte ''s-Gravesandestraat',S100,uit,ja
+204119,48b2c504-7f59-4454-b5fc-75ab8277423b,'ANPR-06028-A - Rijstrook -1 - Korte ''s-Gravesandestraat',157.5,1,4.915055,52.361972,POINT(4.915055 52.361972),,19,'Korte ''s-Gravesandestraat',S100,uit,nee
+204119,48b2c504-7f59-4454-b5fc-75ab8277423b,'ANPR-06028-A - Rijstrook -1 - Korte ''s-Gravesandestraat',157.5,-1,4.915055,52.361972,POINT(4.915055 52.361972),,19,'Korte ''s-Gravesandestraat',S100,in,ja
+204119,1ebb0367-e4b6-4721-b75c-e42aed520f1f,'ANPR-06028-A - Rijstrook -2 - Korte ''s-Gravesandestraat',157.5,1,4.915055,52.361972,POINT(4.915055 52.361972),,19,'Korte ''s-Gravesandestraat',S100,uit,nee
+204119,1ebb0367-e4b6-4721-b75c-e42aed520f1f,'ANPR-06028-A - Rijstrook -2 - Korte ''s-Gravesandestraat',157.5,-1,4.915055,52.361972,POINT(4.915055 52.361972),,19,'Korte ''s-Gravesandestraat',S100,in,ja
+204119,66772724-420d-4522-a29e-58918ea1f418,'ANPR-06028-A - Rijstrook -3 - Korte ''s-Gravesandestraat',157.5,1,4.915055,52.361972,POINT(4.915055 52.361972),,19,'Korte ''s-Gravesandestraat',S100,uit,nee
+204119,66772724-420d-4522-a29e-58918ea1f418,'ANPR-06028-A - Rijstrook -3 - Korte ''s-Gravesandestraat',157.5,-1,4.915055,52.361972,POINT(4.915055 52.361972),,19,'Korte ''s-Gravesandestraat',S100,in,ja
 210918,1dca2958-c433-4c3b-bb3e-59028e3b1ffd,ANPR-06025-A - Rijstrook -1 - Rhijnspoorplein,337.5,1,4.908047,52.360744,POINT(4.908047 52.360744),,20,Rhijnspoorplein,S100,in,nee
 210918,1dca2958-c433-4c3b-bb3e-59028e3b1ffd,ANPR-06025-A - Rijstrook -1 - Rhijnspoorplein,337.5,-1,4.908047,52.360744,POINT(4.908047 52.360744),,20,Rhijnspoorplein,S100,uit,ja
 210918,937dd934-246a-49b4-b5cd-9f880f5b49d8,ANPR-06025-A - Rijstrook -2 - Rhijnspoorplein,337.5,1,4.908047,52.360744,POINT(4.908047 52.360744),,20,Rhijnspoorplein,S100,in,nee
@@ -1345,13 +1344,13 @@ vma_linknr,camera_id,camera_naam,camera_kijkrichting,rijrichting,longitude,latit
 218874,bdba1b4c-2e7f-456e-8bda-a79474934591,ANPR-03047-A - Rijstrook -1 - Willemsbrug,90,-1,4.881632,52.385021,POINT(4.881632 52.385021),,31,Haarlemmerplein,S100,uit,ja
 218874,6858aeee-a17a-40f3-9f88-eaab024d4e8d,ANPR-03047-A - Rijstrook -2 - Willemsbrug,90,1,4.881632,52.385021,POINT(4.881632 52.385021),,31,Haarlemmerplein,S100,in,nee
 218874,6858aeee-a17a-40f3-9f88-eaab024d4e8d,ANPR-03047-A - Rijstrook -2 - Willemsbrug,90,-1,4.881632,52.385021,POINT(4.881632 52.385021),,31,Haarlemmerplein,S100,uit,ja
-209558,732f43c9-d6f6-4052-9017-b0db89add1b5,ANPR-09001-A - Rijstrook -1 - Wespoortweg,112.5,-1,4.774147,52.398276,POINT(4.774147 52.398276),,,,nee,,
-,,ANPR-09001-A - Rijstrook -1 - Wespoortweg,112.5,1,4.774147,52.398276,POINT(4.774147 52.398276),,,,nee,,
-209558,3d64501e-93bb-4531-8dd6-4f5a382071e5,ANPR-09001-A - Rijstrook -2 - Westpoortweg,112.5,-1,4.774147,52.398276,POINT(4.774147 52.398276),,,,nee,,
-209558,0c1759fa-47d9-42bd-8f65-51f02ef75e44,ANPR-09002-A - Rijstrook -1 - Westpoortweg,292.5,-1,4.774569,52.397856,POINT(4.774569 52.397856),,,,nee,,
-,,ANPR-09002-A - Rijstrook -1 - Westpoortweg,292.5,1,4.774569,52.397856,POINT(4.774569 52.397856),,,,nee,,
-209558,e602e906-399e-447e-9710-cd64db9dbe6c,ANPR-09002-A - Rijstrook -2 - Westpoortweg,292.5,-1,4.774569,52.397856,POINT(4.774569 52.397856),,,,nee,,
-,,ANPR-09002-A - Rijstrook -2 - Westpoortweg,292.5,1,4.774569,52.397856,POINT(4.774569 52.397856),,,,nee,,
+209558,732f43c9-d6f6-4052-9017-b0db89add1b5,ANPR-09001-A - Rijstrook -1 - Wespoortweg,112.5,-1,4.774147,52.398276,POINT(4.774147 52.398276),,,,,,
+,,ANPR-09001-A - Rijstrook -1 - Wespoortweg,112.5,1,4.774147,52.398276,POINT(4.774147 52.398276),,,,,,
+209558,3d64501e-93bb-4531-8dd6-4f5a382071e5,ANPR-09001-A - Rijstrook -2 - Westpoortweg,112.5,-1,4.774147,52.398276,POINT(4.774147 52.398276),,,,,,
+209558,0c1759fa-47d9-42bd-8f65-51f02ef75e44,ANPR-09002-A - Rijstrook -1 - Westpoortweg,292.5,-1,4.774569,52.397856,POINT(4.774569 52.397856),,,,,,
+,,ANPR-09002-A - Rijstrook -1 - Westpoortweg,292.5,1,4.774569,52.397856,POINT(4.774569 52.397856),,,,,,
+209558,e602e906-399e-447e-9710-cd64db9dbe6c,ANPR-09002-A - Rijstrook -2 - Westpoortweg,292.5,-1,4.774569,52.397856,POINT(4.774569 52.397856),,,,,,
+,,ANPR-09002-A - Rijstrook -2 - Westpoortweg,292.5,1,4.774569,52.397856,POINT(4.774569 52.397856),,,,,,
 ,,ANPR-01050-A - Rijstrook 1 - Museumstraat - Zuid,45,-1,4.884119,52.359169,POINT(4.884119 52.359169),,,,,,
 253906,0fbb922e-74b2-43df-9d0f-647e50d27dd0,ANPR-01006-A - Rijstrook 1 - Bos en Lommerplein,270,1,4.847135,52.384856,POINT(4.847135 52.384856),,3,Bos en Lommerplein,A10,uit,nee
 253906,0fbb922e-74b2-43df-9d0f-647e50d27dd0,ANPR-01006-A - Rijstrook 1 - Bos en Lommerplein,270,-1,4.847135,52.384856,POINT(4.847135 52.384856),,3,Bos en Lommerplein,A10,in,ja
